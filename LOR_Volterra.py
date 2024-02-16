@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from time import process_time 
 
-import methods.volt_funcs as volt
+import estimators.volt_funcs as volt
 
 # %% Generate Lorenz dataset
 

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from time import process_time, time
 import utils.crossvalidation as cv
 
-import methods.volt_funcs as volt
+import estimators.volt_funcs as volt
 
 # %% Generate Lorenz dataset
 

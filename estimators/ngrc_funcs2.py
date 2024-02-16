@@ -1,15 +1,17 @@
+# %% 
+
 import numpy as np
 from itertools import combinations_with_replacement
 from math import comb
 
 # Requires data in the form (nfeatures, nsample)
 
-def Train(ndelay, deg, reg, data, ntrain, start):
+def Train(ndelay, deg, reg, training_input, training_teacher, start):
 
-    # Define size of total data
-    ndata = data.shape[1]
-    # Define dimension of input data
-    ndim = data.shape[0]
+    # Define size of training data, inferred based on the size of training input
+    ntrain = training_input.shape[1] + 1
+    # Define dimension of input based on training data
+    ndim = training_input.shape[0]
     
     # Size of linear part of feature vector
     dlin = ndelay * ndim
@@ -24,12 +26,12 @@ def Train(ndelay, deg, reg, data, ntrain, start):
     
     # Create array to hold linear part of feature vector
     #X = np.zeros((dlin, ndata))
-    X = np.zeros((dlin, ))
+    X = np.zeros((dlin, ntrain-1))
 
     # Fill in the linear part of the feature vector
     for delay in range(ndelay):
-        for j in range(delay, ndata):
-            X[ndim*delay:ndim*(delay+1), j] = data[:, j-delay]
+        for j in range(delay, ntrain-1):
+            X[ndim*delay:ndim*(delay+1), j] = training_input[:, j-delay]
     
     # Create feature vector over training time
     O_train = np.ones((dtot, ntrain-1-start))
@@ -50,20 +52,20 @@ def Train(ndelay, deg, reg, data, ntrain, start):
                 monomial_row = monomial_row * X[X_row_ids[row_id], start:ntrain-1]
             O_train[O_row] = monomial_row
             O_row = O_row + 1
-        
+    
     # Ridge regression train W_out with X_i+1 - X_i
-    W_out = (X[0:ndim, start+1:ntrain] - X[0:ndim, start:ntrain-1]) @ O_train[:, :].T @ np.linalg.pinv(O_train[:,:] @ O_train[:, :].T + reg * np.identity(dtot))
+    #W_out = (training_teacher[:, start:] - training_input[:, start:]) @ O_train[:, :].T @ np.linalg.pinv(O_train[:,:] @ O_train[:, :].T + reg * np.identity(dtot))
+    
+    W_out = (training_teacher[:, start:] - training_input[:, start:]) @ O_train.T @ np.linalg.pinv(O_train @ O_train.T + reg * np.identity(dtot))
     
     return W_out, X     # X needed for forecasting
 
-def Forecast(W_out, X, deg, ntest):
+def Forecast(W_out, X, latest_input, deg, ntest):
     
     # Redefine size of linear part of feature vector
     dlin = X.shape[0]
     # Redefine the size of total feature vector size
     dtot = W_out.shape[1]
-    # Redefine the size of the training data set
-    ntrain = X.shape[1] - ntest
     # Redefine the dimension of the data set
     ndim = W_out.shape[0]
     
@@ -71,8 +73,9 @@ def Forecast(W_out, X, deg, ntest):
     O_test = np.ones(dtot)              # full feature vector
     X_test = np.zeros((dlin, ntest+1))    # linear portion of feature vector
     
-    # Copy over inital linear feature vector
-    X_test[:, 0] = X[:, ntrain-1]
+    # Fill in the linear part of the feature vector with the latest input data and delay
+    X_test[0:ndim, 0] = latest_input
+    X_test[ndim: , 0] = X[0:dlin-ndim, -1]
     
     # Apply W_out to feature vector to perform prediction
     for j in range(ntest):
@@ -100,6 +103,7 @@ def Forecast(W_out, X, deg, ntest):
 
     return X_test[0:ndim, 1:]
 
+# %% 
 def NGRC(training_input, training_teacher, testing_input, ntest, ngrc_params):
     
     # Roll out the NGRC parameters

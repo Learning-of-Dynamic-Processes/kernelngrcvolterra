@@ -1,3 +1,6 @@
+
+# %%
+
 import datagen.data_generate as data_gen
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,7 +8,7 @@ import seaborn as sns
 from time import process_time 
 from sklearn.linear_model import Lasso
 
-import methods.volt_funcs as volt
+import estimators.volt_funcs2 as volt
 
 # %% Generate Lorenz dataset
 
@@ -53,6 +56,24 @@ training_teacher = scale * (training_teacher_orig - training_input_orig_mean)
 testing_input = scale * (testing_input_orig - training_input_orig_mean)
 testing_teacher = scale * (testing_teacher_orig - training_input_orig_mean)
 
+# %% 
+
+# Shifting of dataset so that it is centered at 0 
+training_input_orig_mean = np.mean(training_input_orig, axis=0)
+
+training_input_shifted = training_input_orig - training_input_orig_mean
+training_teacher_shifted = training_teacher_orig - training_input_orig_mean
+testing_input_shifted = testing_input_orig - training_input_orig_mean
+testing_teacher_shifted = testing_teacher_orig - training_input_orig_mean
+
+# Scaling of dataset so that max norm is 1
+max_norm = np.max([np.linalg.norm(z) for z in training_input_shifted])
+scale = 1/max_norm
+training_input = scale * training_input_shifted
+training_teacher = scale * training_teacher_shifted
+testing_input = scale * testing_input_shifted
+testing_teacher = scale * testing_input_shifted
+
 # %% Define reservoir kernel parameters -- without defining regression first
 
 # Define parameters needed to build the reservoir
@@ -69,7 +90,19 @@ print("Value of lambda: ", ld)
 print("M: ", M)
 print("ld/np.sqrt(1-tau^2 M^2): ", ld/np.sqrt(1-tau**2 * M**2))
 
+# %% 
+
+M = np.max([np.linalg.norm(z) for z in training_input])
+tau = 0.99
+omega = 0.14106735979665894
+
+print("Value of tau: ", tau)
+print("Value of lambda: ", ld)
+print("M: ", M)
+print("ld/np.sqrt(1-tau^2 M^2): ", ld/np.sqrt(1-tau**2 * M**2))
+
 # %% Perform training on full training set by populating Gram matrix then using Lasso least squares 
+# Iterate over possible Lasso reg parameters to obtain one that gives 28 nonzero coefs 
 
 # Start timer 
 n_coefs_start = process_time()
@@ -176,7 +209,8 @@ K_train = K[washout: , washout: ]
 training_teacher_washed = training_teacher[washout: ]
 
 # Define choice of regularisation parameters for each dimension
-lasso_reg_ls = [2.0729217795953697e-05, 6.90551352016233e-05, 5.672426068491978e-05]
+#lasso_reg_ls = [2.0729217795953697e-05, 6.90551352016233e-05, 5.672426068491978e-05]
+lasso_reg_ls = [3e-06, 3e-06, 3e-06]
 
 # Store for full least squares regression result (alpha matrix)
 alpha_lasso = np.zeros((ntrain-1-washout, ndim))
@@ -346,3 +380,5 @@ axs[0].set(xlabel="x")
 axs[1].set(xlabel="y")
 axs[2].set(xlabel="z")
 
+
+# %%

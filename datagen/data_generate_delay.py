@@ -2,6 +2,30 @@ import numpy as np
 
 def iter_rk45(prev, lag, t, h, f, fargs=None): 
     
+    """
+    One step of forward of Runge-Kutta 45 method for delay differential equations (DDEs). Passed into for dde_rk45. 
+
+    Parameters
+    ----------
+    prev : array_like
+        Vector with the values from the previous step
+    lag : array_like
+        Vector with the lag values needed to generate the vector field
+    t : int
+        Current time step for input into the DDE vector field function
+    h : int
+        Time step needed for RK45 interation
+    f : callable
+        Spits out the vector field given inputs which should be of the format (t, z, z_lag, fargs)
+    fargs : dict, optional
+        Arguments that are passed into f DDE to generate the vector field
+    
+    Returns
+    -------
+    curr : array_like
+        One step forward of RK45 iteration 
+    """
+    
     if fargs == None: 
         z1 = prev
         z2 = prev + (h/2)*f(t, z1, lag)
@@ -10,7 +34,7 @@ def iter_rk45(prev, lag, t, h, f, fargs=None):
         
         z = (h/6)*(f(t, z1, lag) + 2*f(t + 0.5*h, z2, lag) + 2*f(t + 0.5*h, z3, lag) + f(t + h, z4, lag))
         curr = prev + z
-        
+     
     else:
         z1 = prev
         z2 = prev + (h/2)*f(t, z1, lag, fargs)
@@ -24,6 +48,31 @@ def iter_rk45(prev, lag, t, h, f, fargs=None):
 
 
 def dde_rk45(n_intervals, func_init, f, h, fargs=None):
+    
+    """
+    Runge-Kutta 45 for delay differential equations
+    
+    Parameters
+    ----------
+    n_intervals : int
+        Number of delay intervals to integrate over
+    func_init : callable
+        Function that gives the initial values for the first interval
+    f : callable
+        Spits out the vector field given inputs which should be of the format (t, z, z_lag, fargs)
+    h : int
+        Time step needed for RK45 interation
+    f : callable
+    fargs : dict, optional
+        Arguments that are passed into f DDE to generate the vector field
+        
+    Returns
+    -------
+    t_eval : array_like
+        Time steps at which RK45 solved the DDE at
+    solution : array_like
+        Solution flattened into a 1D array and reshaped into (nsamples, 1)
+    """
     
     delay = fargs['delay']
     discretisation = int(delay / h)
@@ -44,6 +93,6 @@ def dde_rk45(n_intervals, func_init, f, h, fargs=None):
         solution[interval, :] = curr
         prev = curr
         
-    return np.array(t_eval), solution.flatten()
+    return np.array(t_eval), solution.flatten().reshape((-1, 1))
 
 

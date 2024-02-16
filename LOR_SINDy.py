@@ -1,3 +1,5 @@
+# %% Import packages
+
 import datagen.data_generate as data_gen
 import numpy as np
 import matplotlib.pyplot as plt
@@ -54,8 +56,9 @@ train_start = process_time()
 # Model creation and fitting
 threshold = 0.1
 alpha = 1e-15
-stlsq_optim = ps.STLSQ(threshold=threshold)
-sindy_model = ps.SINDy(optimizer=stlsq_optim)
+stlsq_optim = ps.STLSQ(threshold=threshold, alpha=alpha)
+library = ps.PolynomialLibrary(degree=2, include_interaction=True, interaction_only=False)
+sindy_model = ps.SINDy(optimizer=stlsq_optim, feature_library=library)
 sindy_model.fit(training, t=h*slicing)
 
 # Stop timer for training

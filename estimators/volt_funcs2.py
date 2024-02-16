@@ -1,8 +1,7 @@
+# %% 
 import numpy as np
-
-# Functions are written to take in datasets of dimensions: data length x num of dim 
-# Dataset must have dimension 2 i.e. scalar datasets need to be reshaped to (-1, 1)
-
+from time import process_time
+# %% 
 # Function to initialise the Gram matrix with a set of data and initial Gram0
 def GramMat(data, ld, tau):
     ndata = len(data)
@@ -86,7 +85,6 @@ def Forecast(Gram, training_input, testing_input, alpha, alpha0, start, ld, tau)
     Gram_testing = Gram_extended[start:start+nalpha, start: ]
     # Generate outputs with washed Gram matrix
     pred_block_nonauto = StepsAhead(Gram_testing, alpha, alpha0, nhorizon)
-    
     return pred_block_nonauto
 
 # Function to wrap autonomous forecasting process
@@ -122,7 +120,10 @@ def ForecastAuto(Gram_init, training_input_init, latest_input, alpha, alpha0, st
         latest_input = latest_output
     
     return pred_auto
+    
+'''
 
+'''
 # Wrapper function to that trains and does autonomous forecasting and outputs forecasts
 def Volterra(training_input, training_teacher, testing_input, ntest, volt_params):
     

@@ -2,6 +2,28 @@ import numpy as np
 
 def iter_rk45(prev, t, h, f, fargs=None):
     
+    """
+    One step of forward of Runge-Kutta 45 method for ODEs. Passed into for rk45. 
+
+    Parameters
+    ----------
+    prev : array_like
+        Vector with the values from the previous step
+    t : int
+        Current time step for input into the DDE vector field function
+    h : int
+        Time step needed for RK45 interation
+    f : callable
+        Spits out the vector field given inputs which should be of the format (t, z, z_lag, fargs)
+    fargs : dict, optional
+        Arguments that are passed into f DDE to generate the vector field
+    
+    Returns
+    -------
+    curr : array_like
+        One step forward of RK45 iteration 
+    """
+    
     if fargs == None:
         z1 = prev
         z2 = prev + (h/2)*f(t, z1)
@@ -23,6 +45,31 @@ def iter_rk45(prev, t, h, f, fargs=None):
     return curr
 
 def rk45(f, t_span, sol_init, h, fargs=None):
+    
+    """
+    Runge-Kutta 45 for ODEs. 
+    
+    Parameters
+    ----------
+    f : callable
+        Function that outputs the vector field of the ODE taking in inputs with format (t, z, fargs)
+    t_span : tuple of ints
+        (start, end) indicating the start and end time for numerical integration
+    sol_init : array_like
+        Solution to start integrating from
+    h : int
+        Time step needed for RK45 interation
+    fargs : dict, optional 
+        Arguments that are passed into f DDE to generate the vector field
+
+    Returns
+    -------
+    t_eval : array_like
+        Time steps at which RK45 solved the ODE
+    solution : array_like
+        Solution of the ODE with format (nsamples, ndim)
+    """
+    
     start = t_span[0]
     end = t_span[1]
     

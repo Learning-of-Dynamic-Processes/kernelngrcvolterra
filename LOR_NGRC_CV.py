@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt  
 from time import process_time 
 
-import methods.ngrc_funcs as ngrc
+import estimators.ngrc_funcs as ngrc
 
 # %% Generate Lorenz dataset
 
