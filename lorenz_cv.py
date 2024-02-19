@@ -43,9 +43,9 @@ train_in_volt, train_teach_volt = normalisation_output[0]
 shift_volt, scale_volt = normalisation_output[1], normalisation_output[2]
 
 # Define the range of parameters for which you want to cross validate over
-ld_coef_range = np.linspace(0.01, 0.99, 9) #np.linspace(0.01, 0.99, 99)
-tau_coef_range = np.linspace(0.01, 0.99, 9) #np.linspace(0.01, 0.99, 99)
-reg_range = [1e-15] #np.logspace(-15, -1, 15)
+ld_coef_range = np.linspace(0.01, 0.99, 99) 
+tau_coef_range = np.linspace(0.01, 0.99, 99) 
+reg_range = np.logspace(-15, -1, 15)
 param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
 # Define the names of the parameters -- orders must match
