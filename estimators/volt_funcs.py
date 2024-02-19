@@ -1,4 +1,5 @@
-# Volterra class code based on the methods detailed in https://arxiv.org/abs/2212.14641 
+
+### Volterra class code based on the methods detailed in https://arxiv.org/abs/2212.14641 
 
 import numpy as np
 from sklearn.linear_model import Lasso
@@ -158,8 +159,11 @@ class Volterra:
             # Perform checks and modifications on regression parameter given
             if np.isscalar(self.reg):
                 self.reg = [self.reg] * self.ntargets
-            elif isinstance(self.reg, (list, np.ndarray)):
+            elif isinstance(self.reg, np.ndarray):
                 if self.reg.shape != (self.ntargets, ):
+                    raise TypeError("Lasso regularisation was chosen but the array given as regularisation is wrong")
+            elif isinstance(self.reg, list):
+                if len(self.reg) != self.ntargets:
                     raise TypeError("Lasso regularisation was chosen but the array given as regularisation is wrong")
             
             # Initialise lasso output store for all targets
@@ -174,7 +178,7 @@ class Volterra:
                 target_reg_param = self.reg[target]
                 
                 # Perform Lasso least squares regularisation using the sklearn lasso model
-                lasso_target = Lasso(target_reg_param, self.max_iter, self.tol).fit(Gram_train, training_teacher_washed[:, target])
+                lasso_target = Lasso(target_reg_param, max_iter=self.lasso_max_iter, tol=self.lasso_tol).fit(Gram_train, training_teacher_washed[:, target])
                 alpha_target, alpha0_target = lasso_target.coef_, lasso_target.intercept_
                 
                 # Fill up the regression parameters with the regression result

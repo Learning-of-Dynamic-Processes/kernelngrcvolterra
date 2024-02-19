@@ -1,5 +1,6 @@
-# SINDy code written as a class, adapted from Manjunath's https://github.com/MJSteynberg/ForecastingThroughCausalEmbedding/tree/main and
-#                                                         https://pysindy.readthedocs.io/en/latest/api/pysindy.html 
+
+### SINDy code written as a class, adapted from Manjunath's https://github.com/MJSteynberg/ForecastingThroughCausalEmbedding/tree/main and
+###                                                         https://pysindy.readthedocs.io/en/latest/api/pysindy.html 
 
 import pysindy as ps
 import numpy as np

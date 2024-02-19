@@ -9,16 +9,18 @@ def plot_data(data_list, plot_mode='1d'):
     """
     Plot the data variable based on the specified plot_mode.
 
-    Parameters:
-    - data_list: List of numpy arrays, each with shape (ndata, ndim).
-    - plot_mode: '1d' or 'nd'
-    
-    If plot_mode is '1d', it will plot data for each dimension in subfigures.
-    If plot_mode is 'nd', it will follow the specified conditions:
-    - If ndim is 1, it will plot only one coordinate.
-    - If ndim is 2, it will plot a 2D plot of one coordinate versus another one.
-    - If ndim is 3, it will plot a 3D plot.
-    - If ndim is higher than 3, it will plot all possible combinations for 3D plots.
+    Parameters
+    ----------
+    data_list : list of array_like
+        List of numpy arrays, each with shape (ndata, ndim).
+    plot_mode : str 
+        Options: {'1d', 'nd'}.
+        If plot_mode is '1d', it will plot data for each dimension in subfigures.
+        If plot_mode is 'nd', it will follow the specified conditions:
+        - If ndim is 1, it will plot only one coordinate.
+        - If ndim is 2, it will plot a 2D plot of one coordinate versus another one.
+        - If ndim is 3, it will plot a 3D plot.
+        - If ndim is higher than 3, it will plot all possible combinations for 3D plots.
     """
     
     if not isinstance(data_list, list):

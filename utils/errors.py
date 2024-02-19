@@ -6,14 +6,21 @@ def calculate_mse(y_true, y_pred, shift=None, scale=None):
     Calculate Mean Squared Error (MSE) between true and predicted values.
     If shift and scale are not None, then unshifts and unscales the data. 
 
-    Parameters:
-    - y_true: numpy array of true target values.
-    - y_pred: numpy array of predicted target values.
-    - shift: the shift that was implemented in the normalisation process
-    - scale: the scale that was implemented in the normalisation process
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float
+        The shift that was implemented in the normalisation process
+    scale : float
+        The scale that was implemented in the normalisation process
 
-    Returns:
-    - mse: Mean Squared Error.
+    Returns
+    -------
+    mse : float
+        Mean Squared Error.
     """
     
     if shift is not None and scale is not None:
