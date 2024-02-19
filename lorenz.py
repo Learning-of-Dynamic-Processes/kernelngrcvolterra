@@ -3,6 +3,7 @@
 import numpy as np
 
 from estimators.volt_funcs import Volterra
+from estimators.volt_lasso_funcs import VolterraFeatureLasso
 from estimators.ngrc_funcs import NGRC
 from estimators.sindy_funcs import SINDyPolynomialSTLSQ
 
@@ -45,8 +46,7 @@ training_teacher_orig = data[1:ntrain]
 testing_input_orig = data[ntrain-1:ntrain+ntest-1]
 testing_teacher_orig = data[ntrain:ntrain+ntest]
 
-
-### VOLTERRA
+# %% VOLTERRA
 
 # Normalise the arrays for Volterra
 normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
@@ -54,9 +54,9 @@ train_in_volt, train_teach_volt, test_in_volt, test_teach_volt = normalisation_o
 shift_volt, scale_volt = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg = 0.8, 0.2, 1e-9 
+ld_coef, tau_coef, reg = 0.8, 0.2, 1e-10
 
-# Run new Volterra as a class
+# Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)
 out_volt = volt.Train(train_in_volt, train_teach_volt).PathContinue(train_teach_volt[-1], test_teach_volt.shape[0])
 
@@ -67,11 +67,54 @@ mse_volt = calculate_mse(test_teach_volt, out_volt, shift_volt, scale_volt)
 plot_data([test_teach_volt, out_volt])
 plot_data_distributions([test_teach_volt, out_volt])
 
+# %% Volterra Lasso - nfeatures uncontrolled
 
-### NGRC
+# Normalise the arrays for Volterra with Lasso regularisation
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
+train_in_volt_lasso, train_teach_volt_lasso, test_in_volt_lasso, test_teach_volt_lasso = normalisation_output[0]
+shift_volt_lasso, scale_volt_lasso = normalisation_output[1], normalisation_output[2]
+
+# Define input hyperparameters for Volterra
+ld_coef_lasso, tau_coef_lasso, reg = 0.8, 0.2, 1e-10 
+
+# Run Volterra as a class with Lasso regression instead
+volt_lasso = Volterra(ld_coef_lasso, tau_coef_lasso, reg, washout, regression="Lasso")
+out_volt_lasso = volt_lasso.Train(train_in_volt_lasso, train_teach_volt_lasso).PathContinue(train_teach_volt_lasso[-1], test_teach_volt_lasso.shape[0])
+
+# Compute the mse
+mse_volt_lasso = calculate_mse(test_teach_volt_lasso, out_volt_lasso, shift_volt_lasso, scale_volt_lasso)
+
+# Plot the forecast and actual for Volterra Lasso
+plot_data([test_teach_volt_lasso, out_volt_lasso])
+plot_data_distributions([test_teach_volt_lasso, out_volt_lasso])
+
+# %% Volterra Lasso - nfeatures controlled
+from time import process_time
+# Normalise the arrays for Volterra with Lasso regularisation
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
+train_in_lassocont, train_teach_lassocont, test_in_lassocont, test_teach_lassocont = normalisation_output[0]
+shift_lassocont, scale_lassocont = normalisation_output[1], normalisation_output[2]
+
+# Define input hyperparameters for Volterra
+ld_coef_lassocont, tau_coef_lassocont = 0.8, 0.2
+n_desired_features = 28
+reg_range = np.logspace(-7, -4, 10)
+
+# Run Volterra as a class with Lasso regression instead
+volt_lassocont = VolterraFeatureLasso(ld_coef_lassocont, tau_coef_lassocont, washout, 28, reg_range)
+out_lassocont = volt_lassocont.Train(train_in_lassocont, train_teach_lassocont).PathContinue(train_teach_lassocont[-1], test_teach_lassocont.shape[0])
+
+# Compute the mse
+mse_lassocont = calculate_mse(test_teach_lassocont, out_lassocont, shift_lassocont, scale_lassocont)
+
+# Plot the forecast and actual for Volterra Lasso
+plot_data([test_teach_lassocont, out_lassocont])
+plot_data_distributions([test_teach_lassocont, out_lassocont])
+
+# %% NGRC
 
 # Normalise the arrays for NGRC
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
 train_in_ngrc, train_teach_ngrc, test_in_ngrc, test_teach_ngrc = normalisation_output[0]
 shift_ngrc, scale_ngrc = normalisation_output[1], normalisation_output[2]
 
@@ -90,11 +133,10 @@ mse_ngrc = calculate_mse(test_teach_ngrc, out_ngrc, shift_ngrc, scale_ngrc)
 plot_data([test_teach_ngrc, out_ngrc])
 plot_data_distributions([test_teach_ngrc, out_ngrc])
 
-
-### SINDy
+# %% SINDy
 
 # Normalise the arrays for SINDy
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
 train_in_sindy, train_teach_sindy, test_in_sindy, test_teach_sindy = normalisation_output[0]
 shift_sindy, scale_sindy = normalisation_output[1], normalisation_output[2]
 
@@ -111,6 +153,8 @@ mse_sindy = calculate_mse(test_teach_sindy, out_sindy, shift_sindy, scale_sindy)
 # Plot the forecast and actual
 plot_data([test_teach_sindy, out_sindy])
 plot_data_distributions([test_teach_sindy, out_sindy])
+
+# %% Print MSEs
 
 print("MSEs")
 print("Volterra: ", mse_volt)
