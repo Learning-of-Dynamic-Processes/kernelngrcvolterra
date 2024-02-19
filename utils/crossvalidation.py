@@ -13,7 +13,7 @@ class CrossValidate:
     Attributes
     ----------
     validation_parameters : array_like of ints, optional
-        Sizes in which to split a single training fold, validation fold and the number of golds (default None)
+        Sizes in which to split a single training fold, validation fold and the number of folds (default None)
         If None, then validation parameter default to 0.8 of the data for the training fold, 0.1 for the validation fold, and however many folds so that
         each starting point of the thold is 0.1 of the remaining 0.1 of the dataset
     validation_type : str, optional
