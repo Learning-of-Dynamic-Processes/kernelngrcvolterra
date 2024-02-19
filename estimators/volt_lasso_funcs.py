@@ -23,10 +23,10 @@ class VolterraFeatureLasso:
         Reguralisation used for Tikhonov least squares regression
     washout : int
         Amount of washout to use during training
-    regression : str, optional
-        Regression type to use. Options: {"L2", "Lasso"}, (default "L2")
-    pinv : bool, optional
-        Whether to use pseudoinverse for Tikhonov regression, (default False)
+    ndesired_features : int
+        Max number of nonzero coefficients in the regression weights during Lasso
+    reg_range : array_like
+        The regularisation range used by Lasso to reduce coefficients to zero
         
     Methods
     -------
@@ -58,7 +58,8 @@ class VolterraFeatureLasso:
         self.alpha = None                           # Stores outcome of regression - weights
         self.alpha0 = None                          # Stores outcome of regression - shift
         self.regisFound = None                      # Stores whether a good reg param for desired number of features was found for each target
-
+        self.reg_values = None                      # Store the regularisation values chosen by Lasso training
+        
         # Instance attributes storing data dependent values created by methods
         self.ninputs = None                         # Store training input length
         self.nfeatures = None                       # Store number of input features seen from training
@@ -84,8 +85,8 @@ class VolterraFeatureLasso:
 
         Returns
         -------
-        Volterra : class_instance
-            Volterra object with training attributes initialised
+        VolterraFeatureLasso : class_instance
+            VolterraFeatureLasso object with training attributes initialised
         """
         
         # Assign as instance attribute that are based on training input data
@@ -137,7 +138,7 @@ class VolterraFeatureLasso:
         alpha_lasso = np.zeros((nGram_train, self.ntargets))
         alpha0_lasso = np.zeros((self.ntargets, ))
         nfeatures_seen_lasso = np.zeros((self.ntargets, ))
-        reg_target_chosen = np.zeros((self.ntargets, ))
+        reg_values = np.zeros((self.ntargets, ))
         regisFound = [False] * self.ntargets
         
         # Iterate through each target then run sklearn lasso regression
@@ -152,7 +153,7 @@ class VolterraFeatureLasso:
                 if n_nonzeros_target <= self.ndesiredfeatures:
                     # Fill up the regression parameters with the regression result
                     nfeatures_seen_lasso[target] = n_nonzeros_target
-                    reg_target_chosen[target] = target_reg
+                    reg_values[target] = target_reg
                     regisFound[target] = True
                     alpha_lasso[:, target] = alpha_target
                     alpha0_lasso[target] = alpha0_target
@@ -162,13 +163,15 @@ class VolterraFeatureLasso:
             if regisFound[target] is False:  # Means no regularisation parameter was chosen 
                 # Default to the last found regularisation parameter
                 nfeatures_seen_lasso[target] = n_nonzeros_target
-                reg_target_chosen[target] = target_reg
+                reg_values[target] = target_reg
                 alpha_lasso[:, target] = alpha_target
                 alpha0_lasso[target] = alpha0_target
     
         # Assign as instance attributes the Lasso results
         self.alpha = alpha_lasso
         self.alpha0 = alpha0_lasso
+        self.reg_values = reg_values
+        self.regisFound = regisFound
         
         # Assign as instance attributes the number of features seen (no. nonzero coefficients)
         self.nfeatures_seen = nfeatures_seen_lasso

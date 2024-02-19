@@ -89,7 +89,7 @@ plot_data([test_teach_volt_lasso, out_volt_lasso])
 plot_data_distributions([test_teach_volt_lasso, out_volt_lasso])
 
 # %% Volterra Lasso - nfeatures controlled
-from time import process_time
+
 # Normalise the arrays for Volterra with Lasso regularisation
 normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
 train_in_lassocont, train_teach_lassocont, test_in_lassocont, test_teach_lassocont = normalisation_output[0]
@@ -122,9 +122,9 @@ shift_ngrc, scale_ngrc = normalisation_output[1], normalisation_output[2]
 ndim, ndelay, reg, deg = 3, 2, 1e-4, 2
 
 # Run the new NGRC class
-NGRC = NGRC(ndelay, deg, reg, washout)
-NGRC.Train(train_in_ngrc, train_teach_ngrc)
-out_ngrc = NGRC.PathContinue(train_teach_ngrc[-1], test_teach_ngrc.shape[0])
+ngrc = NGRC(ndelay, deg, reg, washout)
+ngrc.Train(train_in_ngrc, train_teach_ngrc)
+out_ngrc = ngrc.PathContinue(train_teach_ngrc[-1], test_teach_ngrc.shape[0])
 
 # Compute the mse
 mse_ngrc = calculate_mse(test_teach_ngrc, out_ngrc, shift_ngrc, scale_ngrc)
@@ -158,5 +158,6 @@ plot_data_distributions([test_teach_sindy, out_sindy])
 
 print("MSEs")
 print("Volterra: ", mse_volt)
+print("Volterra w Lasso: ", mse_volt_lasso)
 print("NGRC: ", mse_ngrc)
 print("SINDy: ", mse_sindy)

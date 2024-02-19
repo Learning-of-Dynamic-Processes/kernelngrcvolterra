@@ -48,9 +48,10 @@ tau_coef_range = np.linspace(0.01, 0.99, 99)
 param_ranges = [ld_coef_range, tau_coef_range]
 
 # Define the names of the parameters -- orders must match
-param_names = ["ld", "tau", "reg"]
+param_names = ["ld", "tau"]
 # Define the additional inputs taken in by the 
-param_add = [1, "L2", False]
+reg_range = np.logspace(-7, -4, 10)
+param_add = [washout, 28, reg_range]
 
 if __name__ == "__main__":
     CV = CrossValidate(validation_parameters=[4000, 500, 5], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift")
