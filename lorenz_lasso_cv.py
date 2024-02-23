@@ -51,8 +51,10 @@ param_ranges = [ld_coef_range, tau_coef_range]
 param_names = ["ld", "tau"]
 # Define the additional inputs taken in by the 
 reg_range = np.logspace(-7, -4, 10)
-param_add = [washout, 28, reg_range]
+lasso_max_iter = 1500
+lasso_tol = 1e-2
+param_add = [washout, 28, reg_range, lasso_max_iter, lasso_tol]
 
 if __name__ == "__main__":
     CV = CrossValidate(validation_parameters=[4000, 500, 5], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift")
-    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(VolterraFeatureLasso, train_in_volt, train_teach_volt, param_ranges, param_names, param_add, num_processes=25)
+    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(VolterraFeatureLasso, train_in_volt, train_teach_volt, param_ranges, param_names, param_add, num_processes=40)

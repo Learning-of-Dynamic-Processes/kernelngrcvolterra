@@ -162,7 +162,7 @@ class CrossValidate:
         
         # Compute total average mse across validation to measure performance of hyperparameter choice
         mean_validation_error = np.mean(validation_errors)
-        
+        print(estimator_parameters[0:2], mean_validation_error)    # uncomment this line if you want to check the errors intermediately
         return mean_validation_error
 
     

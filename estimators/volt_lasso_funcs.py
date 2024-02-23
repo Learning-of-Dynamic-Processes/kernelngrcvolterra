@@ -27,6 +27,10 @@ class VolterraFeatureLasso:
         Max number of nonzero coefficients in the regression weights during Lasso
     reg_range : array_like
         The regularisation range used by Lasso to reduce coefficients to zero
+    lasso_max_iter : int, optional
+        Number of iterations by sklearn Lasso (default 1000, same as sklearn)
+    lasso_tol : float, optional
+        Tolerance for optimisation (duality, updates) for sklearn Lasso (default 1e-4, same as sklearn)
         
     Methods
     -------
@@ -38,7 +42,7 @@ class VolterraFeatureLasso:
         Simulates forward in time using the latest input for nhorizon period of time
     """
     
-    def __init__(self, ld_coef, tau_coef, washout, ndesired_features, reg_range):
+    def __init__(self, ld_coef, tau_coef, washout, ndesired_features, reg_range, lasso_max_iter=1000, lasso_tol=1e-4):
         
         
         # Instance attributes that are user defined
@@ -47,10 +51,8 @@ class VolterraFeatureLasso:
         self.washout = washout                      # Training washout length
         self.ndesiredfeatures = ndesired_features   # Store the max number of nonzero coefficients from Lasso regression
         self.reg_range = reg_range                  # Array in which to search for regularisation that gives the desired number of coefficients
-        
-        # Instance attributes related to Lasso regularisation
-        self.lasso_max_iter = 1000                  # Number of iterations by sklearn Lasso (same as default)
-        self.lasso_tol = 1e-4                       # Tolerance for optimisation (duality, updates) for sklearn Lasso (same as default)
+        self.lasso_max_iter = lasso_max_iter        # Number of iterations by sklearn Lasso (same as default)
+        self.lasso_tol = lasso_tol                  # Tolerance for optimisation (duality, updates) for sklearn Lasso (same as default)
             
         # Instance attributes storing arrays created by methods
         self.Gram = None                            # Store Gram matrix throughout training and forecasting

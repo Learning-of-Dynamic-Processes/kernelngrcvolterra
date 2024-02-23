@@ -75,7 +75,7 @@ train_in_volt_lasso, train_teach_volt_lasso, test_in_volt_lasso, test_teach_volt
 shift_volt_lasso, scale_volt_lasso = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef_lasso, tau_coef_lasso, reg = 0.8, 0.2, 1e-10 
+ld_coef_lasso, tau_coef_lasso, reg = 0.99, 0.44, 1e-15 
 
 # Run Volterra as a class with Lasso regression instead
 volt_lasso = Volterra(ld_coef_lasso, tau_coef_lasso, reg, washout, regression="Lasso")
@@ -96,12 +96,12 @@ train_in_lassocont, train_teach_lassocont, test_in_lassocont, test_teach_lassoco
 shift_lassocont, scale_lassocont = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef_lassocont, tau_coef_lassocont = 0.8, 0.2
+ld_coef_lassocont, tau_coef_lassocont = 0.99, 0.44
 n_desired_features = 28
-reg_range = np.logspace(-7, -4, 10)
+reg_range = np.logspace(-4, 0, 50)
 
 # Run Volterra as a class with Lasso regression instead
-volt_lassocont = VolterraFeatureLasso(ld_coef_lassocont, tau_coef_lassocont, washout, 28, reg_range)
+volt_lassocont = VolterraFeatureLasso(ld_coef_lassocont, tau_coef_lassocont, washout, 28, reg_range, 1500, 1e-2)
 out_lassocont = volt_lassocont.Train(train_in_lassocont, train_teach_lassocont).PathContinue(train_teach_lassocont[-1], test_teach_lassocont.shape[0])
 
 # Compute the mse
@@ -161,3 +161,5 @@ print("Volterra: ", mse_volt)
 print("Volterra w Lasso: ", mse_volt_lasso)
 print("NGRC: ", mse_ngrc)
 print("SINDy: ", mse_sindy)
+
+# %%
