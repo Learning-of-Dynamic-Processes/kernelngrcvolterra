@@ -44,9 +44,10 @@ class SINDyPolynomialSTLSQ:
         
         # Instance attributes storing data dependent values created by methods
         self.ninputs = None                 # Store training data length
-        self.nfeatures = None               # Store number of input features seen from training
-        self.ntargets = None                # Store number of target features seen from training
+        self.ndim = None                    # Store number of input dimensions seen from training
+        self.ntargets = None                # Store number of targets seen from training
         self.nhorizon = None                # Stores the forecasting horizon  
+        self.nfeatures = None               # Stores the number of features that are nonzero
         
         # Instance attributes for additional SINDy parameters
         self.include_interaction = True     # To instruct SINDy Polynomial library to include cross terms
@@ -74,11 +75,11 @@ class SINDyPolynomialSTLSQ:
         
         # Assign as instance attributes that are based on training data
         self.ninputs = training_input.shape[0]
-        self.nfeatures = training_input.shape[1]
+        self.ndim = training_input.shape[1]
         self.ntargets = training_teacher.shape[0]
         
         # Define training set as it is what is needed to train SINDy - works on the assumption that the training teacher data is one off the training input
-        training = np.zeros((self.ninputs+1, self.nfeatures))
+        training = np.zeros((self.ninputs+1, self.ndim))
         training[0:self.ninputs, :] = training_input
         training[self.ninputs, :] = training_teacher[-1]
         
@@ -98,7 +99,7 @@ class SINDyPolynomialSTLSQ:
         
         # Assign as instance attributes the model coefficients
         self.coefficients = self.model.coefficients()
-        self.nfeatures_seen = len(np.nonzero(self.coefficients)[0])
+        self.nfeatures = len(np.nonzero(self.coefficients)[0])
         
         return self
     

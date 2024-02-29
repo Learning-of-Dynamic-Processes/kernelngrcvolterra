@@ -67,6 +67,8 @@ mse_volt = calculate_mse(test_teach_volt, out_volt, shift_volt, scale_volt)
 plot_data([test_teach_volt, out_volt])
 plot_data_distributions([test_teach_volt, out_volt])
 
+
+
 # %% Volterra Lasso - nfeatures uncontrolled
 
 # Normalise the arrays for Volterra with Lasso regularisation
@@ -161,5 +163,3 @@ print("Volterra: ", mse_volt)
 print("Volterra w Lasso: ", mse_volt_lasso)
 print("NGRC: ", mse_ngrc)
 print("SINDy: ", mse_sindy)
-
-# %%
