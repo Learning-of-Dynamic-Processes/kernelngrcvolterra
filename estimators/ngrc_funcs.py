@@ -150,7 +150,7 @@ class NGRC:
         # Create store for feature vectors for prediction
         Otest = np.ones(self.dtot)              # full feature vector
         Xtest = np.zeros((self.dlin, self.nhorizon+1))    # linear portion of feature vector
-        print(self.dlin - self.ndim)
+
         # Fill in the linear part of the feature vector with the latest input data and delay
         Xtest[0:self.ndim, 0] = latest_input
         Xtest[self.ndim: , 0] = self.Xtrain[0:self.dlin-self.ndim, -1]

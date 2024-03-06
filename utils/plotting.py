@@ -124,13 +124,22 @@ def plot_data_distributions(data_list):
     fig, axs = plt.subplots(ndim, figsize=(8, 4 * ndim))
     fig.tight_layout(pad=2)
 
-    for dim in range(ndim):
+    if ndim == 1:
         for i, data in enumerate(data_list):
             color = colors[i % len(colors)]
-            sns.kdeplot(data[:, dim], color=color, fill=True, label=f'Data {i + 1}', ax=axs[dim])
+            sns.kdeplot(data[:, 0], color=color, fill=True, label=f'Data {i + 1}')
             
-        axs[dim].set(xlabel=f"Dimension {dim + 1}")
-        axs[dim].legend()
+        axs.set(xlabel=f"Dimension {1}")
+        axs.legend()
+        
+    else:
+        for dim in range(ndim):
+            for i, data in enumerate(data_list):
+                color = colors[i % len(colors)]
+                sns.kdeplot(data[:, dim], color=color, fill=True, label=f'Data {i + 1}', ax=axs[dim])
+                
+            axs[dim].set(xlabel=f"Dimension {dim + 1}")
+            axs[dim].legend()
 
     plt.show()
     

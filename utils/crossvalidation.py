@@ -7,24 +7,29 @@ from utils.normalisation import normalise_arrays
 class CrossValidate:
     
     """
-    Class to wrap cross validation with multiprocessing, specially for estimators that do path continuing tasks and
-    need to be robust against initial conditions. 
+    Cross validation class with multiprocessing.  
     
     Attributes
     ----------
-    validation_parameters : array_like of ints, optional
-        Sizes in which to split a single training fold, validation fold and the number of folds (default None)
-        If None, then validation parameter default to 0.8 of the data for the training fold, 0.1 for the validation fold, and however many folds so that
-        each starting point of the thold is 0.1 of the remaining 0.1 of the dataset
+    validation_parameters : list of ints, optional
+        List containing size of a single training fold, size of validation fold and size of jump between folds (default: None)
+        If None, validation parameter defaults to 0.8 of the data for training, 0.1 of the data for validation, and 0.1 of the remaining data as jump size.
+        If desire to have only one fold, set size of jumps to be 0 or any number larger than (training_input - training_size - validation_size + 1).
     validation_type : str, optional
-        The manner in which the training and validation folds move with each fold iteration. Options: {"rolling", "expanding"}, (default "rolling")
+        The manner in which the training and validation folds move with each fold iteration. 
+        Rolling means start of training fold jumps with jump size. 
+        Expanding means start of training fold always stays the same but validation fold start jumps with jump size. 
+        Standard k-fold cross-validation is supported by the rolling option, and choosing validation parameters all equal.
+        Options: {"rolling", "expanding"}. (default: "rolling").
     task : str, optional 
-        Whether to perform forecasting or path continuation. Options: {"Forecast", "PathContinue"}, (default "PathContinue")
+        Whether to perform forecasting or path continuation. Options: {"Forecast", "PathContinue"}. (default: "PathContinue").
+        Estimator passed must have methods called these names, for whichever option is chosen. 
     norm_type : str, optional
         Normalisation method called based on the options available in normalise_arrays. Normalisation is carried out over each fold individually.
-        If an overall normalisation is preferred, choose None for this norm_type and normalise data before input.
-        Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", None}, (default "ScaleL2")
-    
+        If overall normalisation is preferred, choose None for this norm_type and normalise data before input.
+        Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", None}. (default: None).
+    ifPrint : bool, optional
+        Whether to print estimators and error for each parameter. (default: False) .
     Methods
     -------
     crossvalidate_per_parameters(estimator, data_in, target, estimator_parameters)
@@ -33,12 +38,13 @@ class CrossValidate:
         Runs cross validation for a range of input parameters. Uses multiprocessing. 
     """
     
-    def __init__(self, validation_parameters=None, validation_type="rolling", task="PathContinue", norm_type="ScaleL2"):
+    def __init__(self, validation_parameters=None, validation_type="rolling", task="PathContinue", norm_type=None, ifPrint=False):
         
         self.validation_parameters = validation_parameters
         self.validation_type = validation_type
         self.task = task
         self.norm_type = norm_type        
+        self.ifPrint = ifPrint
         self.MinMax_range = (0, 1)
     
     def crossvalidate_per_parameters(self, estimator, data_in, target, estimator_parameters):
@@ -70,40 +76,45 @@ class CrossValidate:
 
         # If validation parameters are not provided, use the defaults
         if self.validation_parameters is None:
+            
+            # Default sizes (0.8, 0.1, 0.1)
             train_size = int(0.8 * input_size)
             validation_size = int(0.1 * input_size)
-            nstarts = int((input_size - train_size - validation_size) * 0.1)
-            # Handle the case where nstarts happens to be 0
-            if nstarts == 0: 
-                nstarts = 1
+            jump_size = int((input_size - train_size - validation_size) * 0.1)
+            
+            # Account for when jump size becomes 0
+            if jump_size == 0:
+                jump_size = input_size - train_size - validation_size + 1
+                
             # Assign them as instance attribute
-            self.validation_parameters = [train_size, validation_size, nstarts]
+            self.validation_parameters = [train_size, validation_size, jump_size]
         
         # If validation parameters are provided, roll them out.
         if self.validation_parameters is not None:
-            train_size, validation_size, nstarts = self.validation_parameters
-            # Handles the case when the number of starts will cause training + validation window to exceed data
-            if nstarts > (input_size - train_size - validation_size):
-                raise ValueError("The number of starting points is too great")
-            # Handle the case when the provided number of starts is 0
-            if nstarts == 0:
-                raise ValueError("The number of starts needs to be at least 1")
-
-        # Use the validation sizes to define the size between starting points
-        start_size = int((input_size - train_size - validation_size)/nstarts)
-
+            
+            # Roll out provided parameters
+            train_size, validation_size, jump_size = self.validation_parameters
+            
+            # Check if user-provided jump size is 0
+            if jump_size == 0:
+                jump_size = input_size - train_size - validation_size + 1
+                self.validation_parameters = [train_size, validation_size, jump_size]
+        
+        # Use the validation sizes to define the number of folds
+        nstarts = int((input_size - train_size - validation_size)/jump_size) + 1
+  
         # Define store for validation errors
         validation_errors = []
         
         # Iterate through data in, training method on each fold then compute validation results
-        n_folds = 0     # records number of folds
         for start_id in range(0, nstarts):
             
             # Define the starting index
-            start = start_id * start_size
-            
+            start = start_id * jump_size
+
             # Define the training and validation data for rolling validation type
             if self.validation_type == "rolling":
+                
                 # Rolling window cross validation moves the starting points so the train size stays constant
                 train_in = data_in[start : start+train_size]
                 train_target = target[start : start+train_size]
@@ -144,25 +155,27 @@ class CrossValidate:
 
             # Instantiate the estimator to train and test on the training and validation sets
             Estimator = estimator(*estimator_parameters)
+            
             # For path continuation task training and validating
             if self.task == "PathContinue":
                 output = Estimator.Train(train_in, train_target).PathContinue(train_target[-1], validation_target.shape[0])
             # For general forecasting task training and validating
             elif self.task == "Forecast":
                 output = Estimator.Train(train_in, train_target).Forecast(validation_in)
-            else:
+            else:   # Raise error for any other task
                 raise NotImplementedError("Task on which to cross validate is not available")
-            
+
             # Compute mse of method's output using the validation target
-            fold_mse = calculate_mse(output, validation_target, shift, scale)
+            fold_mse = calculate_mse(validation_target, output, shift, scale)
             validation_errors.append(fold_mse)
 
-            # Increment counter for number of folds
-            n_folds = n_folds + 1
-        
         # Compute total average mse across validation to measure performance of hyperparameter choice
         mean_validation_error = np.mean(validation_errors)
-        print(estimator_parameters[0:2], mean_validation_error)    # uncomment this line if you want to check the errors intermediately
+        
+        # Print estimator parameter and corresponding error if desired
+        if self.ifPrint == True:
+            print(estimator_parameters, mean_validation_error)   
+            
         return mean_validation_error
 
     

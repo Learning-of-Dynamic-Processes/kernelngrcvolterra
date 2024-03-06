@@ -1,7 +1,7 @@
 import numpy as np
 
 from datagen.data_generate import rk45
-from estimators.volt_lasso_funcs import VolterraFeatureLasso
+from estimators.volt_funcs import Volterra
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
 
@@ -39,22 +39,19 @@ training_teacher_orig = data[1:ntrain]
 
 # Normalise training arrays if necessary
 normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig], norm_type=None)
-train_in_volt, train_teach_volt = normalisation_output[0]
-shift_volt, scale_volt = normalisation_output[1], normalisation_output[2]
+training_input, training_teacher = normalisation_output[0]
 
 # Define the range of parameters for which you want to cross validate over
-ld_coef_range = np.linspace(0.01, 0.99, 99) 
-tau_coef_range = np.linspace(0.01, 0.99, 99) 
-param_ranges = [ld_coef_range, tau_coef_range]
+ld_coef_range = [0.1, 0.2] #np.linspace(0.01, 0.99, 99) 
+tau_coef_range = [0.1, 0.2] #np.linspace(0.01, 0.99, 99) 
+reg_range = [0.001, 0.0001] #np.logspace(-15, -1, 15)
+param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
 # Define the names of the parameters -- orders must match
-param_names = ["ld", "tau"]
+param_names = ["ld coef", "tau coef", "reg"]
 # Define the additional inputs taken in by the 
-reg_range = np.logspace(-7, -4, 10)
-lasso_max_iter = 1500
-lasso_tol = 1e-2
-param_add = [washout, 28, reg_range, lasso_max_iter, lasso_tol]
+param_add = [washout, 28]
 
 if __name__ == "__main__":
-    CV = CrossValidate(validation_parameters=[4000, 500, 5], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift")
-    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(VolterraFeatureLasso, train_in_volt, train_teach_volt, param_ranges, param_names, param_add, num_processes=40)
+    CV = CrossValidate(validation_parameters=[4000, 500, 100], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift", ifPrint=True)
+    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=1)#50)
