@@ -223,16 +223,16 @@ plot_data_distributions([test_teacher, output])
 # %% 
 # Remove second and third dimensions from data
 
-training_input_orig = training_input_orig[:, 0].reshape((-1, 1))
-training_teacher_orig = training_teacher_orig[:, 0].reshape((-1, 1))
-testing_input_orig = testing_input_orig[:, 0].reshape((-1, 1))
-testing_teacher_orig = testing_teacher_orig[:, 0].reshape((-1, 1))
+training_input_orig_x = training_input_orig[:, 0].reshape((-1, 1))
+training_teacher_orig_x = training_teacher_orig[:, 0].reshape((-1, 1))
+testing_input_orig_x = testing_input_orig[:, 0].reshape((-1, 1))
+testing_teacher_orig_x = testing_teacher_orig[:, 0].reshape((-1, 1))
 
 # %% 
 # Volterra observing only the first dimension
 
 # Normalise the arrays for Volterra
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="ScaleL2Shift")
+normalisation_output = normalise_arrays([training_input_orig_x, training_teacher_orig_x, testing_input_orig_x, testing_teacher_orig_x], norm_type="ScaleL2Shift")
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
@@ -253,7 +253,7 @@ plot_data_distributions([test_teacher, output])
 # %% 
 # NGRC observing only the first dimension
 
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
+normalisation_output = normalise_arrays([training_input_orig_x, training_teacher_orig_x, testing_input_orig_x, testing_teacher_orig_x], norm_type=None)
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
@@ -274,7 +274,7 @@ plot_data_distributions([test_teacher, output])
 # %% 
 # SINDy observing only the first dimension
 
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
+normalisation_output = normalise_arrays([training_input_orig_x, training_teacher_orig_x, testing_input_orig_x, testing_teacher_orig_x], norm_type=None)
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
@@ -296,7 +296,7 @@ plot_data_distributions([test_teacher, output])
 # Polynomial observing only the first dimension
 
 # Normalise the arrays for Polykernel
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
+normalisation_output = normalise_arrays([training_input_orig_x, training_teacher_orig_x, testing_input_orig_x, testing_teacher_orig_x], norm_type=None)
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
@@ -309,6 +309,38 @@ output = polykernel.Train(train_input, train_teacher).PathContinue(train_teacher
 
 # Compute the mse
 mse_poly = calculate_mse(test_teacher, output, shift, scale)
+
+# Plot the forecast and actual
+plot_data([test_teacher, output])
+plot_data_distributions([test_teacher, output])
+
+# %% 
+# Cut data set to input x, y, and forecast z
+
+training_input_orig_xy = data[0:ntrain, 0:2].reshape((-1, 2))
+training_teacher_orig_z = data[0:ntrain, 2].reshape((-1, 1))
+testing_input_orig_xy = data[0:ntrain, 0:2].reshape((-1, 2))
+testing_teacher_orig_z = data[0:ntrain, 2].reshape((-1, 1))
+
+# %% 
+# Volterra input x, y, forecast z
+
+normalisation_output = normalise_arrays([training_input_orig_xy, testing_input_orig_xy], norm_type="ScaleL2Shift")
+train_input, test_input = normalisation_output[0]
+
+normalisation_output = normalise_arrays([training_teacher_orig_z, testing_teacher_orig_z], norm_type="ScaleL2Shift")
+train_teacher, test_teacher = normalisation_output[0]
+shift, scale = normalisation_output[1], normalisation_output[2]
+
+# Define input hyperparameters for Volterra
+ld_coef, tau_coef, reg, washout = 0.8, 0.2, 1e-4, 1000
+
+# Run Volterra as a class
+volt = Volterra(ld_coef, tau_coef, reg, washout)
+output = volt.Train(train_input, train_teacher).Forecast(test_input)
+
+# Compute the mse
+mse_volt_xy_z = calculate_mse(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
 plot_data([test_teacher, output])
@@ -333,5 +365,10 @@ print("MSEs when using partial observations")
 print("Volterra with first dimension: ", mse_volt_x)
 print("NGRC with first dimension: ", mse_ngrc_x)
 print("SINDy with first dimensionL ", mse_sindy_x)
+
+print()
+
+print("MSEs when observing x, y, forecasating z")
+print("Volterra with x, y, forecast z: ", mse_volt_xy_z)
 
 # %%
