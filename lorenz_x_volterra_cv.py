@@ -53,5 +53,5 @@ param_names = ["ld coef", "tau coef", "reg"]
 param_add = [washout]
 
 if __name__ == "__main__":
-    CV = CrossValidate(validation_parameters=[4000, 500, 100], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift", ifPrint=True)
-    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=50)
+    CV = CrossValidate(validation_parameters=[2500, 100, 600], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift", ifPrint=False)
+    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=25)
