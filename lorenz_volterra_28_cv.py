@@ -42,9 +42,9 @@ normalisation_output = normalise_arrays([training_input_orig, training_teacher_o
 training_input, training_teacher = normalisation_output[0]
 
 # Define the range of parameters for which you want to cross validate over
-ld_coef_range = [0.1, 0.2] #np.linspace(0.01, 0.99, 99) 
-tau_coef_range = [0.1, 0.2] #np.linspace(0.01, 0.99, 99) 
-reg_range = [0.001, 0.0001] #np.logspace(-15, -1, 15)
+ld_coef_range = np.linspace(0.01, 0.99, 99) 
+tau_coef_range = np.linspace(0.01, 0.99, 99) 
+reg_range = np.logspace(-15, -1, 15)
 param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
 # Define the names of the parameters -- orders must match
@@ -54,4 +54,4 @@ param_add = [washout, 28]
 
 if __name__ == "__main__":
     CV = CrossValidate(validation_parameters=[4000, 500, 100], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift", ifPrint=True)
-    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=1)#50)
+    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=50)
