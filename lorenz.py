@@ -9,7 +9,7 @@ from estimators.ngrc_funcs import NGRC
 from estimators.sindy_funcs import SINDyPolynomialSTLSQ
 from estimators.polykernel_funcs import PolynomialKernel
 
-from datagen.data_generate import rk45
+from datagen.data_generate import rk45 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
 from utils.errors import calculate_mse
@@ -155,15 +155,15 @@ plot_data([test_teacher, output])
 plot_data_distributions([test_teacher, output])
 
 # %% 
-# NGRC
+# NGRC defaults with pseudo inverse
 
 # Normalise the arrays for NGRC
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="MinMax")
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for NGRC
-ndelay, deg, reg, washout = 2, 2, 1e-4, 2
+ndelay, deg, reg, washout = 2, 2, 0.1, 1000 # provided by Gauthier was 2.5e-6, washout 2
 
 # Run the new NGRC class
 ngrc = NGRC(ndelay, deg, reg, washout)
@@ -199,15 +199,15 @@ plot_data([test_teacher, output])
 plot_data_distributions([test_teacher, output])
 
 # %% 
-# Polynomial kernel
+# Polynomial kernel 
 
 # Normalise the arrays for Polykernel
-normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type=None)
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="MinMax")
 train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define hyperparameters for Poly Kernel
-deg, ndelays, reg, washout = 2, 7, 0.001, 1000
+deg, ndelays, reg, washout = 2, 7, 1e-7, 1000
 
 # Run the new polynomial functinos
 polykernel = PolynomialKernel(deg, ndelays, reg, washout)
@@ -215,6 +215,28 @@ output = polykernel.Train(train_input, train_teacher).PathContinue(train_teacher
 
 # Compute the mse
 mse_poly = calculate_mse(test_teacher, output, shift, scale)
+
+# Plot the forecast and actual
+plot_data([test_teacher, output])
+plot_data_distributions([test_teacher, output])
+
+# %% 
+# Polynomial kernel with pseudo inverse
+
+# Normalise the arrays for Polykernel
+normalisation_output = normalise_arrays([training_input_orig, training_teacher_orig, testing_input_orig, testing_teacher_orig], norm_type="MinMax")
+train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
+shift, scale = normalisation_output[1], normalisation_output[2]
+
+# Define hyperparameters for Poly Kernel
+deg, ndelays, reg, washout = 2, 7, 1e-7, 1000
+
+# Run the new polynomial functinos
+polykernel = PolynomialKernel(deg, ndelays, reg, washout, pinv=True)
+output = polykernel.Train(train_input, train_teacher).PathContinue(train_teacher[-1], test_teacher.shape[0])
+
+# Compute the mse
+mse_poly_pinv = calculate_mse(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
 plot_data([test_teacher, output])
@@ -237,7 +259,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.21, 0.8, 1e-9, 1000
+ld_coef, tau_coef, reg, washout = 0.9, 0.71, 1e-8, 1000 #0.99, 0.73, 1e-8, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)
@@ -258,7 +280,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for NGRC
-ndelay, deg, reg, washout = 2, 2, 1e-4, 2
+ndelay, deg, reg, washout = 2, 2, 1.0, 2
 
 # Run the new NGRC class
 ngrc = NGRC(ndelay, deg, reg, washout)
@@ -301,14 +323,14 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define hyperparameters for Poly Kernel
-deg, ndelays, reg, washout = 2, 7, 0.001, 1000
+deg, ndelays, reg, washout = 2, 6, 0.01, 1000
 
 # Run the new polynomial functinos
 polykernel = PolynomialKernel(deg, ndelays, reg, washout)
 output = polykernel.Train(train_input, train_teacher).PathContinue(train_teacher[-1], test_teacher.shape[0])
 
 # Compute the mse
-mse_poly = calculate_mse(test_teacher, output, shift, scale)
+mse_poly_x = calculate_mse(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
 plot_data([test_teacher, output])
@@ -333,7 +355,7 @@ train_teacher, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.8, 0.2, 1e-4, 1000
+ld_coef, tau_coef, reg, washout = 0.8, 0.5, 1e-2, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)
@@ -357,14 +379,16 @@ print("Volterra with Lasso: ", mse_volt_lasso)
 print("Volterra with Lasso controlled nfeatures: ", mse_volt_lasso_controlled, " (CVed)")
 print("NGRC: ", mse_ngrc, " (CVed)")
 print("SINDy: ", mse_sindy, " (CVed)")
-print("Polynomial Kernel: ", mse_poly)
+print("Polynomial Kernel: ", mse_poly, " (CVed)")
+print("Polynomial Kernel: with pinv", mse_poly_pinv, " (CVed)")
 
 print()
 
 print("MSEs when using partial observations")
-print("Volterra with first dimension: ", mse_volt_x)
-print("NGRC with first dimension: ", mse_ngrc_x)
-print("SINDy with first dimensionL ", mse_sindy_x)
+print("Volterra with first dimension: ", mse_volt_x, " (CVing)")
+print("NGRC with first dimension: ", mse_ngrc_x, "(CVed)")
+print("Polynomial kernel with first dimension: ", mse_poly_x, "(CVed)")
+print("SINDy with first dimension: ", mse_sindy_x)
 
 print()
 
