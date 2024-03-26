@@ -12,36 +12,23 @@ from estimators.polykernel_funcs import PolynomialKernel
 from datagen.data_generate import rk45 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
-from utils.errors import calculate_mse
+from utils.errors import calculate_mse, calculate_wasserstein1err
+from systems.odes import lorenz
 
 # %% 
 # Prepare Lorenz datatsets
 
 # Create the Lorenz dataset
-def lorenz(t, Z, args):
-    u, v, w = Z
-    sig, beta, rho = args
-    
-    up = -sig*(u - v)
-    vp = rho*u - v - u*w
-    wp = -beta*w + u*v
-    
-    return np.array([up, vp, wp])
-
 lor_args = (10, 8/3, 28)
 Z0 = (0, 1, 1.05)
-
 h = 0.005
 t_span = (0, 40)
-slicing = int(h/h)
-
 t_eval, data = rk45(lorenz, t_span, Z0, h, lor_args)
-t_eval = t_eval[::slicing]
-data = data[::slicing]
 
 # Define full data training and testing sizes
 ndata  = len(data)
 ntrain = 5000 
+washout = 1000
 ntest = ndata - ntrain
 
 # Construct training input and teacher, testing input and teacher
@@ -67,6 +54,7 @@ output = volt.Train(train_input, train_teacher).PathContinue(train_teacher[-1], 
 
 # Compute the mse
 mse_volt = calculate_mse(test_teacher, output, shift, scale)
+mse_wasserstein = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
 plot_data([test_teacher, output])
@@ -171,7 +159,7 @@ output = ngrc.Train(train_input, train_teacher).PathContinue(train_teacher[-1], 
 
 # Compute the mse
 mse_ngrc = calculate_mse(test_teacher, output, shift, scale)
-
+mse_wasserstein = calculate_wasserstein1err(test_teacher, output, shift, scale)
 # Plot the forecast and actual
 plot_data([test_teacher, output])
 plot_data_distributions([test_teacher, output])

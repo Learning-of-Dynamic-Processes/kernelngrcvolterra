@@ -1,13 +1,13 @@
 import multiprocessing
 import numpy as np
 from itertools import product
-from utils.errors import calculate_mse
+from utils.errors import calculate_mse, calculate_wasserstein1err
 from utils.normalisation import normalise_arrays
 
 class CrossValidate:
     
     """
-    Cross validation class with multiprocessing.  
+    Cross-validation that utilises Python's built-in multiprocessing package. 
     
     Attributes
     ----------
@@ -28,43 +28,62 @@ class CrossValidate:
         Normalisation method called based on the options available in normalise_arrays. Normalisation is carried out over each fold individually.
         If overall normalisation is preferred, choose None for this norm_type and normalise data before input.
         Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", None}. (default: None).
-    ifPrint : bool, optional
-        Whether to print estimators and error for each parameter. (default: False) .
+    error_type : str, optional
+        The type of error function to use in computing error in each fold. Options: {"meansquare", "wasserstein1"}. (default: "meansquare")
+    minmax_range : tuple, optional
+        Tuple containing the desired min and max when normalising using norm_type="MinMax". (default: (0, 1))
+    log_interval : int, optional
+        The interval at which results are saved into a txt file and intermediate best parameters are printed. (default: 10)
+        
     Methods
     -------
-    crossvalidate_per_parameters(estimator, data_in, target, estimator_parameters)
-        Runs the cross validation process for a single set of parameters into the estimator
-    crossvalidate_multiprocessing(estimator, data_in, target, param_ranges, param_names, param_add, num_processes=4)
-        Runs cross validation for a range of input parameters. Uses multiprocessing. 
+    split_data_to_folds(data_in, target)
+        Splits data into training and validation folds. Outputs based on utils.normalisation
+    test_parameter_set(test_parameter_inputs)
+        Helper function to test each parameter set. Used in cross validation. 
+    crossvalidate(estimator, cv_datasets, param_ranges, param_add, num_processes, chunksize)
+        Runs cross validation for range of input parameters. Uses multiprocessing to parallelise over grid. 
     """
-    
-    def __init__(self, validation_parameters=None, validation_type="rolling", task="PathContinue", norm_type=None, ifPrint=False):
+
+
+    def __init__(self, validation_parameters=None, validation_type="rolling", 
+                       task="PathContinue", norm_type=None, error_type="meansquare", 
+                       minmax_range=(0, 1), log_interval=10):
         
         self.validation_parameters = validation_parameters
         self.validation_type = validation_type
         self.task = task
-        self.norm_type = norm_type        
-        self.ifPrint = ifPrint
-        self.MinMax_range = (0, 1)
-    
-    def crossvalidate_per_parameters(self, estimator, data_in, target, estimator_parameters):
+        self.norm_type = norm_type
+        self.error_type = error_type
+        self.minmax_range = minmax_range
+        self.log_interval = log_interval
 
+
+    def split_data_to_folds(self, data_in, target):
+        
         """
-        Runs the cross validation process for a single set of parameters into the estimator
-
+        Takes input and target data and splits it into folds depending on the validation parameters and validation type. 
+        Normalises the data using the training fold, for each training, validation combination. Normalisation depends on norm_type. 
+        
         Parameters
-        -------
-        data_in : array_like
-            Full input data. Will be split up to form the folds
-        target : array_like
-            Full target data. Will be split up to form the folds
-        estimator_parameters : array
-            Parameters that will be rolled out and passed into the estimator
+        ----------
+        data_in : array-like
+            Input data. Will be split up into multiple training and validation folds with defined jump size between each fold.
+        target : array-like
+            Target data. Splits in the same way (same indices) as the input data. 
         
         Returns
         -------
-        mean_validation_error : float
-            Average mean square error between target and output over all folds
+        cv_datasets : array-like
+            List of arrays where each array contains the training input fold, training target fold, validation input fold, and validation target fold,
+            as well as the shifts and scales used by the normalisation function. Will be unpacked when running test_parameter_set. 
+
+        Raises
+        ------
+        ValueError
+            Throws error when the target and input size provided do not match. 
+        NotImplementedError
+            Throws error when the method of validation provided is not "rolling" or "expanding"     
         """
         
         # Define the length of the incoming data inputs
@@ -102,11 +121,9 @@ class CrossValidate:
         
         # Use the validation sizes to define the number of folds
         nstarts = int((input_size - train_size - validation_size)/jump_size) + 1
-  
-        # Define store for validation errors
-        validation_errors = []
-        
+
         # Iterate through data in, training method on each fold then compute validation results
+        cv_datasets = []
         for start_id in range(0, nstarts):
             
             # Define the starting index
@@ -128,7 +145,7 @@ class CrossValidate:
                     validation_in = data_in[start+train_size : ]
                     validation_target = target[start+train_size : ]
 
-            # Define the training and validaiton data for expanding validation type
+            # Define the training and validation data for expanding validation type
             elif self.validation_type == "expanding":
                 # Expanding window cross validation allows the train size to grow with each start
                 train_in = data_in[0 : start+train_size]
@@ -149,10 +166,51 @@ class CrossValidate:
             
             # Calls normalisation function to normalise a single validation iteration
             data_ls = [train_in, train_target, validation_in, validation_target]
-            normalisation_output = normalise_arrays(data_ls, norm_type=self.norm_type, MinMax_range=self.MinMax_range)
-            train_in, train_target, validation_in, validation_target = normalisation_output[0]
-            shift, scale = normalisation_output[1], normalisation_output[2]
+            normalisation_output = normalise_arrays(data_ls, norm_type=self.norm_type, minmax_range=self.minmax_range)
+            
+            # Append to cv_datas the normalised output
+            cv_datasets.append(normalisation_output)
+        
+        return cv_datasets
+        
+        
+    def test_parameter_set(self, test_parameter_set_inputs):
+        
+        """
+        Helper function to crossvalidate. Takes one set of parameters and runs the chosen estimator on every fold combination in cv_datasets.
+        Inputs should be a list of the inputs because multiprocessing.pool.imap_unordered is used. 
 
+        Parameters
+        ----------
+        test_parameter_set_inputs : array-like
+            Should be a list containing in order the
+            - estimator class that has the methods Train and PathContinue/Forecast depending on which task has been chosen
+            - cv_datasets list that contains the normalisation outputs of each fold. Use split_data_to_folds to generate. 
+            - estimator_parameters list of parameter inputs for the estimator. Should be in the same order as how the estimator is defined. 
+    
+        Returns
+        -------
+        estimator_parameters : tuple
+            Tuple containing the parameters that were used as inputs into the estimator parameters.
+        mean_validation_error : float
+            The average validation error over each of the folds. Error measure depends on error_type attribute.
+
+        Raises
+        ------
+        NotImplementedError
+            Task is not either PathContinue or Forecast. Error is not mean-squared error or wasserstein-1 error
+        """
+        
+        estimator, cv_datasets, estimator_parameters = test_parameter_set_inputs
+        
+        # Iterate through the normalised training and validation sets, perform estimation, compute errors
+        validation_errors = []
+        for start_id in range(len(cv_datasets)):
+            
+            # Initalise each cv_datasets element
+            train_in, train_target, validation_in, validation_target = cv_datasets[start_id][0]
+            shift, scale = cv_datasets[start_id][1], cv_datasets[start_id][2]
+            
             # Instantiate the estimator to train and test on the training and validation sets
             Estimator = estimator(*estimator_parameters)
             
@@ -166,87 +224,103 @@ class CrossValidate:
                 raise NotImplementedError("Task on which to cross validate is not available")
 
             # Compute mse of method's output using the validation target
-            fold_mse = calculate_mse(validation_target, output, shift, scale)
+            if self.error_type == "meansquare":
+                fold_mse = calculate_mse(validation_target, output, shift, scale)
+            if self.error_type == "wasserstein1":
+                fold_mse = calculate_wasserstein1err(validation_target, output, shift, scale)
+            else: 
+                raise NotImplementedError("Error type is not available")
+            
+            # Append the validation error to fold_mse store
             validation_errors.append(fold_mse)
 
         # Compute total average mse across validation to measure performance of hyperparameter choice
         mean_validation_error = np.mean(validation_errors)
-        
-        # Print estimator parameter and corresponding error if desired
-        if self.ifPrint == True:
-            print(estimator_parameters, mean_validation_error)   
-            
-        return mean_validation_error
+
+        return estimator_parameters, mean_validation_error
 
     
-    def crossvalidate_multiprocessing(self, estimator, data_in, target, param_ranges, param_names, param_add, num_processes=4):
+    def crossvalidate(self, estimator, cv_datasets, param_ranges, param_add, num_processes=4, chunksize=1):
         
         """
-        Runs cross validation for a range of input parameters. Uses multiprocessing.
-        
+        Crossvalidate with multiprocessing on test_parameter_set. 
+        Uses imap_unordered to be able to access and store result as they arrive. 
+        Stores all errors with the parameters in a cv.txt file. If run again, cv.txt file should be cleared or saved elsewhere. 
+        Otherwise, a separator is written to separate different runs, but does not store information about the run itself. 
+        Logs information to the file at log_interval intervals. 
+
         Parameters
         ----------
-        estimator : class
+        estimator : class object
             Estimator for which to tune hyperparameters for. Has to have methods Train, PathContinue/Forecast. 
             Order of inputs during initialisation need to be of the same order as param_ranges and param_add when concatenated
-        data_in : array_like
-            Full input data. Will be split up to form the folds
-        target : array_like
-            Full target data. Will be split up to form the folds
+        cv_datasets : array-like
+            List of arrays containing the folds, shifts and scale outputs from normalisation. Can use split_data_to_folds function to generate.
         param_ranges : list of arrays or tuple of arrays
-            List or tuple of the parameter values to cross validate for. Must be in the same order as param_names.
-        param_names : list of str
-            List of names of the parameter values to cross validate for. Must be in the same order as param_ranges.
+            List or tuple of the parameter values to cross validate for. Must be in same order as how estimator takes as inputs.
         param_add : list
-            The additional parameters taken in by the estimator that are NOT being cross validated for
-            
+            The additional parameters taken in by the estimator that are NOT being cross validated for.
+        num_processes : int, optional
+            Number of processes to split the work over. Wraps equivalent processes arg in multiprocessing.Pool (default: 4).
+        chunksize : int, optional
+            How the iterables are split approximately and each chunk is submitted as a separate task. 
+            Wraps equivalent chunksize arg in pool.imap_unordered. (default: 1)
+        
         Returns
         -------
-        best_parameters : dict
-            Dictionary based on param_names of the best parameters found
-        parameter_combinations : array_like
-            The parameter values that were tested over, in order
-        result : array_like
-            All the mean validation errors for each parameter values in parameter_combinations, in order
+        min_error : float
+            The best error found.
+        min_parameter : tuple
+            Tuple of estimator parameters that gave the best error. 
         """
-    
-        # Define dictionary store for best parameters and the corresponding error
-        best_parameters = {'validation_error': float('inf')}
-        for param_name in param_names:
-            best_parameters[param_name] = None
-  
-        # Intialise multiprocessing Pool object (object to execute function across multiple input values)
-        pool = multiprocessing.Pool(processes=num_processes)
         
         # Unpack parameter range values and create range of inputs to the cross_validate_per_parameters function
         combinations = []
         parameter_combinations = list(product(*param_ranges))
         for param_choice in parameter_combinations:
-            input_comb = (estimator, data_in, target, (*param_choice, *param_add))
+            input_comb = (estimator, cv_datasets, (*param_choice, *param_add))
             combinations.append(input_comb)
         
-        # Perform parallelised cross validation using the defined pool object
-        result = pool.starmap(self.crossvalidate_per_parameters, combinations)
-        
-        # Iterate through the combinations to obtain the results
-        for combination_id, combinations_choice in enumerate(parameter_combinations):
+        # Create a process pool with num_processes workers
+        pool = multiprocessing.Pool(processes=num_processes)
 
-            # Collect validation error for choice of parameter choice
-            validation_error = result[combination_id]
+        # Issue tasks, yielding results as soon as they are available using imap_unordered
+        partial_results = []        # Stores partial results in case of crash
+        count = 0
+        min_error = float('inf')
+        min_parameter = None
+        for result in pool.imap_unordered(self.test_parameter_set, combinations, chunksize=chunksize):
             
-            # Update best parameters if the current combination is better
-            if validation_error < best_parameters['validation_error']:
-                best_parameters['validation_error'] = validation_error
-                for param_id, param_name in enumerate(param_names):
-                    best_parameters[param_name] = combinations_choice[param_id]
-                
-                print("Intermediary Best Parameters:")
-                print(f"Validation errors: {best_parameters['validation_error']}")
-                for param_name in param_names:
-                    print(f"{param_name}: {best_parameters[param_name]}")
-                print("-" * 40)  # Separator for clarity
-        
+            # Append the results to each list
+            partial_results.append(result)
+            
+            # Count the number of results and track best parameters
+            count = count + 1
+            if result[1] <= min_error:
+                min_error = result[1]
+                min_parameter = result[0]
+            
+            # At every log_interval, log the partial results and empty it
+            if len(partial_results) % self.log_interval == 0:
+                # Write the partial results to the cv.txt file
+                with open("cv.txt", "a") as file:
+                    for partial_result in partial_results:
+                        file.write(f"{partial_result}\n")
+                    partial_result = []
+                # Print current progress with best found
+                print(f"Reached {count} hyperparameters") 
+                print(f"Best estimate so far: {min_error} with {min_parameter}")   
+            
+        # Log the remaining results not covered in log_interval
+        with open("cv.txt", "a") as file:
+            for partial_result in partial_results:
+                file.write(f"{partial_result}\n")
+            file.write("-" * 40 + "\n")    # Separator in case one forgets to erase cv.txt before running
+                        
+        # Prevent further execution of tasks 
         pool.close()
+        # Wait for worker processes to exit
         pool.join()
         
-        return best_parameters, parameter_combinations, result
+        return min_error, min_parameter
+        

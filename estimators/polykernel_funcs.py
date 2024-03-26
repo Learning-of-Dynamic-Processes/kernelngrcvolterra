@@ -1,24 +1,25 @@
-### Volterra class code based on the methods detailed in https://arxiv.org/abs/2212.14641 
-### Additionally provides option to control the number of features used. 
+
+# Polynomial kernel class code. Polynomial kernel includes option to add delays. 
+# More information about kernel methods are found in Smola's Learning with Kernels or Mohri's Foundations of Machine Learning
 
 import numpy as np
 
 class PolynomialKernel:
     
     """
-    Volterra object that performs L2 least squares regression. 
+    Polynomial Kernel object that performs kernel least squares regression. 
     
     Attributes
     ----------
     
+    deg : int
+        Degree of polynomials used in the kernel 
+    ndelays : int
+        Number of delays to include, inclusive of the most recent time step. 
     reg : float
         Regularisation used for Tikhonov least squares regression
     washout : int
         Amount of washout to use during training
-    nfeatures : int or None, optional
-        If None, defaults to usual Volterra regression where the full training inputs - washout are used.
-        If not None, must be int. Uses the last nfeatures of the Gram matrix with the usual non-kernel regression. 
-        (default: None)
     pinv : bool, optional
         Whether to use pseudoinverse for Tikhonov regression. (default: False)
         
@@ -26,8 +27,6 @@ class PolynomialKernel:
     -------
     Train(training_input, training_teacher)
         Performs training using the training input against the training teacher.
-        If nfeatures is None, kernel regression is performed.
-        If nfeatures is provided, Gram matrix is cut and regular regression is performed. 
     Forecast(testing input)
         Performs testing using a new set of inputs 
     PathContinue(latest_input, nhorizon)
@@ -61,19 +60,19 @@ class PolynomialKernel:
     def Train(self, training_input, training_teacher):
         
         """
-        Performs training using the training input against the training teacher in the Volterra method
+        Performs training using the training input against the training teacher in the Polynomial kernel method
         
         Parameters
         ----------
         training_input : array_like
-            Training input for training in Volterra. Must have format (nsamples, ndim)
+            Training input for training in PolynomialKernel. Must have format (nsamples, ndim)
         training_teacher : array_like
-            Training teacher for training in Volterra. Must have format (nsamples, ndim)
+            Training teacher for training in PolynomialKernel. Must have format (nsamples, ndim)
 
         Returns
         -------
-        Volterra : class_instance
-            Volterra object with training attributes initialised
+        PolynomialKernel : class_instance
+            PolynomialKernel object with training attributes initialised
         """
         
         # Assign training input instance attributes
@@ -133,8 +132,7 @@ class PolynomialKernel:
     def Forecast(self, testing_input):
         
         """
-        For some testing input, use the trained Volterra object to generate output based on the 
-        training teacher that was given
+        For some testing input, use the trained PolynomialKernel object to generate output based on the training teacher that was given
         
         Parameters
         ----------
@@ -144,7 +142,7 @@ class PolynomialKernel:
         Returns
         -------
         output : array_like
-            Volterra forecasts, will be the of the same type as the training teacher. Will have format (nsamples, ndim)
+            PolynomialKernel forecasts, will be the of the same type as the training teacher. Will have format (nsamples, ndim)
         """
         
         # Assign testing input instance attributes
@@ -185,7 +183,8 @@ class PolynomialKernel:
         return output
     
     
-    def PathContinue(self, latest_input, nhorizon):   
+    def PathContinue(self, latest_input, nhorizon):  
+         
         """
         Simulates forward in time using the latest input for nhorizon period of time
         

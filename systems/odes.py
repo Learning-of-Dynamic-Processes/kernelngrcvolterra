@@ -1,3 +1,6 @@
+# Store ode systems to test on here
+# Functions should take arguments (t, tuple of variables, additional arguments)
+
 import numpy as np
 
 def lorenz(t, Z, args):

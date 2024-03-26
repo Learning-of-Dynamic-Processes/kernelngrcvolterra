@@ -1,6 +1,6 @@
 
-### Volterra class code based on the methods detailed in https://arxiv.org/abs/2212.14641 
-### Additionally provides option to control the number of features used. 
+# Volterra class code based on the methods detailed in https://arxiv.org/abs/2212.14641 
+# Additionally provides option to make the data size and number of covariates seen different. 
 
 import numpy as np
 
@@ -20,8 +20,8 @@ class Volterra:
     washout : int
         Amount of washout to use during training
     nfeatures : int or None, optional
-        If None, defaults to usual Volterra regression where the full training inputs - washout are used.
-        If not None, must be int. Uses the last nfeatures of the Gram matrix with the usual non-kernel regression. 
+        If None, defaults to usual Volterra kernel regression where the full training inputs - washout are used.
+        If not None, must be int. Uses the last nfeatures of the Gram matrix with the usual non-kernel least squares regression. 
         (default: None)
     pinv : bool, optional
         Whether to use pseudoinverse for Tikhonov regression, (default False)
@@ -218,6 +218,7 @@ class Volterra:
     
     
     def PathContinue(self, latest_input, nhorizon):   
+        
         """
         Simulates forward in time using the latest input for nhorizon period of time
         

@@ -1,7 +1,7 @@
 import numpy as np
 from datagen.data_generate import rk45
 from estimators.volt_funcs import Volterra
-from utils.crossvalidation import CrossValidate
+from utils.crossvalidation_old2 import CrossValidate
 from utils.normalisation import normalise_arrays
 
 # Create the Lorenz dataset
@@ -28,8 +28,8 @@ data = data[::slicing]
 
 # Define full data training and testing sizes
 ndata  = len(data)
-ntrain = 5000 
-washout = 1000
+ntrain = 500
+washout = 10
 ntest = ndata - ntrain
 
 # Construct training input and teacher, testing input and teacher
@@ -41,9 +41,9 @@ normalisation_output = normalise_arrays([training_input_orig, training_teacher_o
 training_input, training_teacher = normalisation_output[0]
 
 # Define the range of parameters for which you want to cross validate over
-ld_coef_range = [0.99]
-tau_coef_range = [0.73]
-reg_range = [1e-8]
+ld_coef_range = np.linspace(0.1, 0.9, 3).round(2)
+tau_coef_range = np.linspace(0.1, 0.9, 3).round(2)
+reg_range = np.logspace(-3, -1, 3)
 param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
 # Define the names of the parameters -- orders must match
@@ -52,5 +52,5 @@ param_names = ["ld coef", "tau coef", "reg"]
 param_add = [washout]
 
 if __name__ == "__main__":
-    CV = CrossValidate(validation_parameters=[2500, 100, 600], validation_type="rolling", task="PathContinue", norm_type="ScaleL2Shift", ifPrint=True)
-    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=1)      
+    CV = CrossValidate(validation_parameters=[200, 200, 100], validation_type="rolling", task="PathContinue", norm_type=None)
+    best_parameters, parameter_combinations, errors = CV.crossvalidate_multiprocessing(Volterra, training_input, training_teacher, param_ranges, param_names, param_add, num_processes=5)      

@@ -1,6 +1,6 @@
 
-### SINDy code written as a class, adapted from Manjunath's https://github.com/MJSteynberg/ForecastingThroughCausalEmbedding/tree/main and
-###                                                         https://pysindy.readthedocs.io/en/latest/api/pysindy.html 
+# SINDy code written as a class, adapted from Manjunath's https://github.com/MJSteynberg/ForecastingThroughCausalEmbedding/tree/main and
+#                                                         https://pysindy.readthedocs.io/en/latest/api/pysindy.html 
 
 import pysindy as ps
 import numpy as np
@@ -8,7 +8,7 @@ import numpy as np
 class SINDyPolynomialSTLSQ:
     
     """
-    A wrapper class for SINDy Polynomial STLSQ.
+    A wrapper class for SINDy Polynomial STLSQ so that it fits with other packages in project. 
     
     Attributes
     ----------
@@ -54,7 +54,6 @@ class SINDyPolynomialSTLSQ:
         self.interaction_only = False       # To instruct SINDy Polynomial library to use only cross terms
     
     
-    # Function performs training using training data (computes derivatives)
     def Train(self, training_input, training_teacher):    # take in additional argument so it works with cv code
         
         """
@@ -78,7 +77,8 @@ class SINDyPolynomialSTLSQ:
         self.ndim = training_input.shape[1]
         self.ntargets = training_teacher.shape[0]
         
-        # Define training set as it is what is needed to train SINDy - works on the assumption that the training teacher data is one off the training input
+        # Define training set as it is what is needed to train SINDy 
+        # Works on the assumption that the training teacher data is one off the training input
         training = np.zeros((self.ninputs+1, self.ndim))
         training[0:self.ninputs, :] = training_input
         training[self.ninputs, :] = training_teacher[-1]
@@ -104,7 +104,6 @@ class SINDyPolynomialSTLSQ:
         return self
     
     
-    # Function that performs path continuation based on some latest input
     def PathContinue(self, latest_input, nhorizon):
         
         """

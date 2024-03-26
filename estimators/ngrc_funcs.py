@@ -1,5 +1,5 @@
 
-### NGRC Code written as a class - adapted from original NGRC paper's codes at https://github.com/quantinfo/ng-rc-paper-code
+# NGRC Code written as a class - adapted from original NGRC paper's codes at https://github.com/quantinfo/ng-rc-paper-code
 
 import numpy as np
 from itertools import combinations_with_replacement
@@ -18,7 +18,7 @@ class NGRC:
     deg : int
         Degree of monomials chosen
     reg : float
-        Reguralisation used for Tikhonov least squares regression
+        Regularisation used for Tikhonov least squares regression
     washout : int
         Amount of washout to use during training
         
@@ -29,6 +29,7 @@ class NGRC:
     PathContinue(latest_input, nhorizon)
         Simulates forward in time using the latest input for nhorizon period of time
     """
+
     
     def __init__(self, ndelay, deg, reg, washout):
         
@@ -51,8 +52,7 @@ class NGRC:
         self.dnonlin = None         # Stores the number of NGRC nonlinear features 
         self.dtot = None            # Stores the number of NGRC total features
         
-        
-    
+            
     def Train(self, training_input, training_teacher):
         
         """
@@ -125,7 +125,6 @@ class NGRC:
         return self
     
     
-    
     def PathContinue(self, latest_input, nhorizon):
         
         """
@@ -148,7 +147,7 @@ class NGRC:
         self.nhorizon = nhorizon
         
         # Create store for feature vectors for prediction
-        Otest = np.ones(self.dtot)              # full feature vector
+        Otest = np.ones(self.dtot)                        # full feature vector
         Xtest = np.zeros((self.dlin, self.nhorizon+1))    # linear portion of feature vector
 
         # Fill in the linear part of the feature vector with the latest input data and delay

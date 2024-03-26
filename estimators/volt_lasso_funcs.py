@@ -1,6 +1,6 @@
 
-### Volterra class code adapted from the methods detailed in https://arxiv.org/abs/2212.14641 
-### BUT using Lasso regression instead of L2 regression
+# Volterra class code adapted from the methods detailed in https://arxiv.org/abs/2212.14641 
+# BUT modified to use Lasso regression instead of L2 regression
 
 import numpy as np
 from sklearn.linear_model import Lasso
