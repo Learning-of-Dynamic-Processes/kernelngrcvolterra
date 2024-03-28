@@ -226,7 +226,7 @@ class CrossValidate:
             # Compute mse of method's output using the validation target
             if self.error_type == "meansquare":
                 fold_mse = calculate_mse(validation_target, output, shift, scale)
-            if self.error_type == "wasserstein1":
+            elif self.error_type == "wasserstein1":
                 fold_mse = calculate_wasserstein1err(validation_target, output, shift, scale)
             else: 
                 raise NotImplementedError("Error type is not available")

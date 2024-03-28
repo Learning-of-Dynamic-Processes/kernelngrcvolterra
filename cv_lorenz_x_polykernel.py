@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # Define full data training and testing sizes
     ndata  = len(data)
     ntrain = 5000 
-    washout = 2
+    washout = 1000
     ntest = ndata - ntrain
 
     # Construct training input and teacher, testing input and teacher
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # Define the range of parameters for which you want to cross validate over
     deg_range = [2]
     ndelays_range = np.arange(2, 11, 1)
-    reg_range = np.logspace(-15, -1, 15)
+    reg_range = np.logspace(-15, -10, 6) #np.logspace(-10, -1, 10)
     param_ranges = [deg_range, ndelays_range, reg_range]
 
     # Define the additional inputs taken in by the 
@@ -40,8 +40,8 @@ if __name__ == "__main__":
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
-                       task="PathContinue", norm_type="MinMax", 
-                       error_type="wasserstein1", log_interval=1)
+                       task="PathContinue", norm_type="MinMax",
+                       error_type="wasserstein1", log_interval=10)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(PolynomialKernel, cv_datasets, param_ranges, param_add, 
                                                   num_processes=8, chunksize=1)      
