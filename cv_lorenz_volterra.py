@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # Define the range of parameters for which you want to cross validate over
     ld_coef_range = np.linspace(0.01, 0.99, 99).round(2)
     tau_coef_range = np.linspace(0.01, 0.99, 99).round(2)
-    reg_range = np.logspace(-15, -1, 3)
+    reg_range = np.logspace(-15, -1, 15)
     param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
     # Define additional input parameters
