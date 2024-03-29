@@ -1,5 +1,6 @@
 
 import numpy as np
+from time import time
 from datagen.data_generate import rk45
 from systems.odes import lorenz
 from utils.crossvalidation import CrossValidate
@@ -7,6 +8,9 @@ from utils.normalisation import normalise_arrays
 from estimators.ngrc_funcs import NGRC
 
 if __name__ == "__main__":
+    
+    # Start wall timer
+    start = time()
     
     # Create the Lorenz dataset
     lor_args = (10, 8/3, 28)
@@ -48,3 +52,6 @@ if __name__ == "__main__":
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")   
+    
+    # Print amount of time taken to run cv
+    print(f"Amount of time to run: {time() - start}")

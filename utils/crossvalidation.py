@@ -306,7 +306,7 @@ class CrossValidate:
                 with open("cv.txt", "a") as file:
                     for partial_result in partial_results:
                         file.write(f"{partial_result}\n")
-                    partial_result = []
+                    partial_results = []
                 # Print current progress with best found
                 print(f"Reached {count} hyperparameters") 
                 print(f"Best estimate so far: {min_error} with {min_parameter}")   

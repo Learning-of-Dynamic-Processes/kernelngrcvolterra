@@ -1,14 +1,15 @@
 
 import numpy as np
+from time import time
 from datagen.data_generate import rk45
 from systems.odes import lorenz
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
 from estimators.volt_funcs import Volterra
-from time import time
 
 if __name__ == "__main__":
     
+    # Start wall timer
     start = time()
     
     # Create the Lorenz dataset
@@ -52,4 +53,5 @@ if __name__ == "__main__":
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")    
     
+    # Print amount of time taken to run cv
     print(f"Amount of time to run: {time() - start}")

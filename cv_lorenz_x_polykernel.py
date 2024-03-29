@@ -1,5 +1,6 @@
 
 import numpy as np
+from time import time
 from datagen.data_generate import rk45
 from systems.odes import lorenz
 from utils.crossvalidation import CrossValidate
@@ -7,6 +8,9 @@ from utils.normalisation import normalise_arrays
 from estimators.polykernel_funcs import PolynomialKernel
 
 if __name__ == "__main__":
+        
+    # Start wall timer
+    start = time()
     
     # Create the Lorenz dataset
     lor_args = (10, 8/3, 28)
@@ -32,7 +36,7 @@ if __name__ == "__main__":
     # Define the range of parameters for which you want to cross validate over
     deg_range = [2]
     ndelays_range = np.arange(2, 11, 1)
-    reg_range = np.logspace(-15, -10, 6) #np.logspace(-10, -1, 10)
+    reg_range = np.logspace(-10, -1, 10)
     param_ranges = [deg_range, ndelays_range, reg_range]
 
     # Define the additional inputs taken in by the 
@@ -48,3 +52,6 @@ if __name__ == "__main__":
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")   
+    
+    # Print amount of time taken to run cv
+    print(f"Amount of time to run: {time() - start}")
