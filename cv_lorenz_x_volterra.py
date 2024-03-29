@@ -5,8 +5,11 @@ from systems.odes import lorenz
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
 from estimators.volt_funcs import Volterra
+from time import time
 
 if __name__ == "__main__":
+    
+    start = time()
     
     # Create the Lorenz dataset
     lor_args = (10, 8/3, 28)
@@ -30,8 +33,8 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
-    ld_coef_range = np.linspace(0.01, 0.99, 99).round(2)
-    tau_coef_range = np.linspace(0.01, 0.99, 99).round(2)
+    ld_coef_range = np.linspace(0.1, 0.9, 9).round(1)
+    tau_coef_range = np.linspace(0.1, 0.9, 9).round(1)
     reg_range = np.logspace(-15, -1, 15)
     param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
@@ -41,10 +44,12 @@ if __name__ == "__main__":
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
                        task="PathContinue", norm_type="ScaleL2Shift", 
-                       error_type="wasserstein1", log_interval=1000)
+                       error_type="wasserstein1", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=8, chunksize=1)      
+                                                  num_processes=50, chunksize=1)      
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")    
+    
+    print(f"Amount of time to run: {time() - start}")
