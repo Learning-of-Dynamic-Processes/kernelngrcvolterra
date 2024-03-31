@@ -19,6 +19,9 @@ def err_sort(filename):
         Also writes to a new file named filename_sortedbyerr.txt.
     """
     
+    # Defines nan so that it corresponds to inf when reading file
+    nan = float('inf')
+    
     # Pulls each line of file except for separator. Strips the line and converts it to a tuple
     separator_str = "-" * 40
     file_lines = []
@@ -67,6 +70,9 @@ def param_sort(filename):
         List of the parameters and their errors sorted by the parameters in lexicographical order. 
         Also writes to a new file named filename_sortedbyparam.txt.
     """
+    
+    # Defines nan so that it corresponds to inf when reading file
+    nan = float('inf')
     
     # Pulls each line of file except for separator. Strips the line and converts it to a tuple
     separator_str = "-" * 40
