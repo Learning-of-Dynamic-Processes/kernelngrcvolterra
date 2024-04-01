@@ -45,7 +45,7 @@ if __name__ == "__main__":
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
                        task="PathContinue", norm_type="ScaleL2Shift", 
-                       error_type="wasserstein1", log_interval=100)
+                       error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
                                                   num_processes=50, chunksize=1)      
