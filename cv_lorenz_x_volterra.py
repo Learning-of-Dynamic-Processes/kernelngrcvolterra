@@ -34,6 +34,31 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
+    ld_coef_range = np.linspace(0.35, 0.45, 11).round(2) #np.linspace(0.1, 0.9, 9).round(1)
+    tau_coef_range = np.linspace(0.25, 0.35, 11).round(2) #np.linspace(0.1, 0.9, 9).round(1)
+    reg_range = np.arange(5e-10, 1.6e-9, 1e-10) #np.logspace(-15, -1, 15)
+    param_ranges = [ld_coef_range, tau_coef_range, reg_range]
+
+    # Define the additional inputs taken in by the 
+    param_add = [washout]
+
+    # Instantiate CV, split dataset, crossvalidate in parallel
+    CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
+                       task="PathContinue", norm_type="ScaleL2Shift", 
+                       error_type="wasserstein", log_interval=100)
+    cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
+    min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
+                                                  num_processes=50, chunksize=1)      
+    
+    # Print out the best paraeter and errors found
+    print(f"Best parameters found are {best_parameters} with error {min_error}")    
+    
+    # Print amount of time taken to run cv
+    print(f"Amount of time to run: {time() - start}") 
+
+# First run on coarse grid
+'''
+    # Define the range of parameters for which you want to cross validate over
     ld_coef_range = np.linspace(0.1, 0.9, 9).round(1)
     tau_coef_range = np.linspace(0.1, 0.9, 9).round(1)
     reg_range = np.logspace(-15, -1, 15)
@@ -45,7 +70,7 @@ if __name__ == "__main__":
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
                        task="PathContinue", norm_type="ScaleL2Shift", 
-                       error_type="meansquare", log_interval=100)
+                       error_type="wasserstein", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
                                                   num_processes=50, chunksize=1)      
@@ -55,3 +80,4 @@ if __name__ == "__main__":
     
     # Print amount of time taken to run cv
     print(f"Amount of time to run: {time() - start}")
+'''

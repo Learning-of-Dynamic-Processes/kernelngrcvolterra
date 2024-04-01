@@ -210,7 +210,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.4, 0.3, 1e-09, 1000 #0.99, 0.23, 0.1, 1000 
+ld_coef, tau_coef, reg, washout = 0.4, 0.3, 1e-09, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)
