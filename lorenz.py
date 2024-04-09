@@ -6,7 +6,7 @@ from estimators.ngrc_funcs import NGRC
 from estimators.sindy_funcs import SINDyPolynomialSTLSQ
 from estimators.polykernel_funcs import PolynomialKernel
 
-from datagen.data_generate import rk45 
+from datagen.data_generate_ode import rk45 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
 from utils.errors import calculate_mse, calculate_wasserstein1err
@@ -210,7 +210,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.4, 0.3, 1e-09, 1000
+ld_coef, tau_coef, reg, washout = 0.5, 0.5, 1e-07, 1000 #0.4, 0.3, 1e-09, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)

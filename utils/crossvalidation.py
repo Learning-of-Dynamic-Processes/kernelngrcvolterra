@@ -225,14 +225,14 @@ class CrossValidate:
 
             # Compute mse of method's output using the validation target
             if self.error_type == "meansquare":
-                fold_mse = calculate_mse(validation_target, output, shift, scale)
+                fold_err = calculate_mse(validation_target, output, shift, scale)
             elif self.error_type == "wasserstein1":
-                fold_mse = calculate_wasserstein1err(validation_target, output, shift, scale)
+                fold_err = calculate_wasserstein1err(validation_target, output, shift, scale)
             else: 
                 raise NotImplementedError("Error type is not available")
             
             # Append the validation error to fold_mse store
-            validation_errors.append(fold_mse)
+            validation_errors.append(fold_err)
 
         # Compute total average mse across validation to measure performance of hyperparameter choice
         mean_validation_error = np.mean(validation_errors)

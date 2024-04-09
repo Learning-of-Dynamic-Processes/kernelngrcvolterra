@@ -1,7 +1,7 @@
 
 import numpy as np
 from time import time
-from datagen.data_generate import rk45
+from datagen.data_generate_ode import rk45
 from systems.odes import lorenz
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
