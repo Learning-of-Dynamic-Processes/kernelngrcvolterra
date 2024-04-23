@@ -1,7 +1,7 @@
 import multiprocessing
 import numpy as np
 from itertools import product
-from utils.errors import calculate_mse, calculate_wasserstein1err
+from utils.errors import calculate_mse, calculate_wasserstein1err, calculate_specdensloss
 from utils.normalisation import normalise_arrays
 
 class CrossValidate:
@@ -29,7 +29,7 @@ class CrossValidate:
         If overall normalisation is preferred, choose None for this norm_type and normalise data before input.
         Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", None}. (default: None).
     error_type : str, optional
-        The type of error function to use in computing error in each fold. Options: {"meansquare", "wasserstein1"}. (default: "meansquare")
+        The type of error function to use in computing error in each fold. Options: {"meansquare", "wasserstein1", "specdens"}. (default: "meansquare")
     minmax_range : tuple, optional
         Tuple containing the desired min and max when normalising using norm_type="MinMax". (default: (0, 1))
     log_interval : int, optional
@@ -228,6 +228,8 @@ class CrossValidate:
                 fold_err = calculate_mse(validation_target, output, shift, scale)
             elif self.error_type == "wasserstein1":
                 fold_err = calculate_wasserstein1err(validation_target, output, shift, scale)
+            elif self.error_type == "specdens":
+                fold_err = calculate_specdensloss(validation_target, output, shift, scale)
             else: 
                 raise NotImplementedError("Error type is not available")
             
