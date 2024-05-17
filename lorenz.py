@@ -54,8 +54,8 @@ mse_volt = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_volt = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
-plot_data_distributions([test_teacher, output])
+plot_data([test_teacher, output], "volterra_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "volterra_lorenz_dist.pdf")
 
 # %% 
 # Volterra with L2 least squares regression using pinv 
@@ -66,7 +66,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.8, 0.2, 1e-10, 1000
+ld_coef, tau_coef, reg, washout = 0.6, 0.4, 1e-09, 1000 #0.8, 0.2, 1e-10, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout, pinv=True)
@@ -77,7 +77,9 @@ mse_volt_pinv = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_volt_pinv = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
+plot_data([test_teacher, output], "volterrapinv_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "volterrapinv_lorenz_dist.pdf")
+
 
 # %% 
 # Volterra with L2 least squares regression using pinv and only the last 28 features of the Gram matrix
@@ -121,8 +123,8 @@ mse_ngrc = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_ngrc = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
-plot_data_distributions([test_teacher, output])
+plot_data([test_teacher, output], "ngrc_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "ngrc_lorenz_dist.pdf")
 
 # %% 
 # SINDy
@@ -144,8 +146,8 @@ mse_sindy = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_sindy = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
-plot_data_distributions([test_teacher, output])
+plot_data([test_teacher, output], "sindy_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "sindy_lorenz_dist.pdf")
 
 # %% 
 # Polynomial kernel 
@@ -167,8 +169,8 @@ mse_poly = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_poly = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
-plot_data_distributions([test_teacher, output])
+plot_data([test_teacher, output], "polykernel_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "polykernel_lorenz_dist.pdf")
 
 # %% 
 # Polynomial kernel with pseudo inverse
@@ -190,8 +192,8 @@ mse_poly_pinv = calculate_mse(test_teacher, output, shift, scale)
 wasserstein_poly_pinv = calculate_wasserstein1err(test_teacher, output, shift, scale)
 
 # Plot the forecast and actual
-plot_data([test_teacher, output])
-plot_data_distributions([test_teacher, output])
+plot_data([test_teacher, output], "polykernelpinv_lorenz.pdf")
+plot_data_distributions([test_teacher, output], "polykernelpinv_lorenz_dist.pdf")
 
 # %% 
 # Remove second and third dimensions from data
@@ -210,7 +212,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift, scale = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for Volterra
-ld_coef, tau_coef, reg, washout = 0.7, 0.5, 1e-06, 1000 #0.2, 0.3, 0.001, 1000 #0.8, 0.5, 1e-05, 1000 #0.6, 0.4, 1e-07, 1000 #0.4, 0.3, 1e-09, 1000
+ld_coef, tau_coef, reg, washout = 0.7, 0.8, 1e-09, 1000 #0.8, 0.85, 1e-07, 1000 #0.7, 0.5, 1e-06, 1000 #0.2, 0.3, 0.001, 1000 #0.8, 0.5, 1e-05, 1000 #0.6, 0.4, 1e-07, 1000 #0.4, 0.3, 1e-09, 1000
 
 # Run Volterra as a class
 volt = Volterra(ld_coef, tau_coef, reg, washout)

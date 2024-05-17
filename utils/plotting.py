@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from itertools import combinations
 
-def plot_data(data_list, plot_mode='1d'):
+def plot_data(data_list, filename, plot_mode='1d'):
     
     """
     Plot the data variable based on the specified plot_mode.
@@ -102,9 +102,10 @@ def plot_data(data_list, plot_mode='1d'):
                 ax.legend()
             plt.tight_layout()
     plt.legend()
+    plt.savefig(filename)
     plt.show()
 
-def plot_data_distributions(data_list):
+def plot_data_distributions(data_list, filename):
     
     """
     Superpose KDE plots for each dimension across all elements in data_list.
@@ -140,6 +141,7 @@ def plot_data_distributions(data_list):
                 
             axs[dim].set(xlabel=f"Dimension {dim + 1}")
             axs[dim].legend()
-
+    
+    plt.savefig(filename)
     plt.show()
     

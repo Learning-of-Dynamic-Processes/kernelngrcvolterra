@@ -120,5 +120,6 @@ def calculate_specdensloss(y_true, y_pred, shift=None, scale=None):
         psd_true = periodogram(y_true[:, dim], window="hann", scaling="spectrum")[1]
         psd_pred = periodogram(y_pred[:, dim], window="hann", scaling="spectrum")[1]
         error = error + np.sum(np.abs(psd_true - psd_pred))
+    error = error * 1000
         
     return error
