@@ -26,7 +26,8 @@ def err_sort(filename):
     separator_str = "-" * 40
     file_lines = []
     with open(filename) as file:
-        for line in file:
+        for line_id in range(13, len(file)):
+            line = file[line_id]
             line = line.rstrip()
             if line == separator_str:
                 continue
@@ -77,8 +78,9 @@ def param_sort(filename):
     # Pulls each line of file except for separator. Strips the line and converts it to a tuple
     separator_str = "-" * 40
     file_lines = []
-    with open(filename) as file:
-        for line in file:
+    with open(filename) as file:            
+        for line_id in range(13, len(file)):
+            line = file[line_id]
             line = line.rstrip()
             if line == separator_str:
                 continue

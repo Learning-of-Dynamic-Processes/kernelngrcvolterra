@@ -1,0 +1,26 @@
+Reached 100 hyperparameters
+Best estimate so far: 0.04635413309620475 with (0.1, 0.1, 1e-08, 1000)
+Reached 200 hyperparameters
+Best estimate so far: 0.04635413309620475 with (0.1, 0.1, 1e-08, 1000)
+Reached 300 hyperparameters
+Best estimate so far: 0.0449091459522291 with (0.3, 0.1, 1e-09, 1000)
+Reached 400 hyperparameters
+Best estimate so far: 0.0449091459522291 with (0.3, 0.1, 1e-09, 1000)
+Reached 500 hyperparameters
+Best estimate so far: 0.041993117091756495 with (0.4, 0.1, 1e-08, 1000)
+Reached 600 hyperparameters
+Best estimate so far: 0.0335489459771405 with (0.5, 0.1, 1e-10, 1000)
+Reached 700 hyperparameters
+Best estimate so far: 0.02230791493999274 with (0.6, 0.2, 1e-12, 1000)
+Reached 800 hyperparameters
+Best estimate so far: 0.007103633608652804 with (0.6, 0.5, 1e-11, 1000)
+Reached 900 hyperparameters
+Best estimate so far: 0.0009660895833843218 with (0.7, 0.5, 1e-10, 1000)
+Reached 1000 hyperparameters
+Best estimate so far: 1.5417392871070066e-05 with (0.8, 0.4, 1e-10, 1000)
+Reached 1100 hyperparameters
+Best estimate so far: 1.5417392871070066e-05 with (0.8, 0.4, 1e-10, 1000)
+Reached 1200 hyperparameters
+Best estimate so far: 5.450630548191712e-06 with (0.9, 0.4, 1e-09, 1000)
+Best parameters found are (0.9, 0.4, 1e-09, 1000) with error 5.450630548191712e-06
+Amount of time to run: 8422.516358613968

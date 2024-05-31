@@ -8,7 +8,7 @@ from datagen.data_generate_dde import dde_rk45
 from systems.ddes import mackeyglass
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
-from estimators.volt_funcs import Volterra
+from estimators.polykernel_funcs import PolynomialKernel
 
 if __name__ == "__main__":
             
@@ -41,21 +41,21 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
-    ld_coef_range = np.linspace(0.1, 0.9, 9).round(1)
-    tau_coef_range = np.linspace(0.1, 0.9, 9).round(1)
-    reg_range = np.logspace(-15, -1, 15)
-    param_ranges = [ld_coef_range, tau_coef_range, reg_range]
+    deg_range = np.arange(1, 5, 1) #np.arange(2, 10, 1)
+    ndelays_range = np.arange(1, 10, 1) #np.arange(2, 102, 1)
+    reg_range = [1e-15]#np.logspace(-15, -1, 15)
+    param_ranges = [deg_range, ndelays_range, reg_range]
 
     # Define additional input parameters
     param_add = [washout]
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2000, 500, 100], validation_type="rolling", 
-                       task="PathContinue", norm_type="ScaleL2Shift", 
-                       error_type="meansquare", log_interval=100)
+                       task="PathContinue", norm_type="MinMax", 
+                       error_type="meansquare", log_interval=2) #100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
-    min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=50, chunksize=1)      
+    min_error, best_parameters = CV.crossvalidate(PolynomialKernel, cv_datasets, param_ranges, param_add, 
+                                                  num_processes=2, chunksize=1)      
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")

@@ -1,0 +1,542 @@
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/estimators/polykernel_funcs.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/estimators/polykernel_funcs.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/utils/errors.py:40: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+Reached 100 hyperparameters
+Best estimate so far: 0.04725014119202062 with (2, 5, 0.0001, 1000)
+Reached 200 hyperparameters
+Best estimate so far: 0.020971979564699435 with (2, 14, 0.1, 1000)
+Reached 300 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 400 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 500 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 600 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 700 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 800 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 900 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1000 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1100 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1200 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1300 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1400 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1500 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1600 hyperparameters
+Best estimate so far: 0.01811052685988686 with (2, 16, 0.1, 1000)
+Reached 1700 hyperparameters
+Best estimate so far: 0.007700850160353721 with (3, 14, 1e-05, 1000)
+Reached 1800 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 1900 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2000 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2100 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2200 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2300 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2400 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2500 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2600 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2700 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2800 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 2900 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 3000 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 3100 hyperparameters
+Best estimate so far: 0.005158638313829642 with (3, 16, 0.0001, 1000)
+Reached 3200 hyperparameters
+Best estimate so far: 0.0009723657650656003 with (4, 14, 1e-06, 1000)
+Reached 3300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 3900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 4900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 5900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 6900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 7900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 8900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 9900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 10900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11100 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11200 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11300 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11400 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11500 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11600 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11700 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11800 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 11900 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Reached 12000 hyperparameters
+Best estimate so far: 6.570140725742009e-05 with (4, 17, 1e-06, 1000)
+Best parameters found are (4, 17, 1e-06, 1000) with error 6.570140725742009e-05
+Amount of time to run: 75843.06199216843

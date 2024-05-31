@@ -3,7 +3,7 @@
 # Additionally provides option to make the data size and number of covariates seen different. 
 
 import numpy as np
-from scipy.optimize import minimize, differential_evolution
+from scipy.optimize import minimize
 from utils.errors import calculate_specdensloss, calculate_wasserstein1err, calculate_mse
 
 class VolterraCustomLoss:

@@ -48,6 +48,7 @@ class NGRC:
         self.ninputs = None         # Training size derived from length of data seen during training (input size+1)
         self.nhorizon = None        # Stores the forecasting horizon given 
         self.ndim = None            # Stores the number of dimensions given into the system  
+        self.ntargets = None        # Stores the number of target outputs in forecasting
         self.dlin = None            # Stores the number of NGRC linear features (including delays)
         self.dnonlin = None         # Stores the number of NGRC nonlinear features 
         self.dtot = None            # Stores the number of NGRC total features
@@ -75,6 +76,9 @@ class NGRC:
         self.ninputs = training_input.shape[0] 
         # Define dimension of input based on training data
         self.ndim = training_input.shape[1]
+        
+        # Assign training teacher instance attributes
+        self.ntargets = training_teacher.shape[1]
         
         # Size of linear part of feature vector
         self.dlin = self.ndelay * self.ndim
@@ -118,12 +122,58 @@ class NGRC:
         # Assign as instance attributes the linear and nonlinear feature vectors
         self.Xtrain = Xtrain
         self.Otrain = Otrain
+         
+        # Regular ridge regression
+        self.Wout = ((training_teacher[self.washout:]).T @ Otrain.T @ np.linalg.pinv(Otrain @ Otrain.T + self.reg * np.identity(self.dtot))).T
         
-        # Ridge regression train W_out with X_i+1 - X_i
-        self.Wout = ((training_teacher[self.washout:] - training_input[self.washout:]).T @ Otrain.T @ np.linalg.pinv(Otrain @ Otrain.T + self.reg * np.identity(self.dtot))).T
+        # Run this ridge regression instead for when doing cross-validation
+        #self.Wout = ((training_teacher[self.washout:] - training_input[self.washout:]).T @ Otrain.T @ np.linalg.pinv(Otrain @ Otrain.T + self.reg * np.identity(self.dtot))).T
         
         return self
     
+    
+    def Forecast(self, testing_input):
+        # Assign testing input instance attributes
+        self.nhorizon = testing_input.shape[0]
+        
+        # Initialise store for the forecast output
+        output = np.zeros((self.nhorizon, self.ntargets))
+        
+        # Create store for feature vectors for prediction
+        Otest = np.ones(self.dtot)                        # full feature vector
+        Xtest = np.zeros((self.dlin, self.nhorizon+1))    # linear portion of feature vector
+        
+        # Fill in linear part of feature vector using testing_input
+        Xtest[0:self.ndim, 0] = testing_input[0]
+        Xtest[self.ndim: , 0] = self.Xtrain[0:self.dlin-self.ndim, -1]
+        for j in range(1, self.nhorizon):
+            Xtest[0:self.ndim, j] = testing_input[j]
+            Xtest[self.ndim: , j] = Xtest[0:self.dlin-self.ndim, j-1]
+            
+        # Apply Wout to feature vectors to perform prediction
+        for j in range(self.nhorizon):
+            # Copy linear part into whole feature vector
+            Otest[1:self.dlin+1] = Xtest[:, j]  # shift by one for constant
+        
+            # Fill in the nonlinear part
+            Orow = 1 + self.dlin
+            # Iterate through each monomial degree
+            for inter_deg in range(2, self.deg+1):
+                # Generate iterator of combinations rows of X for each degree
+                iter_monomials = combinations_with_replacement(range(self.dlin), inter_deg)
+                # Fill up the rows of O test for each monomial 
+                for X_row_ids in iter_monomials:
+                    monomial_row = Xtest[X_row_ids[0], j]
+                    for row_id in range(1, inter_deg):
+                        monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+                    Otest[Orow] = monomial_row
+                    Orow = Orow + 1
+            
+            # Perform a prediction
+            output[j, :] = Otest @ self.Wout
+        
+        return output
+        
     
     def PathContinue(self, latest_input, nhorizon):
         
@@ -149,12 +199,12 @@ class NGRC:
         # Create store for feature vectors for prediction
         Otest = np.ones(self.dtot)                        # full feature vector
         Xtest = np.zeros((self.dlin, self.nhorizon+1))    # linear portion of feature vector
-
+        
         # Fill in the linear part of the feature vector with the latest input data and delay
         Xtest[0:self.ndim, 0] = latest_input
         Xtest[self.ndim: , 0] = self.Xtrain[0:self.dlin-self.ndim, -1]
         
-        # Apply W_out to feature vector to perform prediction
+        # Apply Wout to feature vector to perform prediction
         for j in range(self.nhorizon):
             # Copy linear part into whole feature vector
             Otest[1:self.dlin+1] = Xtest[:, j] # shift by one for constant
@@ -172,7 +222,7 @@ class NGRC:
                         monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
                     Otest[Orow] = monomial_row
                     Orow = Orow + 1
-                    
+
             # Fill in the delay taps of the next state
             Xtest[self.ndim:self.dlin, j+1] = Xtest[0:self.dlin-self.ndim, j]
             # Perform a prediction

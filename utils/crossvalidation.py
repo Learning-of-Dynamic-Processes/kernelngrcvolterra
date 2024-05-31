@@ -1,6 +1,7 @@
 import multiprocessing
 import numpy as np
 from itertools import product
+import time
 from utils.errors import calculate_mse, calculate_wasserstein1err, calculate_specdensloss
 from utils.normalisation import normalise_arrays
 
@@ -247,9 +248,10 @@ class CrossValidate:
         """
         Crossvalidate with multiprocessing on test_parameter_set. 
         Uses imap_unordered to be able to access and store result as they arrive. 
-        Stores all errors with the parameters in a cv.txt file. If run again, cv.txt file should be cleared or saved elsewhere. 
-        Otherwise, a separator is written to separate different runs, but does not store information about the run itself. 
+        Stores all errors with the parameters and cv related data in a estimator_timestamp.txt file.
+        Does not store information about the data generation process. 
         Logs information to the file at log_interval intervals. 
+        Note that log_intervals should be judiciously large enough as logging repeatedly can be expensive. 
 
         Parameters
         ----------
@@ -282,15 +284,33 @@ class CrossValidate:
         for param_choice in parameter_combinations:
             input_comb = (estimator, cv_datasets, (*param_choice, *param_add))
             combinations.append(input_comb)
+            
+        # Create and write to a text file with details of cv run - results will append to this text file later
+        estimator_name = estimator.__name__                         # stores the estimator class name for use in file name
+        time_stamp = time.strftime("%Y%m%d-%H%M%S")                           # stores the time stamp to differentiate files, for use in file name
+        number_parameters = len(parameter_combinations)
+        cvresults_filename = f"{estimator_name}_{time_stamp}.txt"     # create file name with name of class of estimator + time cv code is run
+        with open(cvresults_filename, "a") as file:                           # store cross-validation details above all cv results
+            file.write(f"Estimator: {estimator_name}\n")
+            file.write(f"Total number of parameters: {number_parameters}\n")
+            file.write(f"Time started: {time_stamp}\n")
+            file.write(f"Validation parameters: {self.validation_parameters} (training, validation, jump)\n")
+            file.write(f"Validation type: {self.validation_type}\n")
+            file.write(f"Task: {self.task}\n")
+            file.write(f"Normalisation type: {self.norm_type}\n")
+            file.write(f"Error type: {self.error_type}\n")
+            file.write(f"MinMax range: {self.minmax_range} (only used when norm type is MinMax) \n")
+            file.write("-" * 80 + "\n")    
         
         # Create a process pool with num_processes workers
         pool = multiprocessing.Pool(processes=num_processes)
 
         # Issue tasks, yielding results as soon as they are available using imap_unordered
-        partial_results = []        # Stores partial results in case of crash
+        partial_results = []        # Stores partial results in txt file in case of crash
         count = 0
         min_error = float('inf')
         min_parameter = None
+        start_time = time.time()
         for result in pool.imap_unordered(self.test_parameter_set, combinations, chunksize=chunksize):
             
             # Append the results to each list
@@ -302,22 +322,34 @@ class CrossValidate:
                 min_error = result[1]
                 min_parameter = result[0]
             
+            # At the first log_interval, compute and print estimated time for process
+            if count == self.log_interval:
+                first_log_time = time.time()
+                first_log_time_elapsed = first_log_time - start_time
+                estimated_total_time = (number_parameters // self.log_interval) * first_log_time_elapsed
+                with open(cvresults_filename, "a") as file:
+                    file.write(f"First log reached. Amount of time elapsed is {first_log_time_elapsed} seconds.\n")
+                    file.write(f"Estimated time to finish is {estimated_total_time} seconds.\n")
+                    file.write("-" * 80 + "\n")
+                    
             # At every log_interval, log the partial results and empty it
             if len(partial_results) % self.log_interval == 0:
                 # Write the partial results to the cv.txt file
-                with open("cv.txt", "a") as file:
+                with open(cvresults_filename, "a") as file:
                     for partial_result in partial_results:
                         file.write(f"{partial_result}\n")
                     partial_results = []
                 # Print current progress with best found
                 print(f"Reached {count} hyperparameters") 
                 print(f"Best estimate so far: {min_error} with {min_parameter}")   
-            
+        
+        end_time = time.time()    
         # Log the remaining results not covered in log_interval
-        with open("cv.txt", "a") as file:
+        with open(cvresults_filename, "a") as file:
             for partial_result in partial_results:
                 file.write(f"{partial_result}\n")
-            file.write("-" * 40 + "\n")    # Separator in case one forgets to erase cv.txt before running
+            file.write("-" * 80 + "\n")    # Separator marks end of CV run
+            file.write(f"Cross validation total time taken: {end_time - start_time} seconds.")
                         
         # Prevent further execution of tasks 
         pool.close()

@@ -1,3 +1,6 @@
+# Sets the default math computation in numpy to not parallelise (might be MKL)
+import os
+os.environ['OPENBLAS_NUM_THREADS'] = '1'    
 
 import numpy as np
 from time import time
@@ -34,8 +37,8 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
-    ld_coef_range = np.linspace(0.01, 0.99, 99).round(2)
-    tau_coef_range = np.linspace(0.01, 0.99, 99).round(2)
+    ld_coef_range = np.linspace(0.1, 0.9, 9).round(1)
+    tau_coef_range = np.linspace(0.1, 0.9, 9).round(1)
     reg_range = np.logspace(-15, -1, 15)
     param_ranges = [ld_coef_range, tau_coef_range, reg_range]
 
@@ -45,7 +48,7 @@ if __name__ == "__main__":
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
                        task="PathContinue", norm_type="ScaleL2Shift", 
-                       error_type="wasserstein1", log_interval=1000)
+                       error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
                                                   num_processes=8, chunksize=1)      

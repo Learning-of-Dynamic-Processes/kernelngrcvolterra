@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from itertools import combinations
 
-def plot_data(data_list, filename, plot_mode='1d'):
+def plot_data(data_list, filename=None, figsize=(8, 4), plot_mode='1d'):
     
     """
     Plot the data variable based on the specified plot_mode.
@@ -13,7 +13,11 @@ def plot_data(data_list, filename, plot_mode='1d'):
     ----------
     data_list : list of array_like
         List of numpy arrays, each with shape (ndata, ndim).
-    plot_mode : str 
+    filename : str, optional
+        Name of file to save the images. If None, image is not saved.
+    figsize : (length, breadth), optional
+        Size of figure to save the images. Default (8, 4).
+    plot_mode : str, optional 
         Options: {'1d', 'nd'}.
         If plot_mode is '1d', it will plot data for each dimension in subfigures.
         If plot_mode is 'nd', it will follow the specified conditions:
@@ -31,8 +35,10 @@ def plot_data(data_list, filename, plot_mode='1d'):
     marker_styles = ['o', 's', '*', 'D']
     ndata, ndim = data_list[0].shape
     
+    length, breadth = figsize
+    
     if plot_mode == '1d':
-            fig, axes = plt.subplots(ndim, 1, figsize=(8, 4 * ndim))
+            fig, axes = plt.subplots(ndim, 1, figsize=(length, breadth * ndim))
             if ndim == 1:
                 axes = [axes]  # Wrap in a list to handle 1D case
             for dim, ax in enumerate(axes):
@@ -49,7 +55,7 @@ def plot_data(data_list, filename, plot_mode='1d'):
             
     elif plot_mode == 'nd':
         if ndim == 1:
-            plt.figure(figsize=(8, 4))
+            plt.figure(figsize=(length, breadth))
             for i, data in enumerate(data_list):
                 color = colors[i % len(colors)]
                 line_style = line_styles[i % len(line_styles)]
@@ -59,7 +65,7 @@ def plot_data(data_list, filename, plot_mode='1d'):
             plt.ylabel('Value')
             plt.title('1D Plot')
         elif ndim == 2:
-            plt.figure(figsize=(8, 6))
+            plt.figure(figsize=(length, breadth))
             for i, data in enumerate(data_list):
                 color = colors[i % len(colors)]
                 line_style = line_styles[i % len(line_styles)]
@@ -69,7 +75,7 @@ def plot_data(data_list, filename, plot_mode='1d'):
             plt.ylabel('Dimension 2')
             plt.title('2D Plot')
         elif ndim == 3:
-            fig = plt.figure(figsize=(8, 6))
+            fig = plt.figure(figsize=(length, breadth))
             ax = fig.add_subplot(111, projection='3d')
             for i, data in enumerate(data_list):
                 color = colors[i % len(colors)]
@@ -85,7 +91,7 @@ def plot_data(data_list, filename, plot_mode='1d'):
             comb_3d = list(combinations(range(ndim), 3))
             ncomb = len(comb_3d)
             nrows = int(np.ceil(ncomb / 2))
-            fig, axes = plt.subplots(nrows, 2, figsize=(12, 4 * nrows))
+            fig, axes = plt.subplots(nrows, 2, figsize=(length, breadth * nrows))
             for i, comb_i in enumerate(comb_3d):
                 row = i // 2
                 col = i % 2
@@ -101,20 +107,29 @@ def plot_data(data_list, filename, plot_mode='1d'):
                 ax.set_title(f'3D Plot: Dimensions {comb_i[0] + 1}, {comb_i[1] + 1}, {comb_i[2] + 1}')
                 ax.legend()
             plt.tight_layout()
+    
     plt.legend()
-    plt.savefig(filename)
+    if filename is not None:
+        plt.savefig(filename)
     plt.show()
 
-def plot_data_distributions(data_list, filename):
+def plot_data_distributions(data_list, filename=None, figsize=(8, 4)):
     
     """
     Superpose KDE plots for each dimension across all elements in data_list.
-
-    Parameters:
-    - data_list: List of numpy arrays, each with shape (ndata, ndim).
-
     This function creates subplots for each dimension and superposes KDE plots for all data elements in data_list.
+
+    Parameters
+    ----------
+    data_list : list of array_like
+        List of numpy arrays, each with shape (ndata, ndim).
+    filename : str, optional
+        Name of file to save the images. If None, image is not saved.
+    figsize : (length, breadth), optional
+        Size of figure to save the images. Default (8, 4).
     """
+    
+    length, breadth = figsize
     
     if not isinstance(data_list, list):
         data_list = [data_list]
@@ -122,7 +137,7 @@ def plot_data_distributions(data_list, filename):
     ndata, ndim = data_list[0].shape
     colors = ['b', 'r', 'g', 'c']
     
-    fig, axs = plt.subplots(ndim, figsize=(8, 4 * ndim))
+    fig, axs = plt.subplots(ndim, figsize=(length, breadth * ndim))
     fig.tight_layout(pad=2)
 
     if ndim == 1:
@@ -142,6 +157,7 @@ def plot_data_distributions(data_list, filename):
             axs[dim].set(xlabel=f"Dimension {dim + 1}")
             axs[dim].legend()
     
-    plt.savefig(filename)
+    if filename is not None:
+        plt.savefig(filename)
     plt.show()
     
