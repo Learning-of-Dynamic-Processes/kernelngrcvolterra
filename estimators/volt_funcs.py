@@ -3,7 +3,77 @@
 # Additionally provides option to make the data size and number of covariates seen different. 
 
 import numpy as np
+from numba import njit
 
+# Fast Gram matrix computation for training
+@njit
+def volt_gram_train_njit(training_input, tau, ld, ninputs, Gram0):    
+    # Initialise the Gram matrix using the length of the training input
+    Gram = np.zeros((ninputs, ninputs))
+    # Populate the Gram matrix instance attribute using the training input data
+    for i in range(ninputs):
+        for j in range(i+1):
+            if i==0 or j==0:
+                Gram[i, j] = 1 + ld**2 * Gram0/(1-(tau**2)*(np.dot(training_input[i], training_input[j])))
+            else:
+                Gram[i, j] = 1 + ld**2 * Gram[i-1,j-1]/(1-(tau**2)*(np.dot(training_input[i], training_input[j])))
+            Gram[j, i] = Gram[i, j]
+    return Gram
+
+# Fast Gram computation for forecasting
+@njit 
+def volt_forecast_gram_njit(t, ninputs, training_input, testing_input, Gram0, Gram_last_col, ld, tau):
+    # Compute number of rows of Gram matrix with new input
+    nrows = ninputs + t + 1
+    # Initialise new Gram matrix column
+    Gram_new_input_col = np.zeros((nrows, ))
+    # Iterate through rows of cols
+    for row_id in range(nrows):
+        if row_id == 0: 
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram0/(1-(tau**2)*(np.dot(training_input[row_id], testing_input[t])))
+        elif row_id <= ninputs-1:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(training_input[row_id], testing_input[t])))       
+        else:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(testing_input[row_id-ninputs], testing_input[t])))
+    return Gram_new_input_col
+
+# Fast Gram computation for path continuing at the first time step
+@njit
+def volt_gram_pathcontinue_t0_njit(ninputs, training_input, latest_input, Gram0, Gram_last_col, ld, tau):
+    # Compute number of rows of Gram matrix with new input
+    nrows = ninputs + 1            
+    # Initialise new Gram matrix column
+    Gram_new_input_col = np.zeros((nrows, ))
+    # Iterate through rows of cols
+    for row_id in range(nrows):
+        if row_id == 0: 
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram0/(1-(tau**2)*(np.dot(training_input[row_id], latest_input)))
+        elif row_id <= ninputs-1:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(training_input[row_id], latest_input)))
+        else:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(latest_input, latest_input)))     
+    return Gram_new_input_col
+
+# Fast Gram computation for path continuing
+@njit
+def volt_gram_pathcontinue_t_njit(t, ninputs, training_input, latest_input, output, Gram0, Gram_last_col, ld, tau):
+    # Compute number of rows of Gram matrix with new input
+    nrows = ninputs + t + 1
+    # Initialise new Gram matrix column
+    Gram_new_input_col = np.zeros((nrows, ))
+    # Iterate through rows of cols
+    for row_id in range(nrows):
+        if row_id == 0: 
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram0/(1-(tau**2)*(np.dot(training_input[row_id], output[t-1])))
+        elif row_id <= ninputs-1:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(training_input[row_id], output[t-1])))
+        elif row_id == ninputs:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(latest_input, output[t-1])))
+        else:
+            Gram_new_input_col[row_id] = 1 + ld**2 * Gram_last_col[row_id-1]/(1-(tau**2)*(np.dot(output[row_id-ninputs], output[t-1])))
+    return Gram_new_input_col
+    
+# Volterra reservoir kernel ridge regression class
 class Volterra:
     
     """
@@ -63,7 +133,6 @@ class Volterra:
         self.tau = None                 # Store the tau value used to build the Gram matrix
         self.M = None                   # Store the uniform bound of the training input data
         
-    
     def Train(self, training_input, training_teacher):
         
         """
@@ -118,21 +187,12 @@ class Volterra:
         self.tau = self.tau_coef * tau
         self.ld = np.sqrt(1 - (self.tau**2) * (self.M**2)) * self.ld_coef
         
-        # Initialise the Gram matrix using the length of the training input
-        self.Gram = np.zeros((self.ninputs, self.ninputs))
-        
         # Define initial Gram values (dependent on ld)
         Gram0 = 1/(1-self.ld**2)
-        
-        # Populate the Gram matrix instance attribute using the training input data
-        for i in range(self.ninputs):
-            for j in range(i+1):
-                if i==0 or j==0:
-                    self.Gram[i, j] = 1 + self.ld**2 * Gram0/(1-(self.tau**2)*(np.dot(training_input[i], training_input[j])))
-                else:
-                    self.Gram[i, j] = 1 + self.ld**2 * self.Gram[i-1,j-1]/(1-(self.tau**2)*(np.dot(training_input[i], training_input[j])))
-                self.Gram[j, i] = self.Gram[i, j]
-        
+
+        # Compute the Gram matrix
+        self.Gram = volt_gram_train_njit(training_input, self.tau, self.ld, self.ninputs, Gram0)
+
         # Remove washout part from the training teacher data
         training_teacher_washed = training_teacher[self.washout: ]
 
@@ -183,34 +243,25 @@ class Volterra:
         # Assign testing input instance attributes
         self.nhorizon = testing_input.shape[0]
         
-        # Initialise store for the forecast output
-        output = np.zeros((self.nhorizon, self.ntargets))
-        
+        # Define initial Gram values (dependent on ld)
+        Gram0 = 1/(1-self.ld**2)        
+
         # Initialise last column of the Gram matrix
         Gram_last_col = self.Gram[:, -1]
         
-        # Define initial Gram values (dependent on ld)
-        Gram0 = 1/(1-self.ld**2)        
+        # Initialise store for the forecast output
+        output = np.zeros((self.nhorizon, self.ntargets))
         
         # Iterate through the testing horizon
         for t in range(self.nhorizon):
             
-            # Fill in the column of the Gram matrix for the new input
-            nrows = self.ninputs + t + 1
-            Gram_new_input_col = np.zeros((nrows, ))
-            
-            for row_id in range(nrows):
-                if row_id == 0: 
-                    Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram0/(1-(self.tau**2)*(np.dot(self.training_input[row_id], testing_input[t])))
-                elif row_id <= self.ninputs-1:
-                    Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(self.training_input[row_id], testing_input[t])))
-                else:
-                    Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(testing_input[row_id-self.ninputs], testing_input[t])))
+            # Compute new Gram column for input at time t
+            Gram_new_input_col = volt_forecast_gram_njit(t, self.ninputs, self.training_input, testing_input, Gram0, Gram_last_col, self.ld, self.tau)
             
             # Compute the forecast using the new Gram input column
             for target in range(self.ntargets):
                 output[t, target] = np.dot(self.alpha[:, target], Gram_new_input_col[self.ninputs-self.nfeatures:self.ninputs]) + self.alpha0[target]
-                
+            
             # Initialise the new last column of the Gram matrix
             Gram_last_col = Gram_new_input_col
         
@@ -237,48 +288,33 @@ class Volterra:
         
         # Assign testing horizon instance attribute
         self.nhorizon = nhorizon
-        
-        # Initialise store for the forecast output
-        output = np.zeros((self.nhorizon, self.ntargets))
 
         # Initialise last column of the Gram matrix
         Gram_last_col = self.Gram[:, -1]
         
         # Define initial Gram values (dependent on ld)
         Gram0 = 1/(1-self.ld**2)
+
+        # Initialise store for the forecast output
+        output = np.zeros((self.nhorizon, self.ntargets))
+        
+        # Define the last col
+        Gram_last_col = self.Gram[:, -1]
         
         # Iterate through the testing horizon
         for t in range(self.nhorizon):
             
-            # Fill in the column of the Gram matrix for the new input
-            nrows = self.ninputs + t + 1
-            Gram_new_input_col = np.zeros((nrows, ))
-            
+            # Compute new Gram columns
             if t == 0:
-                for row_id in range(nrows):
-                    if row_id == 0: 
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram0/(1-(self.tau**2)*(np.dot(self.training_input[row_id], latest_input)))
-                    elif row_id <= self.ninputs-1:
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(self.training_input[row_id], latest_input)))
-                    else:
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(latest_input, latest_input)))
+                Gram_new_input_col = volt_gram_pathcontinue_t0_njit(self.ninputs, self.training_input, latest_input, Gram0, Gram_last_col, self.ld, self.tau)
             else: 
-                for row_id in range(nrows):
-                    if row_id == 0: 
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram0/(1-(self.tau**2)*(np.dot(self.training_input[row_id], output[t-1])))
-                    elif row_id <= self.ninputs-1:
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(self.training_input[row_id], output[t-1])))
-                    elif row_id == self.ninputs:
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(latest_input, output[t-1])))
-                    else:
-                        Gram_new_input_col[row_id] = 1 + self.ld**2 * Gram_last_col[row_id-1]/(1-(self.tau**2)*(np.dot(output[row_id-self.ninputs], output[t-1])))
-                        
+                Gram_new_input_col = volt_gram_pathcontinue_t_njit(t, self.ninputs, self.training_input, latest_input, output, Gram0, Gram_last_col, self.ld, self.tau)
+                
             # Compute the forecast using the new Gram input column
             for target in range(self.ntargets):
                 output[t, target] = np.dot(self.alpha[:, target], Gram_new_input_col[self.ninputs-self.nfeatures:self.ninputs]) + self.alpha0[target]
             
             # Initialise the new last column of the Gram matrix
             Gram_last_col = Gram_new_input_col
-            
+
         return output
-    

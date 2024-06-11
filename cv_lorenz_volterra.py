@@ -23,10 +23,8 @@ if __name__ == "__main__":
     t_eval, data = rk45(lorenz, t_span, Z0, h, lor_args)
 
     # Define full data training and testing sizes
-    ndata  = len(data)
     ntrain = 5000 
     washout = 1000
-    ntest = ndata - ntrain
 
     # Construct training input and teacher, testing input and teacher
     training_input_orig = data[0:ntrain-1]
@@ -47,7 +45,7 @@ if __name__ == "__main__":
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
-                       task="PathContinue", norm_type="ScaleL2Shift", 
+                       task="PathContinue", norm_type_in="ScaleL2Shift", 
                        error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 

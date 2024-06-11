@@ -27,10 +27,9 @@ if __name__ == "__main__":
 
     data = dde_rk45(n_intervals, init, mackeyglass, h, mg_args)[1][::slicing]
 
-    ndata = len(data)
+    # Define training and washout size
     ntrain = 3000
-    washout = 1000
-    ntest = ndata - ntrain
+    washout = 0
 
     # Construct training input and teacher, testing input and teacher
     training_input_orig = data[0:ntrain-1] 
@@ -41,9 +40,9 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
-    deg_range = np.arange(1, 5, 1) #np.arange(2, 10, 1)
-    ndelays_range = np.arange(1, 10, 1) #np.arange(2, 102, 1)
-    reg_range = [1e-15]#np.logspace(-15, -1, 15)
+    deg_range = np.arange(2, 10, 1)
+    ndelays_range = np.arange(2, 102, 1)
+    reg_range = np.logspace(-15, -1, 15)
     param_ranges = [deg_range, ndelays_range, reg_range]
 
     # Define additional input parameters
@@ -51,11 +50,11 @@ if __name__ == "__main__":
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2000, 500, 100], validation_type="rolling", 
-                       task="PathContinue", norm_type="MinMax", 
-                       error_type="meansquare", log_interval=2) #100)
+                       task="PathContinue", norm_type_in="MinMax", 
+                       error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(PolynomialKernel, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=2, chunksize=1)      
+                                                  num_processes=8, chunksize=1)      
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")

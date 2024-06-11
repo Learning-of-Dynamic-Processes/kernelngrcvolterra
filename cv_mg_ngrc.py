@@ -10,10 +10,6 @@ from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
 from estimators.ngrc_funcs import NGRC
 
-#
-# Need to comment the correct ridge regression in training for this to work. 
-#
-
 if __name__ == "__main__":
             
     # Start wall timer
@@ -31,10 +27,9 @@ if __name__ == "__main__":
 
     data = dde_rk45(n_intervals, init, mackeyglass, h, mg_args)[1][::slicing]
 
-    ndata = len(data)
+    # Define the training and washout size
     ntrain = 3000
-    washout = 2
-    ntest = ndata - ntrain
+    washout = 0
 
     # Construct training input and teacher, testing input and teacher
     training_input_orig = data[0:ntrain-1] 
@@ -51,11 +46,11 @@ if __name__ == "__main__":
     param_ranges = [ndelay_range, deg_range, reg_range]
 
     # Define additional input parameters
-    param_add = [washout]
+    param_add = [washout, True]
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[2000, 500, 100], validation_type="rolling", 
-                       task="PathContinue", norm_type=None, 
+                       task="PathContinue", norm_type_in=None, 
                        error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(NGRC, cv_datasets, param_ranges, param_add, 

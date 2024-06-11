@@ -2,7 +2,7 @@ import multiprocessing
 import numpy as np
 from itertools import product
 import time
-from utils.errors import calculate_mse, calculate_wasserstein1err, calculate_specdensloss
+from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss
 from utils.normalisation import normalise_arrays
 
 class CrossValidate:
@@ -21,18 +21,44 @@ class CrossValidate:
         Rolling means start of training fold jumps with jump size. 
         Expanding means start of training fold always stays the same but validation fold start jumps with jump size. 
         Standard k-fold cross-validation is supported by the rolling option, and choosing validation parameters all equal.
+        Sklearn time series split can be replicated by choosing "expanding" and all validation parameters equal. 
         Options: {"rolling", "expanding"}. (default: "rolling").
+    manage_remainder : bool, optional
+        What to do with remainder values. If True, appends the remainder at the end, jump size remains the same. 
+        If False, ignores the remainder data (so some data is not used). Default: True. 
     task : str, optional 
         Whether to perform forecasting or path continuation. Options: {"Forecast", "PathContinue"}. (default: "PathContinue").
         Estimator passed must have methods called these names, for whichever option is chosen. 
-    norm_type : str, optional
-        Normalisation method called based on the options available in normalise_arrays. Normalisation is carried out over each fold individually.
+    norm_type_in : str, optional
+        Normalisation method called based on the options available in normalise_arrays. 
+        Normalisation is carried out over each fold individually but with shift and scales depending only on the training input or shift_in and scale_in (prevents data leakage).
+        If task is "PathContinue", then this normalisation type is used for both training and validation sets.
+        If task is "Forecast", then this normalisation type is used for only the input sets. 
         If overall normalisation is preferred, choose None for this norm_type and normalise data before input.
-        Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", None}. (default: None).
+        Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", "ShiftScale", None}. (default: None).
+    norm_type_target : str, optional
+        Normalisation method called based on the options available in normalise_arrays. 
+        Normalisation is carried out over each fold individually but with shift and scales depending only on the input or shift_target and scale_target (prevents data leakage).
+        If task is "PathContinue", then this is ignored.
+        If task is "Forecast", then this normalisation type is used for the target sets. 
+        If overall normalisation is preferred, choose None for this norm_type and normalise data before input.
+        Options: {"NormStd", "MinMax", "ScaleL2", "ScaleL2Shift", "ShiftScale", None}. (default: None).
     error_type : str, optional
-        The type of error function to use in computing error in each fold. Options: {"meansquare", "wasserstein1", "specdens"}. (default: "meansquare")
-    minmax_range : tuple, optional
-        Tuple containing the desired min and max when normalising using norm_type="MinMax". (default: (0, 1))
+        The type of error function to use in computing error in each fold. Options: {"meansquare", "norm_meansquare", "wasserstein1", "specdens"}. (default: "meansquare")
+    minmax_range_in : tuple, optional
+        Tuple containing the desired min and max when normalising using norm_type_in="MinMax". (default: (0, 1))
+        If task is "PathContinue" then is applied to both input and target folds. If task is "Forecast" the applies only to the input sets. 
+    minmax_range_target : tuple, optional
+        Tuple containing the desired min and max when normalising using norm_type_target="MinMax". (default: (0, 1))
+        If task is "PathContinue" then is ignored. If task is "Forecast" the applies only to the target sets. 
+    shift_in : float, optional
+        Shift for when calling "ShiftScale" norm type. Is the shift for each fold if task is "PathContinue" and only the input folds if task is "Forecast". Default: 0.
+    scale_in : float, optional
+        Scale for when calling "ShiftScale" norm type. Is the scale for each fold if task is "PathContinue" and only the input folds if task is "Forecast". Default: 1. 
+    shift_target : float, optional
+        Shift for when calling "ShiftScale" norm type. Is ignored if task is "PathContinue" and only the target folds if task is "Forecast". Default: 0.
+    scale_target : float, optional
+        Scale for when calling "ShiftScale" norm type. Is ignored if task is "PathContinue" and only the target folds if task is "Forecast". Default: 1. 
     log_interval : int, optional
         The interval at which results are saved into a txt file and intermediate best parameters are printed. (default: 10)
         
@@ -47,16 +73,24 @@ class CrossValidate:
     """
 
 
-    def __init__(self, validation_parameters=None, validation_type="rolling", 
-                       task="PathContinue", norm_type=None, error_type="meansquare", 
-                       minmax_range=(0, 1), log_interval=10):
+    def __init__(self, validation_parameters=None, validation_type="rolling", manage_remainder=True,
+                       task="PathContinue", norm_type_in=None, norm_type_target=None, 
+                       error_type="meansquare", minmax_range_in=(0, 1), minmax_range_target=(0, 1),
+                       shift_in=0, scale_in=1, shift_target=0, scale_target=1, log_interval=10):
         
         self.validation_parameters = validation_parameters
         self.validation_type = validation_type
+        self.manage_remainder = manage_remainder
         self.task = task
-        self.norm_type = norm_type
+        self.norm_type_in = norm_type_in
+        self.norm_type_target = norm_type_target
         self.error_type = error_type
-        self.minmax_range = minmax_range
+        self.minmax_range_in = minmax_range_in
+        self.minmax_range_target = minmax_range_target
+        self.shift_in = shift_in
+        self.scale_in = scale_in 
+        self.shift_target = shift_target
+        self.scale_target = scale_target
         self.log_interval = log_interval
 
 
@@ -86,7 +120,7 @@ class CrossValidate:
         NotImplementedError
             Throws error when the method of validation provided is not "rolling" or "expanding"     
         """
-        
+
         # Define the length of the incoming data inputs
         input_size = len(data_in)
         
@@ -122,7 +156,10 @@ class CrossValidate:
         
         # Use the validation sizes to define the number of folds
         nstarts = int((input_size - train_size - validation_size)/jump_size) + 1
-
+        
+        # Use the validation sizes to define the data that will remain
+        remainder_size = (input_size - train_size - validation_size) % jump_size
+        
         # Iterate through data in, training method on each fold then compute validation results
         cv_datasets = []
         for start_id in range(0, nstarts):
@@ -133,45 +170,68 @@ class CrossValidate:
             # Define the training and validation data for rolling validation type
             if self.validation_type == "rolling":
                 
-                # Rolling window cross validation moves the starting points so the train size stays constant
-                train_in = data_in[start : start+train_size]
-                train_target = target[start : start+train_size]
-                validation_in = data_in[start+train_size : start+train_size+validation_size]
-                validation_target = target[start+train_size : start+train_size+validation_size]
-                
-                # Handle the case where the last block captures the remainder of the data
-                if start_id == nstarts-1:   # Check when it is the last block
+                # Ignore remaining data (train sizes exactly as defined)
+                if self.manage_remainder is False:
+                    # Rolling window cross validation moves the starting points so the train size stays constant
                     train_in = data_in[start : start+train_size]
                     train_target = target[start : start+train_size]
-                    validation_in = data_in[start+train_size : ]
-                    validation_target = target[start+train_size : ]
-
+                    validation_in = data_in[start+train_size : start+train_size+validation_size]
+                    validation_target = target[start+train_size : start+train_size+validation_size]
+            
+                # Add remaining data to each train size (train sizes may be larger than defined)
+                if self.manage_remainder is True:
+                    # Rolling window cross validation moves the starting points so the train size stays constant
+                    new_train_size = train_size + remainder_size
+                    train_in = data_in[start : start+new_train_size]
+                    train_target = target[start : start+new_train_size]
+                    validation_in = data_in[start+new_train_size : start+new_train_size+validation_size]
+                    validation_target = target[start+new_train_size : start+new_train_size+validation_size] 
+                    
             # Define the training and validation data for expanding validation type
             elif self.validation_type == "expanding":
-                # Expanding window cross validation allows the train size to grow with each start
-                train_in = data_in[0 : start+train_size]
-                train_target = target[0 : start+train_size]
-                validation_in = data_in[start+train_size : start+train_size+validation_size]
-                validation_target = target[start+train_size : start+train_size+validation_size]
                 
-                # Handle the case where the last block captures the remainder of the data
-                if start_id == nstarts-1:   # Check when it is the last block
+                # Ignore remaining data (train sizes exactly as defined, except last fold)
+                if self.manage_remainder is False:
+                    # Expanding window cross validation allows the train size to grow with each start
                     train_in = data_in[0 : start+train_size]
-                    train_target = target[0: start+train_size]
-                    validation_in = data_in[start+train_size : ]
-                    validation_target = target[start+train_size : ]
+                    train_target = target[0 : start+train_size]
+                    validation_in = data_in[start+train_size : start+train_size+validation_size]
+                    validation_target = target[start+train_size : start+train_size+validation_size]
+                    
+                # Add remaining data to each train size (train sizes may be larger than defined)
+                if self.manage_remainder is True:
+                    # Expanding window cross validation allows the train size to grow with each start
+                    new_train_size = train_size + remainder_size
+                    train_in = data_in[0 : start+new_train_size]
+                    train_target = target[0 : start+new_train_size]
+                    validation_in = data_in[start+new_train_size : start+new_train_size+validation_size]
+                    validation_target = target[start+new_train_size : start+new_train_size+validation_size] 
 
             # Raise error if cross validation type input is incorrect
             else:
                 raise NotImplementedError("Validation method of splitting dataset is not available")
             
-            # Calls normalisation function to normalise a single validation iteration
-            data_ls = [train_in, train_target, validation_in, validation_target]
-            normalisation_output = normalise_arrays(data_ls, norm_type=self.norm_type, minmax_range=self.minmax_range)
+            # If task is path continue, normalise based on the first array, so all arrays are shifted by the training inputs
+            if self.task == "PathContinue":
+                # Call normalisation function to normalise all arrays according to the inputs
+                normed_arrays = normalise_arrays([train_in, train_target, validation_in, validation_target], norm_type=self.norm_type_in, 
+                                                 minmax_range=self.minmax_range_in, shift=self.shift_in, scale=self.scale_in)
+                # Append datasets in correct order to cv_datasets
+                cv_datasets.append(normed_arrays)
             
-            # Append to cv_datas the normalised output
-            cv_datasets.append(normalisation_output)
-        
+            # If task is forecasting, normalise the input and target arrays separately and normalise based on training
+            if self.task == "Forecast":
+                # Call normalisation function to normalise a single train-validation iteration -- inputs
+                normed_input = normalise_arrays([train_in, validation_in], norm_type=self.norm_type_in, 
+                                                minmax_range=self.minmax_range_in, shift=self.shift_in, scale=self.scale_in)
+                # Call normalisation function to normalise a single train-validation iteration -- targets
+                normed_output = normalise_arrays([train_target, validation_target], norm_type=self.norm_type_target, 
+                                                minmax_range=self.minmax_range_target, shift=self.shift_target, scale=self.scale_target)
+                # Construct cross validation set dataset
+                data_ls = [normed_input[0][0], normed_output[0][0], normed_input[0][1], normed_output[0][1]]
+                # Append datasets in correct order to cv_datasets
+                cv_datasets.append((data_ls, self.shift_target, self.scale_target))
+                
         return cv_datasets
         
         
@@ -227,6 +287,8 @@ class CrossValidate:
             # Compute mse of method's output using the validation target
             if self.error_type == "meansquare":
                 fold_err = calculate_mse(validation_target, output, shift, scale)
+            elif self.error_type == "norm_meansquare":
+                fold_err = calculate_nmse(validation_target, output, shift, scale)
             elif self.error_type == "wasserstein1":
                 fold_err = calculate_wasserstein1err(validation_target, output, shift, scale)
             elif self.error_type == "specdens":
@@ -239,7 +301,7 @@ class CrossValidate:
 
         # Compute total average mse across validation to measure performance of hyperparameter choice
         mean_validation_error = np.mean(validation_errors)
-
+        
         return estimator_parameters, mean_validation_error
 
     
@@ -284,23 +346,33 @@ class CrossValidate:
         for param_choice in parameter_combinations:
             input_comb = (estimator, cv_datasets, (*param_choice, *param_add))
             combinations.append(input_comb)
-            
+
         # Create and write to a text file with details of cv run - results will append to this text file later
         estimator_name = estimator.__name__                         # stores the estimator class name for use in file name
-        time_stamp = time.strftime("%Y%m%d-%H%M%S")                           # stores the time stamp to differentiate files, for use in file name
+        time_stamp = time.strftime("%Y%m%d-%H%M%S")                 # stores the time stamp to differentiate files, for use in file name
         number_parameters = len(parameter_combinations)
-        cvresults_filename = f"{estimator_name}_{time_stamp}.txt"     # create file name with name of class of estimator + time cv code is run
-        with open(cvresults_filename, "a") as file:                           # store cross-validation details above all cv results
+        cvresults_filename = f"{estimator_name}_{time_stamp}.txt"   # create file name with name of class of estimator + time cv code is run
+        with open(cvresults_filename, "a") as file:                 # store cross-validation details above all cv results
             file.write(f"Estimator: {estimator_name}\n")
             file.write(f"Total number of parameters: {number_parameters}\n")
             file.write(f"Time started: {time_stamp}\n")
             file.write(f"Validation parameters: {self.validation_parameters} (training, validation, jump)\n")
             file.write(f"Validation type: {self.validation_type}\n")
             file.write(f"Task: {self.task}\n")
-            file.write(f"Normalisation type: {self.norm_type}\n")
+            file.write(f"Normalisation type for inputs: {self.norm_type_in}\n")
+            file.write(f"Normalisation type for targets: {self.norm_type_target}\n")
             file.write(f"Error type: {self.error_type}\n")
-            file.write(f"MinMax range: {self.minmax_range} (only used when norm type is MinMax) \n")
-            file.write("-" * 80 + "\n")    
+            if self.norm_type_in == "MinMax":
+                file.write(f"MinMax range for inputs: {self.minmax_range_in} \n")
+            if self.norm_type_target == "MinMax":
+                file.write(f"MinMax range for targets: {self.minmax_range_target} \n")
+            if self.norm_type_in == "ShiftScale":
+                file.write(f"Shift for inputs: {self.shift_in} \n")
+                file.write(f"Scale for inputs: {self.scale_in} \n")
+            if self.norm_type_target == "ShiftScale":
+                file.write(f"Shift for targets: {self.shift_target} \n")
+                file.write(f"Scale for targets: {self.scale_target} \n")
+            file.write("-" * 80 + "\n") 
         
         # Create a process pool with num_processes workers
         pool = multiprocessing.Pool(processes=num_processes)
