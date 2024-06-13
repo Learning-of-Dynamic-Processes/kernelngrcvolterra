@@ -3,63 +3,7 @@
 # More information about kernel methods are found in Smola's Learning with Kernels or Mohri's Foundations of Machine Learning
 
 import numpy as np
-from numba import njit
 
-# Faster Gram computation for training
-@njit
-def poly_gram_train_njit(ninputs, ndim, ndelays, Delays, deg):
-    # Initialise the Kernel and Delay matrix using the length of the training input
-    Kernel = np.zeros((ninputs-ndelays+1, ninputs-ndelays+1))
-    # Build the kernel matrix for each pairs of time steps using the kernel polynomial
-    for i in range(ninputs-ndelays+1):
-        for j in range(i+1):
-            dot_product = 0
-            for elem in range(ndim * ndelays):
-                dot_product = dot_product + Delays[elem, i] * Delays[elem, j]
-            kernel_val = (1 + dot_product)**deg
-            Kernel[i, j] = kernel_val
-            Kernel[j, i] = Kernel[i, j]
-    return Kernel
-
-# Faster Gram computation for forecasting
-@njit 
-def poly_gram_forecast_njit(t, ndelays, ndim, ninputs, Delay_new, Delays, deg):
-    # Generate a new kernel column
-    nrows = ninputs - ndelays + 1 + t + 1
-    Kernel_new_col = np.zeros((nrows, ))
-    for row_id in range(nrows):
-        if row_id <= ninputs-ndelays:
-            dot_product = 0
-            for elem in range(ndim * ndelays):
-                dot_product = dot_product + Delays[elem, row_id] * Delay_new[elem, t]
-            Kernel_new_col[row_id] = (1 + dot_product)**deg
-        else:
-            dot_product = 0
-            for elem in range(ndim * ndelays):
-                dot_product = dot_product + Delay_new[elem, row_id-(ninputs-ndelays+1)] * Delay_new[elem, t]
-            Kernel_new_col[row_id] = (1 + dot_product)**deg 
-    return Kernel_new_col
-
-# Faster Gram computation for path continuing
-@njit
-def poly_gram_pathcontinue_njit(t, ndelays, ndim, ninputs, Delay_new, Delays, deg):
-    # Generate a new kernel column
-    nrows = ninputs - ndelays + 1 + t + 1
-    Kernel_new_col = np.zeros((nrows, ))
-    for row_id in range(nrows):
-        if row_id <= ninputs-ndelays:
-            dot_product = 0
-            for elem in range(ndim * ndelays):
-                dot_product = dot_product + Delays[elem, row_id] * Delay_new[elem, t]
-            Kernel_new_col[row_id] = (1 + dot_product)**deg
-        else:
-            dot_product = 0
-            for elem in range(ndim * ndelays):
-                dot_product = dot_product + Delay_new[elem, row_id-(ninputs-ndelays+1)] * Delay_new[elem, t]
-            Kernel_new_col[row_id] = (1 + dot_product)**deg
-    return Kernel_new_col
-
-# Polynomial kernel ridge regression class
 class PolynomialKernel:
     
     """
@@ -150,17 +94,22 @@ class PolynomialKernel:
         # Check that the regularisation for regression is scalar
         if not np.isscalar(self.reg):
             raise TypeError("Regression regularisation parameter is not scalar")
-        
-        # Initialise Delay matrix
+
+        # Initialise the Kernel and Delay matrix using the length of the training input
+        self.Kernel = np.zeros((self.ninputs-self.ndelays+1, self.ninputs-self.ndelays+1))
         self.Delays = np.zeros((self.ndim * self.ndelays, self.ninputs - self.ndelays + 1))
-    
+        
         # Build the delay matrix for each time step in training input
         for i in range(self.ndelays-1, self.ninputs):
             for delay in range(self.ndelays):
                 self.Delays[delay*self.ndim:(delay+1)*self.ndim, i-self.ndelays+1] = training_input[i-delay]
-        
-        # Compute the Kernel and delay matrix
-        self.Kernel = poly_gram_train_njit(self.ninputs, self.ndim, self.ndelays, self.Delays, self.deg)
+
+        # Build the kernel matrix for each pairs of time steps using the kernel polynomial
+        for i in range(self.ninputs-self.ndelays+1):
+            for j in range(i+1):
+                kernel_val = (1 + np.dot(self.Delays[:, i], self.Delays[:, j]))**self.deg
+                self.Kernel[i, j] = kernel_val
+                self.Kernel[j, i] = self.Kernel[i, j]
 
         # Remove washout part from the training teacher data
         training_teacher_washed = training_teacher[self.ndelays-1+self.washout: ]
@@ -199,11 +148,11 @@ class PolynomialKernel:
         # Assign testing input instance attributes
         self.nhorizon = testing_input.shape[0]
         
-        # Initialise store for Delay vectors in testing horizon
-        Delay_new = np.zeros((self.ndim * self.ndelays, self.nhorizon))
-        
         # Initialise store for the forecast output
         output = np.zeros((self.nhorizon, self.ntargets))
+        
+        # Initialise store for Delay vectors in testing horizon
+        Delay_new = np.zeros((self.ndim * self.ndelays, self.nhorizon))
         
         # Initialise the last col of the delay vectors matrix
         Delay_last_col = self.Delays[:, -1]
@@ -214,18 +163,23 @@ class PolynomialKernel:
             # Build delay vector for time step t
             Delay_new[0:self.ndim, t] = testing_input[t]
             Delay_new[self.ndim: , t] = Delay_last_col[0:self.ndim*(self.ndelays-1)]
-            
-            # Compute new Kernel columns with new inputs
-            Kernel_new_col = poly_gram_forecast_njit(t, self.ndelays, self.ndim, self.ninputs, 
-                                                     Delay_new, self.Delays, self.deg)
-            
+
+            # Generate a new kernel column
+            nrows = self.ninputs - self.ndelays + 1 + t + 1
+            Kernel_new_col = np.zeros((nrows, ))
+            for row_id in range(nrows):
+                if row_id <= self.ninputs-self.ndelays:
+                    Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+                else:
+                    Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg 
+
             # Compute forecast using new Gram input column
             for target in range(self.ntargets):
                 output[t, target] = np.dot(self.alpha[:, target], Kernel_new_col[self.washout:self.ninputs-self.ndelays+1]) + self.alpha0[target]
             
             # Reassign last delay column
             Delay_last_col = Delay_new[:, t]
-
+                
         return output
     
     
@@ -246,15 +200,15 @@ class PolynomialKernel:
         output : array_like
             Output of forecasting. Will have format (nsamples, ndim)
         """
-
+        
         # Assign testing input instance attributes
         self.nhorizon = nhorizon
         
-        # Initialise store for Delay vectors in testing horizon
-        Delay_new = np.zeros((self.ndim * self.ndelays, self.nhorizon))
-        
         # Initialise store for the forecast output
         output = np.zeros((self.nhorizon, self.ntargets))
+        
+        # Initialise store for Delay vectors in testing horizon
+        Delay_new = np.zeros((self.ndim * self.ndelays, self.nhorizon))
         
         # Initialise the last col of the delay vectors matrix
         Delay_last_col = self.Delays[:, -1]
@@ -266,9 +220,14 @@ class PolynomialKernel:
             Delay_new[0:self.ndim, t] = latest_input
             Delay_new[self.ndim: , t] = Delay_last_col[0:self.ndim*(self.ndelays-1)]
             
-            # Compute new Kernel matrix column using new input
-            Kernel_new_col = poly_gram_pathcontinue_njit(t, self.ndelays, self.ndim, self.ninputs, Delay_new, self.Delays, self.deg)
-        
+            # Generate a new kernel column
+            nrows = self.ninputs - self.ndelays + 1 + t + 1
+            Kernel_new_col = np.zeros((nrows, ))
+            for row_id in range(nrows):
+                if row_id <= self.ninputs-self.ndelays:
+                    Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+                else:
+                    Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg 
             # Compute forecast using new Gram input column
             for target in range(self.ntargets):
                 output[t, target] = np.dot(self.alpha[:, target], Kernel_new_col[self.washout:self.ninputs-self.ndelays+1]) + self.alpha0[target]
@@ -276,6 +235,6 @@ class PolynomialKernel:
             # Reassign last delay column
             Delay_last_col = Delay_new[:, t]
             latest_input = output[t, :]
-            
+                
         return output
     

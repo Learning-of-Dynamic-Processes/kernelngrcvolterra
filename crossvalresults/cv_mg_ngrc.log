@@ -1,0 +1,16 @@
+Reached 2 hyperparameters
+Best estimate so far: 0.05440796437368545 with (2, 2, 1e-14, 0, True)
+Reached 4 hyperparameters
+Best estimate so far: 0.05440796437329458 with (2, 2, 1e-12, 0, True)
+Reached 6 hyperparameters
+Best estimate so far: 0.05436949820554395 with (2, 2, 0.0001, 0, True)
+Reached 8 hyperparameters
+Best estimate so far: 0.051141239421693976 with (2, 2, 0.01, 0, True)
+Reached 10 hyperparameters
+Best estimate so far: 0.051141239421693976 with (2, 2, 0.01, 0, True)
+Reached 12 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 14 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Best parameters found are (2, 2, 0.1, 0, True) with error 0.04735111693307413
+Amount of time to run: 0.8824949264526367

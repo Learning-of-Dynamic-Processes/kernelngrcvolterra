@@ -7,7 +7,7 @@ import mat73
 from time import time
 from utils.crossvalidation import CrossValidate
 from utils.normalisation import normalise_arrays
-from estimators.volt_funcs import NGRC
+from estimators.ngrc_funcs import NGRC
 
 if __name__ == "__main__":
             
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     training_input = normed_input[0][0]
     
     # Normalise training arrays if necessary - teacher
-    normed_output = normalise_arrays([training_teacher_orig], norm_type="NormStd")
+    normed_output = normalise_arrays([training_teacher_orig], norm_type="ShiftScale", shift=0, scale=1000)
     training_teacher = normed_output[0][0]
 
     # Define the range of parameters for which you want to cross validate over
@@ -53,15 +53,13 @@ if __name__ == "__main__":
     param_add = [washout, False]
 
     # Instantiate CV, split dataset, crossvalidate in parallel
-    CV = CrossValidate(validation_parameters=[501, 501, 501], validation_type="expanding", 
-                       manage_remainder=True, task="Forecast", 
-                       norm_type_in=None, norm_type_target=None,  
-                       error_type="meansquare", log_interval=100)
+    CV = CrossValidate(validation_parameters=[501, 501, 501], validation_type="expanding", manage_remainder=True, task="Forecast", 
+                       norm_type_in=None, norm_type_target=None, error_type="meansquare", log_interval=1)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(NGRC, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=8, chunksize=1)      
+                                                  num_processes=50, chunksize=1)      
     
-    # Print out the best paraeter and errors found
+    # Print out the best parameter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")
     
     # Print amount of time taken to run cv

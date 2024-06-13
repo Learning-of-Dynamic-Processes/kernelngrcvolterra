@@ -49,12 +49,11 @@ if __name__ == "__main__":
     param_add = [washout, True]
 
     # Instantiate CV, split dataset, crossvalidate in parallel
-    CV = CrossValidate(validation_parameters=[2000, 500, 100], validation_type="rolling", 
-                       task="PathContinue", norm_type_in=None, 
-                       error_type="meansquare", log_interval=100)
+    CV = CrossValidate(validation_parameters=[2000, 500, 100], validation_type="rolling", manage_remainder=True,
+                       task="PathContinue", norm_type_in=None, error_type="meansquare", log_interval=2)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(NGRC, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=8, chunksize=1)      
+                                                  num_processes=50, chunksize=1)      
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")

@@ -1,0 +1,30 @@
+Estimator: NGRC
+Total number of parameters: 15
+Time started: 20240612-035410
+Validation parameters: [501, 501, 501] (training, validation, jump)
+Validation type: expanding
+Task: Forecast
+Normalisation type for inputs: None
+Normalisation type for targets: None
+Error type: meansquare
+--------------------------------------------------------------------------------
+First log reached. Amount of time elapsed is 1.1874959468841553 seconds.
+Estimated time to finish is 17.81243920326233 seconds.
+--------------------------------------------------------------------------------
+((2, 2, 1e-15, 0, False), 0.03834073202239839)
+((2, 2, 1e-13, 0, False), 0.038340732022330404)
+((2, 2, 1e-11, 0, False), 0.0383407320165371)
+((2, 2, 1e-12, 0, False), 0.03834073202179992)
+((2, 2, 1e-10, 0, False), 0.03834073196340567)
+((2, 2, 1e-09, 0, False), 0.03834073143261872)
+((2, 2, 1e-14, 0, False), 0.03834073202239839)
+((2, 2, 1e-08, 0, False), 0.03834072612452555)
+((2, 2, 1e-05, 0, False), 0.038334835126857994)
+((2, 2, 1e-06, 0, False), 0.03834014224446392)
+((2, 2, 0.0001, 0, False), 0.038281851267882326)
+((2, 2, 0.001, 0, False), 0.037760604538347106)
+((2, 2, 1e-07, 0, False), 0.038340673043734105)
+((2, 2, 0.01, 0, False), 0.0332872411464124)
+((2, 2, 0.1, 0, False), 0.016706540666566266)
+--------------------------------------------------------------------------------
+Cross validation total time taken: 1.871079444885254 seconds.

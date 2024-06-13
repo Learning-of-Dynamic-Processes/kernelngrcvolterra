@@ -1,0 +1,32 @@
+Reached 1 hyperparameters
+Best estimate so far: 0.03834073202239839 with (2, 2, 1e-15, 0, False)
+Reached 2 hyperparameters
+Best estimate so far: 0.038340732022330404 with (2, 2, 1e-13, 0, False)
+Reached 3 hyperparameters
+Best estimate so far: 0.0383407320165371 with (2, 2, 1e-11, 0, False)
+Reached 4 hyperparameters
+Best estimate so far: 0.0383407320165371 with (2, 2, 1e-11, 0, False)
+Reached 5 hyperparameters
+Best estimate so far: 0.03834073196340567 with (2, 2, 1e-10, 0, False)
+Reached 6 hyperparameters
+Best estimate so far: 0.03834073143261872 with (2, 2, 1e-09, 0, False)
+Reached 7 hyperparameters
+Best estimate so far: 0.03834073143261872 with (2, 2, 1e-09, 0, False)
+Reached 8 hyperparameters
+Best estimate so far: 0.03834072612452555 with (2, 2, 1e-08, 0, False)
+Reached 9 hyperparameters
+Best estimate so far: 0.038334835126857994 with (2, 2, 1e-05, 0, False)
+Reached 10 hyperparameters
+Best estimate so far: 0.038334835126857994 with (2, 2, 1e-05, 0, False)
+Reached 11 hyperparameters
+Best estimate so far: 0.038281851267882326 with (2, 2, 0.0001, 0, False)
+Reached 12 hyperparameters
+Best estimate so far: 0.037760604538347106 with (2, 2, 0.001, 0, False)
+Reached 13 hyperparameters
+Best estimate so far: 0.037760604538347106 with (2, 2, 0.001, 0, False)
+Reached 14 hyperparameters
+Best estimate so far: 0.0332872411464124 with (2, 2, 0.01, 0, False)
+Reached 15 hyperparameters
+Best estimate so far: 0.016706540666566266 with (2, 2, 0.1, 0, False)
+Best parameters found are (2, 2, 0.1, 0, False) with error 0.016706540666566266
+Amount of time to run: 2.1427571773529053

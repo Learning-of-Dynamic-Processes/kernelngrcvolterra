@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     # Define full data training and testing sizes
     ntrain = 5000 
-    washout = 1000
+    washout = 200
 
     # Construct training input and teacher, testing input and teacher
     training_input_orig = data[0:ntrain-1]
@@ -44,12 +44,11 @@ if __name__ == "__main__":
     param_add = [washout]
 
     # Instantiate CV, split dataset, crossvalidate in parallel
-    CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", 
-                       task="PathContinue", norm_type_in="ScaleL2Shift", 
-                       error_type="meansquare", log_interval=100)
+    CV = CrossValidate(validation_parameters=[2500, 500, 500], validation_type="rolling", manage_remainder=True, 
+                       task="PathContinue", norm_type_in="ScaleL2Shift", error_type="meansquare", log_interval=100)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(Volterra, cv_datasets, param_ranges, param_add, 
-                                                  num_processes=8, chunksize=1)      
+                                                  num_processes=50, chunksize=1)      
     
     # Print out the best paraeter and errors found
     print(f"Best parameters found are {best_parameters} with error {min_error}")
