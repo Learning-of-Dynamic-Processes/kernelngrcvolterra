@@ -81,7 +81,7 @@ def rk45(f, t_span, sol_init, h, fargs=None):
     prev = sol_init
     
     for t_id in range(1, sol_len):
-        t = t_eval[t_id]
+        t = t_eval[t_id-1]
         curr = iter_rk45(prev, t, h, f, fargs)
         solution[t_id] = curr
         prev = curr

@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     # Define full data training and testing sizes
     ntrain = 5000 
-    washout = 200
+    washout = 100
 
     # Construct training input and teacher, testing input and teacher
     training_input_orig = data[0:ntrain-1]

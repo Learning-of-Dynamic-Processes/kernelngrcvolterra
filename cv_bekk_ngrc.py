@@ -44,7 +44,7 @@ if __name__ == "__main__":
     training_teacher = normed_output[0][0]
 
     # Define the range of parameters for which you want to cross validate over
-    ndelay_range = [2] 
+    ndelay_range = [2, 3, 4] 
     deg_range = [2]
     reg_range = np.logspace(-15, -1, 15)
     param_ranges = [ndelay_range, deg_range, reg_range]
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[501, 501, 501], validation_type="expanding", manage_remainder=True, task="Forecast", 
-                       norm_type_in=None, norm_type_target=None, error_type="meansquare", log_interval=1)
+                       norm_type_in=None, norm_type_target="NormStd", error_type="meansquare", log_interval=1)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(NGRC, cv_datasets, param_ranges, param_add, 
                                                   num_processes=50, chunksize=1)      

@@ -182,12 +182,14 @@ volt_diff = np.array(abs_diff_overtime(output_volt, testing_teacher_orig, shift_
 ngrc_diff = np.array(abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_output_ngrc, scale_output_ngrc))
 poly_diff = np.array(abs_diff_overtime(output_poly, testing_teacher_orig, shift_output_poly, scale_output_poly))
 
+plt.figure(figsize=(10, 4))
 plt.plot(volt_diff, label="Volterra", color="r", linewidth=0.8)
 plt.plot(ngrc_diff, label="NG-RC", color="g", linewidth=0.8)
 plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8, linestyle="dashed")
 plt.xlabel("time")
 plt.ylabel("sum of absolute difference")
 plt.legend()
+plt.savefig("images/errors_bekk.pdf")
 plt.show()
 plt.close()
 

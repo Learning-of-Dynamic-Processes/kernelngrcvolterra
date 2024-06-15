@@ -22,7 +22,7 @@ def init(t):
 mg_args = {'delay': 17, 'a': 0.2, 'b': 0.1, 'n': 10 }
 
 h = 0.02
-n_intervals = 350
+n_intervals = 450
 slicing = int(1 / h)
 
 data = dde_rk45(n_intervals, init, mackeyglass, h, mg_args)[1][::slicing]
@@ -160,11 +160,15 @@ volt_diff = np.array(abs_diff_overtime(output_volt, testing_teacher_orig, shift_
 ngrc_diff = np.array(abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_ngrc, scale_ngrc))
 poly_diff = np.array(abs_diff_overtime(output_poly, testing_teacher_orig, shift_poly, scale_poly))
 
+plt.figure(figsize=(10, 4))
 plt.plot(volt_diff, label="Volterra", color="r", linewidth=0.8)
 plt.plot(ngrc_diff, label="NG-RC", color="g", linewidth=0.8)
 plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8)
 plt.xlabel("time")
-plt.ylabel("sum of absolute difference")
+plt.ylabel("sum of absolute difference up to time")
 plt.legend()
+plt.savefig("images/errors_mg.pdf")
+plt.show()
+plt.close()
 
 # %%
