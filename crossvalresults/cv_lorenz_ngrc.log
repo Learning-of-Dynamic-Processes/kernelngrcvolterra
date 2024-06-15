@@ -1,4 +1,294 @@
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
 Reached 10 hyperparameters
-Best estimate so far: 0.0013585062103286295 with (2, 2, 0.1, 0, True)
-Best parameters found are (2, 2, 0.01, 0, True) with error 0.0007118021994877623
-Amount of time to run: 0.4426417350769043
+Best estimate so far: 0.013615342699948848 with (2, 2, 1e-06, 0, True)
+Reached 20 hyperparameters
+Best estimate so far: 0.00035706607023270503 with (3, 2, 1e-11, 0, True)
+Reached 30 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 40 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 50 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 60 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 70 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 80 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 90 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 100 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 110 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Reached 120 hyperparameters
+Best estimate so far: 4.4439871036877445e-05 with (3, 2, 1e-07, 0, True)
+Best parameters found are (3, 2, 1e-07, 0, True) with error 4.4439871036877445e-05
+Amount of time to run: 3.137664556503296

@@ -1,16 +1,830 @@
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
 Reached 2 hyperparameters
 Best estimate so far: 0.05440796437368545 with (2, 2, 1e-14, 0, True)
 Reached 4 hyperparameters
-Best estimate so far: 0.05440796437329458 with (2, 2, 1e-12, 0, True)
+Best estimate so far: 0.05440796436988482 with (2, 2, 1e-11, 0, True)
 Reached 6 hyperparameters
 Best estimate so far: 0.05436949820554395 with (2, 2, 0.0001, 0, True)
 Reached 8 hyperparameters
-Best estimate so far: 0.051141239421693976 with (2, 2, 0.01, 0, True)
+Best estimate so far: 0.05436949820554395 with (2, 2, 0.0001, 0, True)
 Reached 10 hyperparameters
-Best estimate so far: 0.051141239421693976 with (2, 2, 0.01, 0, True)
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
 Reached 12 hyperparameters
 Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
 Reached 14 hyperparameters
 Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
-Best parameters found are (2, 2, 0.1, 0, True) with error 0.04735111693307413
-Amount of time to run: 0.8824949264526367
+Reached 16 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 18 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 20 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 22 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 24 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 26 hyperparameters
+Best estimate so far: 0.04735111693307413 with (2, 2, 0.1, 0, True)
+Reached 28 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 30 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 32 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 34 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 36 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 38 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 40 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 42 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 44 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 46 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 48 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 50 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 52 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 54 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 56 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 58 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 60 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 62 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 64 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 66 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 68 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 70 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 72 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 74 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 76 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 78 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 80 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 82 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 84 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 86 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 88 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 90 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 92 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 94 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 96 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 98 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 100 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 102 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 104 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 106 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 108 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 110 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 112 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 114 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 116 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 118 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 120 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 122 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 124 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 126 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 128 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 130 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 132 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 134 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 136 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 138 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 140 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 142 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 144 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 146 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 148 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 150 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 152 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 154 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 156 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 158 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 160 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 162 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 164 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 166 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 168 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 170 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 172 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 174 hyperparameters
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:235: RuntimeWarning: overflow encountered in scalar multiply
+  monomial_row = monomial_row * Xtest[X_row_ids[row_id], j]
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: invalid value encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/utils/errors.py:34: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 176 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 178 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 180 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 182 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 184 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 186 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 188 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 190 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 192 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 194 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 196 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 198 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 200 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 202 hyperparameters
+Best estimate so far: 0.0457303063788272 with (2, 4, 0.1, 0, True)
+Reached 204 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 206 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 208 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 210 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 212 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 214 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 216 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 218 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 220 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 222 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 224 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 226 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 228 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 230 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 232 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 234 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 236 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 238 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 240 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 242 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 244 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 246 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 248 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 250 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 252 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 254 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 256 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 258 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 260 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 262 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 264 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 266 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 268 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 270 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 272 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 274 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 276 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 278 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 280 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 282 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 284 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 286 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 288 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 290 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 292 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 294 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 296 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 298 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 300 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 302 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 304 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 306 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 308 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 310 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 312 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 314 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 316 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 318 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 320 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 322 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 324 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 326 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 328 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 330 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 332 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 334 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 336 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 338 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 340 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 342 hyperparameters
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+/home/gballarin/hannah/Volterra/estimators/ngrc_funcs.py:242: RuntimeWarning: overflow encountered in matmul
+  Xtest[0:self.ndim, j+1] = Xtest[0:self.ndim, j] + Otest @ self.Wout
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 344 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 346 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 348 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 350 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 352 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 354 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 356 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 358 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 360 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 362 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 364 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 366 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 368 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 370 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 372 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 374 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 376 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 378 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 380 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 382 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 384 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 386 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 388 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 390 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 392 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 394 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 396 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 398 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 400 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 402 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 404 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 406 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 408 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 410 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 412 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 414 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 416 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 418 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 420 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 422 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 424 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 426 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 428 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 430 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 432 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 434 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 436 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 438 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 440 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 442 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 444 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 446 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 448 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 450 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 452 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 454 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 456 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 458 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 460 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 462 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 464 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 466 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 468 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 470 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 472 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 474 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 476 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 478 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Reached 480 hyperparameters
+Best estimate so far: 0.04487897681633074 with (4, 5, 1e-07, 0, True)
+Best parameters found are (4, 5, 1e-07, 0, True) with error 0.04487897681633074
+Amount of time to run: 30.420960187911987
