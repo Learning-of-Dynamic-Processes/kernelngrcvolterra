@@ -74,7 +74,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift_ngrc, scale_ngrc = normalisation_output[1], normalisation_output[2]
 
 # Define input hyperparameters for NGRC
-ndelay, deg, reg, washout = 2, 2, 0.01, 0
+ndelay, deg, reg, washout = 3, 2, 1e-07, 0
 
 # Start timer
 start = time.time()
@@ -157,7 +157,7 @@ volt_diff = np.array(abs_diff_overtime(output_volt, testing_teacher_orig, shift_
 ngrc_diff = np.array(abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_ngrc, scale_ngrc))
 poly_diff = np.array(abs_diff_overtime(output_poly, testing_teacher_orig, shift_poly, scale_poly))
 
-plt.figure(figsize=(10, 4))
+plt.figure(figsize=(12, 8))
 plt.plot(volt_diff, label="Volterra", color="r", linewidth=0.8)
 plt.plot(ngrc_diff, label="NG-RC", color="g", linewidth=0.8)
 plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8)

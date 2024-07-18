@@ -123,12 +123,12 @@ train_input, test_input = normed_inputs[0]
 shift_input, scale_input = normed_inputs[1], normed_inputs[2]
 
 # Normalise arrays -- outputs
-normed_outputs = normalise_arrays([training_teacher_orig, testing_teacher_orig], norm_type=None)
+normed_outputs = normalise_arrays([training_teacher_orig, testing_teacher_orig], norm_type="NormStd")
 train_teacher, test_teacher = normed_outputs[0]
 shift_output_ngrc, scale_output_ngrc = normed_outputs[1], normed_outputs[2]
 
 # Define input hyperparameters for NGRC
-ndelay, deg, reg, washout = 2, 2, 0.1, 0
+ndelay, deg, reg, washout = 3, 2, 0.1, 0
 
 # Start timer
 start = time.time()
@@ -149,7 +149,7 @@ spec_ngrc = calculate_specdensloss(test_teacher, output_ngrc, shift_output_ngrc,
 # Plot the forecast and actual
 t_display = 300
 target_display = 2
-plot_data([test_teacher[0:t_display, 0:target_display], output_ngrc[0:t_display, 0:target_display]], shift=shift_output_ngrc, scale=scale_output_ngrc, filename="images/bekk_ngrc.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
+plot_data([test_teacher[0:t_display, 0:target_display], output_ngrc[0:t_display, 0:target_display]], shift=shift_output_ngrc[0:target_display], scale=scale_output_ngrc[0:target_display], filename="images/bekk_ngrc.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 plot_data_distributions([test_teacher[:, 0:target_display], output_ngrc[:, 0:target_display]], "images/bekk_ngrc_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 
 # %%
@@ -182,10 +182,10 @@ volt_diff = np.array(abs_diff_overtime(output_volt, testing_teacher_orig, shift_
 ngrc_diff = np.array(abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_output_ngrc, scale_output_ngrc))
 poly_diff = np.array(abs_diff_overtime(output_poly, testing_teacher_orig, shift_output_poly, scale_output_poly))
 
-plt.figure(figsize=(10, 4))
+plt.figure(figsize=(12, 8))
 plt.plot(volt_diff, label="Volterra", color="r", linewidth=0.8)
 plt.plot(ngrc_diff, label="NG-RC", color="g", linewidth=0.8)
-plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8, linestyle="dashed")
+plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8)
 plt.xlabel("time")
 plt.ylabel("sum of absolute difference")
 plt.legend()
