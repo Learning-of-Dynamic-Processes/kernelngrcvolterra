@@ -10,7 +10,7 @@ from estimators.polykernel_funcs import PolynomialKernel
 from datagen.data_generate_dde import dde_rk45
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
-from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss
+from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss, calculate_wasserstein1_nd_err, calculate_mdae_err
 from systems.ddes import mackeyglass
 
 #%% 
@@ -62,6 +62,7 @@ print(f"Volterra took: {time.time() - start}")
 mse_volt = calculate_mse(test_teacher, output_volt, shift_volt, scale_volt)
 nmse_volt = calculate_nmse(test_teacher, output_volt, shift_volt, scale_volt)
 wass1_volt = calculate_wasserstein1err(test_teacher, output_volt, shift_volt, scale_volt)
+mdae_volt = calculate_mdae_err(test_teacher, output_volt, shift_volt, scale_volt)
 spec_volt = calculate_specdensloss(test_teacher, output_volt, shift_volt, scale_volt)
 
 # Plot the forecast and actual
@@ -93,6 +94,7 @@ print(f"NGRC took: {time.time() - start}")
 mse_ngrc = calculate_mse(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 nmse_ngrc = calculate_nmse(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 wass1_ngrc = calculate_wasserstein1err(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
+mdae_ngrc = calculate_mdae_err(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 spec_ngrc = calculate_specdensloss(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 
 # Plot the forecast and actual
@@ -124,6 +126,7 @@ print(f"Polynomial kernel took: {time.time() - start}")
 mse_poly = calculate_mse(test_teacher, output_poly, shift_poly, scale_poly)
 nmse_poly = calculate_nmse(test_teacher, output_poly, shift_poly, scale_poly)
 wass1_poly = calculate_wasserstein1err(test_teacher, output_poly, shift_poly, scale_poly)
+mdae_poly = calculate_mdae_err(test_teacher, output_poly, shift_poly, scale_poly)
 spec_poly = calculate_specdensloss(test_teacher, output_poly, shift_poly, scale_poly)
 
 # Plot the forecast and actual
@@ -133,10 +136,10 @@ plot_data_distributions([test_teacher, output_poly], "images/mg_polykernel_dist.
 # %% 
 # Print MSEs
 
-print("Method: MSE, Normalised MSE, Wasserstein1, Spectral Density Distance")
-print(f"Volterra:                    {mse_volt}, {nmse_volt}, {wass1_volt}, {spec_volt}")
-print(f"Polynomial Kernel:           {mse_poly}, {nmse_poly}, {wass1_poly}, {spec_poly}")
-print(f"NGRC:                        {mse_ngrc}, {nmse_ngrc}, {wass1_ngrc}, {spec_ngrc}")
+print("Method: MSE, Normalised MSE, Wasserstein1, MdAE, Spectral Density Distance")
+print(f"Volterra:                    {mse_volt}, {nmse_volt}, {wass1_volt}, {mdae_volt}, {spec_volt}")
+print(f"Polynomial Kernel:           {mse_poly}, {nmse_poly}, {wass1_poly}, {mdae_poly}, {spec_poly}")
+print(f"NGRC:                        {mse_ngrc}, {nmse_ngrc}, {wass1_ngrc}, {mdae_ngrc}, {spec_ngrc}")
 
 # %%
 

@@ -10,7 +10,7 @@ from estimators.polykernel_funcs import PolynomialKernel
 from datagen.data_generate_ode import rk45 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
-from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss
+from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss, calculate_wasserstein1_nd_err, calculate_mdae_err
 from systems.odes import lorenz
 
 # %% 
@@ -20,7 +20,7 @@ from systems.odes import lorenz
 lor_args = (10, 8/3, 28)
 Z0 = (0, 1, 1.05)
 h = 0.005
-t_span = (0, 75)
+t_span = (0, 36) #75)
 t_eval, data = rk45(lorenz, t_span, Z0, h, lor_args)
 
 # Define full data training and testing sizes
@@ -59,6 +59,8 @@ print(f"Volterra took: {time.time() - start}")
 mse_volt = calculate_mse(test_teacher, output_volt, shift_volt, scale_volt)
 nmse_volt = calculate_nmse(test_teacher, output_volt, shift_volt, scale_volt)
 wass1_volt = calculate_wasserstein1err(test_teacher, output_volt, shift_volt, scale_volt)
+#wass1_nd_volt = calculate_wasserstein1_nd_err(test_teacher, output_volt, shift_volt, scale_volt)
+mdae_volt = calculate_mdae_err(test_teacher, output_volt, shift_volt, scale_volt)
 spec_volt = calculate_specdensloss(test_teacher, output_volt, shift_volt, scale_volt)
 
 # Plot the forecast and actual
@@ -90,6 +92,8 @@ print(f"NGRC took: {time.time() - start}")
 mse_ngrc = calculate_mse(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 nmse_ngrc = calculate_nmse(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 wass1_ngrc = calculate_wasserstein1err(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
+#wass1_nd_ngrc = calculate_wasserstein1_nd_err(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
+mdae_ngrc = calculate_mdae_err(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 spec_ngrc = calculate_specdensloss(test_teacher, output_ngrc, shift_ngrc, scale_ngrc)
 
 # Plot the forecast and actual
@@ -121,6 +125,8 @@ print(f"Polynomial kernel took: {time.time() - start}")
 mse_poly = calculate_mse(test_teacher, output_poly, shift_poly, scale_poly)
 nmse_poly = calculate_nmse(test_teacher, output_poly, shift_poly, scale_poly)
 wass1_poly = calculate_wasserstein1err(test_teacher, output_poly, shift_poly, scale_poly)
+#wass1_nd_poly = calculate_wasserstein1_nd_err(test_teacher, output_poly, shift_poly, scale_poly)
+mdae_poly = calculate_mdae_err(test_teacher, output_poly, shift_poly, scale_poly)
 spec_poly = calculate_specdensloss(test_teacher, output_poly, shift_poly, scale_poly)
 
 # Plot the forecast and actual
@@ -130,21 +136,21 @@ plot_data_distributions([test_teacher, output_poly], "images/lorenz_polykernel_d
 # %% 
 # Print MSEs
 
-print("Method: MSE, Normalised MSE, Wasserstein1, Spectral Density Distance")
-print(f"Volterra:                    {mse_volt}, {nmse_volt}, {wass1_volt}, {spec_volt}")
-print(f"Polynomial Kernel:           {mse_poly}, {nmse_poly}, {wass1_poly}, {spec_poly}")
-print(f"NGRC:                        {mse_ngrc}, {nmse_ngrc}, {wass1_ngrc}, {spec_ngrc}")
+print("Method: MSE, Normalised MSE, Wasserstein1, MdAE, Spectral Density Distance")
+print(f"Volterra:                    {mse_volt}, {nmse_volt}, {wass1_volt}, {mdae_volt}, {spec_volt}")
+print(f"Polynomial Kernel:           {mse_poly}, {nmse_poly}, {wass1_poly}, {mdae_poly}, {spec_poly}")
+print(f"NGRC:                        {mse_ngrc}, {nmse_ngrc}, {wass1_ngrc}, {mdae_ngrc}, {spec_ngrc}")
 
 # %%
 
-# Plot the absolute difference in mse 
+# Plot the cumulated absolute difference in mse 
 import numpy as np
 import matplotlib.pyplot as plt
 
 def unshiftscale(data, shift, scale):
     return (1/scale) * data - shift
 
-def abs_diff_overtime(output, original, shift, scale):
+def sum_abs_diff_overtime(output, original, shift, scale):
     differences = []
     sum = 0
     unnormalised_output = unshiftscale(output, shift, scale)
@@ -153,9 +159,9 @@ def abs_diff_overtime(output, original, shift, scale):
         differences.append(sum)
     return differences
 
-volt_diff = np.array(abs_diff_overtime(output_volt, testing_teacher_orig, shift_volt, scale_volt))
-ngrc_diff = np.array(abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_ngrc, scale_ngrc))
-poly_diff = np.array(abs_diff_overtime(output_poly, testing_teacher_orig, shift_poly, scale_poly))
+volt_diff = np.array(sum_abs_diff_overtime(output_volt, testing_teacher_orig, shift_volt, scale_volt))
+ngrc_diff = np.array(sum_abs_diff_overtime(output_ngrc, testing_teacher_orig, shift_ngrc, scale_ngrc))
+poly_diff = np.array(sum_abs_diff_overtime(output_poly, testing_teacher_orig, shift_poly, scale_poly))
 
 plt.figure(figsize=(12, 8))
 plt.plot(volt_diff, label="Volterra", color="r", linewidth=0.8)
@@ -168,4 +174,3 @@ plt.savefig("images/errors_lorenz.pdf")
 plt.show()
 plt.close()
 
-# %%

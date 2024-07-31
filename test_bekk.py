@@ -10,7 +10,12 @@ from estimators.ngrc_funcs import NGRC
 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
-from utils.errors import calculate_mse, calculate_wasserstein1err, calculate_specdensloss, calculate_nmse
+from utils.errors import calculate_mse, calculate_nmse, calculate_mae, calculate_mdae_err, calculate_r2_err, calculate_mape_err
+from utils.errors import calculate_wasserstein1_nd_err, calculate_specdens_periodogram_err, calculate_specdens_welch_err
+
+from prettytable import PrettyTable
+import numpy as np
+import matplotlib.pyplot as plt
 
 # %% 
 # Preparing datasets
@@ -67,8 +72,12 @@ print(f"Volterra took: {time.time() - start}")
 # Calculate errors
 mse_volt = calculate_mse(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 nmse_volt = calculate_nmse(test_teacher, output_volt, shift_output_volt, scale_output_volt)
-wass1_volt = calculate_wasserstein1err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
-spec_volt = calculate_specdensloss(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+mdae_volt = calculate_mdae_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+mape_volt = calculate_mape_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+r2_volt = calculate_r2_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+wass1_nd_volt = calculate_wasserstein1_nd_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+specwelch_volt = calculate_specdens_welch_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+specpgram_volt = calculate_specdens_periodogram_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 
 # Plot the forecast and actual
 t_display = 300
@@ -105,8 +114,12 @@ print(f"Polynomial kernel took: {time.time() - start}")
 # Calculate errors
 mse_poly = calculate_mse(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 nmse_poly = calculate_nmse(test_teacher, output_poly, shift_output_poly, scale_output_poly)
-wass1_poly = calculate_wasserstein1err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
-spec_poly = calculate_specdensloss(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+mdae_poly = calculate_mdae_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+mape_poly = calculate_mape_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+r2_poly = calculate_r2_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+wass1_nd_poly = calculate_wasserstein1_nd_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+specwelch_poly = calculate_specdens_welch_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+specpgram_poly = calculate_specdens_periodogram_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 
 # Plot the forecast and actual
 t_display = 300
@@ -143,8 +156,12 @@ print(f"NGRC took: {time.time() - start}")
 # Calculate errors
 mse_ngrc = calculate_mse(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 nmse_ngrc = calculate_nmse(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
-wass1_ngrc = calculate_wasserstein1err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
-spec_ngrc = calculate_specdensloss(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+mdae_ngrc = calculate_mdae_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+mape_ngrc = calculate_mape_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+r2_ngrc = calculate_r2_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+wass1_nd_ngrc = calculate_wasserstein1_nd_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+specwelch_ngrc = calculate_specdens_welch_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 
 # Plot the forecast and actual
 t_display = 300
@@ -153,12 +170,13 @@ plot_data([test_teacher[0:t_display, 0:target_display], output_ngrc[0:t_display,
 plot_data_distributions([test_teacher[:, 0:target_display], output_ngrc[:, 0:target_display]], "images/bekk_ngrc_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 
 # %%
-# Print MSEs
+# Print errors into table
 
-print("Method: MSE, Normalised MSE, Wasserstein1, Spectral Density Distance")
-print(f"Volterra:                    {mse_volt}, {nmse_volt}, {wass1_volt}, {spec_volt}")
-print(f"NGRC:                        {mse_ngrc}, {nmse_ngrc}, {wass1_ngrc}, {spec_ngrc}")
-print(f"Polynomial Kernel:           {mse_poly}, {nmse_poly}, {wass1_poly}, {spec_poly}")
+errors = PrettyTable(['Method', 'MSE', 'Normalised MSE', 'Wasserstein1_nd', 'MdAE', 'MAPE', 'R2-score', 'SpecDens (Welch)', 'SpecDens (PGram)'])
+errors.add_row(["Volterra",   mse_volt, nmse_volt, wass1_nd_volt, mdae_volt, mape_volt, r2_volt, specwelch_volt, specpgram_volt])
+errors.add_row(["Polynomial", mse_poly, nmse_poly, wass1_nd_poly, mdae_poly, mape_poly, r2_poly, specwelch_poly, specpgram_poly])
+errors.add_row(["NGRC",       mse_ngrc, nmse_ngrc, wass1_nd_ngrc, mdae_ngrc, mape_ngrc, r2_ngrc, specwelch_ngrc, specpgram_ngrc])
+print(errors)
 
 # %% 
 
@@ -188,9 +206,46 @@ plt.plot(ngrc_diff, label="NG-RC", color="g", linewidth=0.8)
 plt.plot(poly_diff, label="Polynomial kernel", color="b", linewidth=0.8)
 plt.xlabel("time")
 plt.ylabel("sum of absolute difference")
+plt.yscale("log")
 plt.legend()
 plt.savefig("images/errors_bekk.pdf")
 plt.show()
 plt.close()
+
+# %%
+
+# Gather and plot the error values over time for visualisation
+
+def error_vals_over_time(original, output, shift, scale):
+    maes = []
+    mses = []
+    norm_mses = []
+    mdaes = []
+    mapes = []
+    r2_scores = []
+    for data_id in range(3, len(output)+1):
+        maes.append(calculate_mae(original[0:data_id, :], output[0:data_id, :], shift, scale))
+        mses.append(calculate_mse(original[0:data_id, :], output[0:data_id, :], shift, scale))
+        norm_mses.append(calculate_nmse(original[0:data_id, :], output[0:data_id, :], shift, scale))
+        mdaes.append(calculate_mdae_err(original[0:data_id, :], output[0:data_id, :], shift, scale))
+        mapes.append(calculate_mape_err(original[0:data_id, :], output[0:data_id, :], shift, scale))
+        r2_scores.append(calculate_r2_err(original[0:data_id, :], output[0:data_id, :], shift, scale))
+    return maes, mses, norm_mses, mdaes, mapes, r2_scores
+
+error_name = ["maes", "mses", "norm_mses", "mdaes", "mapes", "r2_scores"]
+volt_errors = error_vals_over_time(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+poly_errors = error_vals_over_time(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+ngrc_errors = error_vals_over_time(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+
+for i in range(len(volt_errors)):
+    plt.plot(volt_errors[i], label="Volterra", color="r", linewidth=0.8)
+    plt.plot(poly_errors[i], label="Polynomial kernel", color="b", linewidth=0.8)
+    plt.plot(ngrc_errors[i], label="NG-RC", color="g", linewidth=0.8)
+    plt.xlabel("time")
+    plt.ylabel("error")
+    plt.title(f"{error_name[i]}")
+    plt.legend()
+    plt.show()
+    plt.close()
 
 # %%

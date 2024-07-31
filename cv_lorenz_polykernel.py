@@ -35,8 +35,8 @@ if __name__ == "__main__":
     training_input, training_teacher = normalisation_output[0]
 
     # Define the range of parameters for which you want to cross validate over
-    deg_range = [2]
-    ndelays_range = np.arange(2, 11, 1)
+    deg_range = [1, 2]
+    ndelays_range = np.arange(1, 11, 1)
     reg_range = np.logspace(-15, -1, 15)
     param_ranges = [deg_range, ndelays_range, reg_range]
 
