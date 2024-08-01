@@ -2,7 +2,7 @@ import multiprocessing
 import numpy as np
 from itertools import product
 import time
-from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss
+from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdens_periodogram_err
 from utils.normalisation import normalise_arrays
 
 class CrossValidate:
@@ -292,7 +292,7 @@ class CrossValidate:
             elif self.error_type == "wasserstein1":
                 fold_err = calculate_wasserstein1err(validation_target, output, shift, scale)
             elif self.error_type == "specdens":
-                fold_err = calculate_specdensloss(validation_target, output, shift, scale)
+                fold_err = calculate_specdens_periodogram_err(validation_target, output, shift, scale)
             else: 
                 raise NotImplementedError("Error type is not available")
             

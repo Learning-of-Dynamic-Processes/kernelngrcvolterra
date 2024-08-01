@@ -10,7 +10,7 @@ from estimators.polykernel_funcs import PolynomialKernel
 from datagen.data_generate_ode import rk45 
 from utils.normalisation import normalise_arrays
 from utils.plotting import plot_data, plot_data_distributions
-from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_specdensloss, calculate_wasserstein1_nd_err, calculate_mdae_err
+from utils.errors import calculate_mse, calculate_nmse, calculate_wasserstein1err, calculate_wasserstein1_nd_err, calculate_mdae_err
 from systems.odes import lorenz
 
 # %% 

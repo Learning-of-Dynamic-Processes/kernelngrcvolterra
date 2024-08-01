@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     # Instantiate CV, split dataset, crossvalidate in parallel
     CV = CrossValidate(validation_parameters=[501, 501, 501], validation_type="expanding", manage_remainder=True, task="Forecast", 
-                       norm_type_in=None, norm_type_target="NormStd", error_type="meansquare", log_interval=1)
+                       norm_type_in=None, norm_type_target="NormStd", error_type="meansquare", log_interval=10)
     cv_datasets = CV.split_data_to_folds(training_input, training_teacher)
     min_error, best_parameters = CV.crossvalidate(NGRC, cv_datasets, param_ranges, param_add, 
                                                   num_processes=50, chunksize=1)      

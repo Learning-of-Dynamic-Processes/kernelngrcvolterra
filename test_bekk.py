@@ -99,7 +99,7 @@ train_teacher, test_teacher = normed_outputs[0]
 shift_output_poly, scale_output_poly = normed_outputs[1], normed_outputs[2]
 
 # Define input hyperparameters for Polynomial Kernel
-deg, ndelays, reg, washout = 2, 2, 0.1, 0
+deg, ndelays, reg, washout = 2, 1, 0.1, 0
 
 # Start timer
 start = time.time()
@@ -141,7 +141,7 @@ train_teacher, test_teacher = normed_outputs[0]
 shift_output_ngrc, scale_output_ngrc = normed_outputs[1], normed_outputs[2]
 
 # Define input hyperparameters for NGRC
-ndelay, deg, reg, washout = 3, 2, 0.1, 0
+ndelay, deg, reg, washout = 1, 2, 0.1, 0
 
 # Start timer
 start = time.time()
