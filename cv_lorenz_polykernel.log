@@ -1,0 +1,236 @@
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:230: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(Delay_new[:, row_id-(self.ninputs-self.ndelays+1)], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs_old.py:228: RuntimeWarning: overflow encountered in scalar power
+  Kernel_new_col[row_id] = (1 + np.dot(self.Delays[:, row_id], Delay_new[:, t]))**self.deg
+/home/gballarin/hannah/Volterra/utils/errors.py:36: RuntimeWarning: overflow encountered in square
+  mse = np.mean((y_true - y_pred)**2)
+Reached 10 hyperparameters
+Best estimate so far: 0.11176512927359393 with (2, 3, 1e-08, 0)
+Reached 20 hyperparameters
+Best estimate so far: 0.00994406715005547 with (2, 2, 1e-05, 0)
+Reached 30 hyperparameters
+Best estimate so far: 0.00020673242299896615 with (2, 2, 1e-07, 0)
+Reached 40 hyperparameters
+Best estimate so far: 4.388560181240848e-05 with (2, 3, 1e-06, 0)
+Reached 50 hyperparameters
+Best estimate so far: 4.388560181240848e-05 with (2, 3, 1e-06, 0)
+Reached 60 hyperparameters
+Best estimate so far: 3.8182117464478426e-05 with (2, 4, 1e-06, 0)
+Reached 70 hyperparameters
+Best estimate so far: 2.4130544231968066e-05 with (2, 5, 1e-05, 0)
+Reached 80 hyperparameters
+Best estimate so far: 2.4130544231968066e-05 with (2, 5, 1e-05, 0)
+Reached 90 hyperparameters
+Best estimate so far: 2.4130544231968066e-05 with (2, 5, 1e-05, 0)
+Reached 100 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Reached 110 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Reached 120 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Reached 130 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Reached 140 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Reached 150 hyperparameters
+Best estimate so far: 6.614833651747835e-06 with (2, 6, 1e-06, 0)
+Best parameters found are (2, 6, 1e-06, 0) with error 6.614833651747835e-06
+Amount of time to run: 206.64347100257874

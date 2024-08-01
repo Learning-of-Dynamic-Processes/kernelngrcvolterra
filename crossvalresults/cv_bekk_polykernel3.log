@@ -1,0 +1,104 @@
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+/home/gballarin/hannah/Volterra/estimators/polykernel_funcs.py:24: NumbaPerformanceWarning: np.dot() is faster on contiguous arrays, called on (Array(float64, 1, 'A', False, aligned=True), Array(float64, 1, 'A', False, aligned=True))
+  kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
+Reached 100 hyperparameters
+Best estimate so far: 1.0511738739946805 with (2, 1, 0.1, 0)
+Best parameters found are (2, 1, 0.1, 0) with error 1.0511738739946805
+Amount of time to run: 19.01420259475708
