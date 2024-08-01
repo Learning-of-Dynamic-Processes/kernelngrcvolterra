@@ -12,9 +12,6 @@ def poly_train_delay_njit(training_input, ndelays, ninputs, ndim):
     for i in range(ndelays-1, ninputs):
         for delay in range(ndelays):
             Delays[delay*ndim:(delay+1)*ndim, i-ndelays+1] = training_input[i-delay]
-    ### For checks, to delete after commit
-    print(Delays.dtype)
-    ### 
     return Delays
 
 # Fast kernel matrix computation for training with numba njit
@@ -27,20 +24,6 @@ def poly_train_kernel_njit(Delays, ndelays, ninputs, deg):
             kernel_val = (1 + np.dot(Delays[:, i], Delays[:, j]))**deg
             Kernel[i, j] = kernel_val
             Kernel[j, i] = Kernel[i, j]
-            ### Print statements to delete after committing for checks
-            if (i == 300 and j == 300) or (i==500 and j==200) or (i==500 and j ==500): 
-                #print(Delays[:, i][0])
-                #print(Delays[:, j][0])
-                print(i, j)
-                dot_prod = 0
-                for val_id in range(len(Delays[:, i])):
-                    dot_prod = dot_prod + Delays[val_id, i] * Delays[val_id, j]
-                print(dot_prod)
-                print(np.dot(Delays[:, i], Delays[:, j]))
-                #print((1 + np.dot(Delays[:, i], Delays[:, j])))
-                #print((1 + np.dot(Delays[:, i], Delays[:, j]))**deg)
-    print(Kernel.dtype)
-    ###
     return Kernel
 
 # Fast new kernel matrix column computation with numba njit for pathcontinue and forecast
@@ -109,10 +92,6 @@ class PolynomialKernel:
         self.ntargets = None            # Store number of targets output in testing
         self.nhorizon = None            # Store length of forecasting horizon
         
-        ### For checks, to delete after commit
-        self.inverse = None
-        ###
-        
     def Train(self, training_input, training_teacher):
         
         """
@@ -163,10 +142,6 @@ class PolynomialKernel:
         
         # Perform regression computation for weights
         if self.pinv is False:   # Without using pseudoinverse
-            ### For checks, to delete after commit
-            self.inverse = np.linalg.inv((Kernel_train + self.reg * np.identity(self.ninputs-self.ndelays+1-self.washout)))
-            self.solve = np.linalg.solve((Kernel_train + self.reg * np.identity(self.ninputs-self.ndelays+1-self.washout)), training_teacher_washed)
-            ### 
             self.alpha = np.linalg.inv((Kernel_train + self.reg * np.identity(self.ninputs-self.ndelays+1-self.washout))) @ training_teacher_washed
         if self.pinv is True:    # With using pseudoinverse
             self.alpha = np.linalg.pinv((Kernel_train + self.reg * np.identity(self.ninputs-self.ndelays+1-self.washout))) @ training_teacher_washed

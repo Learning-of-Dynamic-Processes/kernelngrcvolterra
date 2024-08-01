@@ -81,7 +81,7 @@ specpgram_volt = calculate_specdens_periodogram_err(test_teacher, output_volt, s
 
 # Plot the forecast and actual
 t_display = 300
-target_display = 2
+target_display = 1
 plot_data([test_teacher[0:t_display, 0:target_display], output_volt[0:t_display, 0:target_display]], shift=shift_output_volt[0:target_display], scale=scale_output_volt[0:target_display], filename="images/bekk_volterra.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 plot_data_distributions([test_teacher[:, 0:target_display], output_volt[:, 0:target_display]], "images/bekk_volterra_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 
@@ -123,7 +123,7 @@ specpgram_poly = calculate_specdens_periodogram_err(test_teacher, output_poly, s
 
 # Plot the forecast and actual
 t_display = 300
-target_display = 2
+target_display = 1
 plot_data([test_teacher[0:t_display, 0:target_display], output_poly[0:t_display, 0:target_display]], shift=shift_output_poly[0:target_display], scale=scale_output_poly[0:target_display], filename="images/bekk_polykernel.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 plot_data_distributions([test_teacher[:, 0:target_display], output_poly[:, 0:target_display]], "images/bekk_polykernel_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 
@@ -165,7 +165,7 @@ specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher, output_ngrc, s
 
 # Plot the forecast and actual
 t_display = 300
-target_display = 2
+target_display = 1
 plot_data([test_teacher[0:t_display, 0:target_display], output_ngrc[0:t_display, 0:target_display]], shift=shift_output_ngrc[0:target_display], scale=scale_output_ngrc[0:target_display], filename="images/bekk_ngrc.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 plot_data_distributions([test_teacher[:, 0:target_display], output_ngrc[:, 0:target_display]], "images/bekk_ngrc_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
 
@@ -208,7 +208,7 @@ plt.xlabel("time")
 plt.ylabel("sum of absolute difference")
 plt.yscale("log")
 plt.legend()
-plt.savefig("images/errors_bekk.pdf")
+plt.savefig("images/bekk_cum_ae.pdf")
 plt.show()
 plt.close()
 
@@ -245,6 +245,7 @@ for i in range(len(volt_errors)):
     plt.ylabel("error")
     plt.title(f"{error_name[i]}")
     plt.legend()
+    plt.savefig(f"images/bekk_{error_name[i]}.pdf")
     plt.show()
     plt.close()
 

@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     # Define the range of parameters for which you want to cross validate over
     deg_range = np.arange(1, 10, 1)
-    ndelays_range = np.arange(1, 102, 1)
+    ndelays_range = [1] #np.arange(1, 102, 1)
     reg_range = np.logspace(-15, -1, 15)
     param_ranges = [deg_range, ndelays_range, reg_range]
 

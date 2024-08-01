@@ -110,7 +110,7 @@ train_input, train_teacher, test_input, test_teacher = normalisation_output[0]
 shift_poly, scale_poly = normalisation_output[1], normalisation_output[2]
 
 # Define hyperparameters for PolyKernel
-deg, ndelays, reg, washout = 4, 18, 1e-05, 0 
+deg, ndelays, reg, washout = 4, 17, 1e-05, 0 
 
 # Start timer
 start = time.time()
