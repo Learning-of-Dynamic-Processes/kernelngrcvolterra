@@ -64,7 +64,7 @@ def calculate_nmse(y_true, y_pred, shift=None, scale=None):
     if shift is not None and scale is not None:
         y_true = y_true * (1/scale) - shift
         y_pred = y_pred * (1/scale) - shift
- 
+    
     # Compute the nmse
     mse = np.mean((y_true - y_pred)**2, axis=0)
     factor = np.mean((y_true)**2, axis=0)
@@ -243,3 +243,18 @@ def calculate_mape_err(y_true, y_pred, shift=None, scale=None):
         
     return mean_absolute_percentage_error(y_true, y_pred)
 
+def valid_pred_time(y_true, y_pred, shift=None, scale=None, epsilon=0.2):
+    
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+    
+    valid_pred_time = 0
+    for t in range(1, len(y_true)+1):
+        err_t = np.abs(y_true[t, :] - y_pred[t, :])/y_true[t, :]
+        if err_t.any() >= epsilon:
+            valid_pred_time = t
+            break
+        
+    return valid_pred_time

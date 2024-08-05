@@ -74,6 +74,7 @@ mse_volt = calculate_mse(test_teacher, output_volt, shift_output_volt, scale_out
 nmse_volt = calculate_nmse(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 mdae_volt = calculate_mdae_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 mape_volt = calculate_mape_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
+mae_volt = calculate_mae(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 r2_volt = calculate_r2_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 wass1_nd_volt = calculate_wasserstein1_nd_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
 specwelch_volt = calculate_specdens_welch_err(test_teacher, output_volt, shift_output_volt, scale_output_volt)
@@ -116,6 +117,7 @@ mse_poly = calculate_mse(test_teacher, output_poly, shift_output_poly, scale_out
 nmse_poly = calculate_nmse(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 mdae_poly = calculate_mdae_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 mape_poly = calculate_mape_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
+mae_poly = calculate_mae(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 r2_poly = calculate_r2_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 wass1_nd_poly = calculate_wasserstein1_nd_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
 specwelch_poly = calculate_specdens_welch_err(test_teacher, output_poly, shift_output_poly, scale_output_poly)
@@ -158,6 +160,7 @@ mse_ngrc = calculate_mse(test_teacher, output_ngrc, shift_output_ngrc, scale_out
 nmse_ngrc = calculate_nmse(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 mdae_ngrc = calculate_mdae_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 mape_ngrc = calculate_mape_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
+mae_ngrc = calculate_wasserstein1_nd_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 r2_ngrc = calculate_r2_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 wass1_nd_ngrc = calculate_wasserstein1_nd_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
 specwelch_ngrc = calculate_specdens_welch_err(test_teacher, output_ngrc, shift_output_ngrc, scale_output_ngrc)
@@ -172,10 +175,10 @@ plot_data_distributions([test_teacher[:, 0:target_display], output_ngrc[:, 0:tar
 # %%
 # Print errors into table
 
-errors = PrettyTable(['Method', 'MSE', 'Normalised MSE', 'Wasserstein1_nd', 'MdAE', 'MAPE', 'R2-score', 'SpecDens (Welch)', 'SpecDens (PGram)'])
-errors.add_row(["Volterra",   mse_volt, nmse_volt, wass1_nd_volt, mdae_volt, mape_volt, r2_volt, specwelch_volt, specpgram_volt])
-errors.add_row(["Polynomial", mse_poly, nmse_poly, wass1_nd_poly, mdae_poly, mape_poly, r2_poly, specwelch_poly, specpgram_poly])
-errors.add_row(["NGRC",       mse_ngrc, nmse_ngrc, wass1_nd_ngrc, mdae_ngrc, mape_ngrc, r2_ngrc, specwelch_ngrc, specpgram_ngrc])
+errors = PrettyTable(['Method', 'MSE', 'Normalised MSE', 'MAE', 'Wasserstein1_nd', 'MdAE', 'MAPE', 'R2-score', 'SpecDens (Welch)', 'SpecDens (PGram)'])
+errors.add_row(["Volterra",   mse_volt, nmse_volt, mae_volt, wass1_nd_volt, mdae_volt, mape_volt, r2_volt, specwelch_volt, specpgram_volt])
+errors.add_row(["Polynomial", mse_poly, nmse_poly, mae_poly, wass1_nd_poly, mdae_poly, mape_poly, r2_poly, specwelch_poly, specpgram_poly])
+errors.add_row(["NGRC",       mse_ngrc, nmse_ngrc, mae_ngrc, wass1_nd_ngrc, mdae_ngrc, mape_ngrc, r2_ngrc, specwelch_ngrc, specpgram_ngrc])
 print(errors)
 
 # %% 

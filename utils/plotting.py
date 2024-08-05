@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from itertools import combinations
 
 def plot_data(data_list, shift=0, scale=1, 
-              filename=None, figsize=(8, 4), 
+              filename=None, figsize=(8, 4), x_values=None,
               xlabel=None, ylabel=None, datalabel=None,
               plot_mode='1d'):
     
@@ -63,17 +63,19 @@ def plot_data(data_list, shift=0, scale=1,
                 axes = [axes]  # Wrap in a list to handle 1D case
             for dim, ax in enumerate(axes):
                 for i, data in enumerate(data_list):
+                    if x_values is None:
+                        x_values = np.arange(1, len(data[:, dim])+1, 1)
                     color = colors[i % len(colors)]
                     line_style = line_styles[i % len(line_styles)]
                     marker_style = marker_styles[i % len(marker_styles)]
                     if xlabel is None and datalabel is None:
-                        ax.plot(data[:, dim], label=f'Data {i + 1}, Dimension {dim + 1}', linestyle=line_style, color=color)
+                        ax.plot(x_values, data[:, dim], label=f'Data {i + 1}, Dimension {dim + 1}', linestyle=line_style, color=color)
                     if xlabel is not None and datalabel is None:
-                        ax.plot(data[:, dim], label=f'Data {i + 1}, {xlabel[dim]}', linestyle=line_style, color=color)
+                        ax.plot(x_values, data[:, dim], label=f'Data {i + 1}, {xlabel[dim]}', linestyle=line_style, color=color)
                     if xlabel is None and datalabel is not None:
                         ax.plot(data[:, dim], label=f'{datalabel[i]}, Dimension {dim + 1}', linestyle=line_style, color=color)
                     if xlabel is not None and datalabel is not None:
-                        ax.plot(data[:, dim], label=f'{datalabel[i]}, {xlabel[dim]}', linestyle=line_style, color=color)
+                        ax.plot(x_values, data[:, dim], label=f'{datalabel[i]}, {xlabel[dim]}', linestyle=line_style, color=color)
                     
                 if xlabel is not None:
                     ax.set_xlabel(xlabel[dim])
