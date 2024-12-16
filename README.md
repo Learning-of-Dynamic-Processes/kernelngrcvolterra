@@ -12,5 +12,8 @@ Project structure:
 * `cv_<estimator>_<system>.py` : crossvalidation for system and estimator
 * `test_<estimator>_final.py` : training, testing, and image generation for all estimators
 
+## Code requirements
+Python 3.10.12 was used. Please see `requirements.txt` for the exact environment. 
+
 ## Reference
 Working paper versions: [ArXiv](https://arxiv.org/abs/2412.09800), [ResearchGate](https://www.researchgate.net/publication/386881122_Infinite-dimensional_next-generation_reservoir_computing)
