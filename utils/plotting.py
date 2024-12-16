@@ -78,7 +78,7 @@ def plot_data(data_list, shift=0, scale=1,
                         ax.plot(x_values, data[:, dim], label=f'{datalabel[i]}, {xlabel[dim]}', linestyle=line_style, color=color)
                     
                 if xlabel is not None:
-                    ax.set_xlabel(xlabel[dim])
+                    ax.set_xlabel("Time")
                     ax.set_title(f'{xlabel[dim]} vs. Time')
                 else: 
                     ax.set_xlabel(f'Dimension {dim + 1}')

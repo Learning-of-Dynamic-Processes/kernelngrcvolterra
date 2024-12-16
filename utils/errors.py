@@ -72,6 +72,129 @@ def calculate_nmse(y_true, y_pred, shift=None, scale=None):
 
     return nmse
 
+def calculate_mae(y_true, y_pred, shift=None, scale=None):
+    
+    """
+    Compute mean absolute error (MAE) between true and predicted values. 
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    mae : float
+        Mean Absolute Error.
+    """
+        
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+        
+    return np.mean(np.abs(y_true - y_pred))
+
+def calculate_mdae_err(y_true, y_pred, shift=None, scale=None):
+    
+    """
+    Computes median absolute error (MdAE). Wrapper function for sklearn.metrics.median_absolute_error.
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    MdAE : float
+        Median Absolute Error.
+    """
+    
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+    
+    return median_absolute_error(y_true, y_pred)
+
+def calculate_r2_err(y_true, y_pred, shift=None, scale=None):
+    
+    """
+    Computes R2 score. Wrapper function for sklearn.metrics.r2_score.
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    r2_score : float
+       R2 score.
+    """
+    
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+        
+    return r2_score(y_true, y_pred)    
+
+def calculate_mape_err(y_true, y_pred, shift=None, scale=None):
+    
+    """
+    Computes mean absolute percentage error score. Wrapper function for sklearn.metrics.mean_absolute_percentage_error.
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    mape_score : float
+       Mean absolute percentage error.
+    """
+    
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+        
+    return mean_absolute_percentage_error(y_true, y_pred)
+
+
+
+# Distribution error metrics
 def calculate_wasserstein1err(y_true, y_pred, shift=None, scale=None):
     
     """
@@ -115,8 +238,44 @@ def calculate_wasserstein1err(y_true, y_pred, shift=None, scale=None):
         error = error + dim_error 
     
     return (1/ndim) * error
+
     
-def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None):
+def calculate_wasserstein1_nd_err(y_true, y_pred, shift=None, scale=None):
+    
+    """
+    Compute Wasserstein1 distance for n-dimensions. Wrapper function for sklearn.stats.wasserstein_distance_nd. 
+    More correct version of Wasserstein distance for multiple dimensions that uses linear programming. 
+    If working with 1d data, then use the calculate_wasserstein1_err function is much faster. 
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    wasserstein_distance_nd : float
+        Wasserstein distance in n dimensions.
+    """
+    
+    # Destandardize the data if required
+    if shift is not None and scale is not None:
+        y_true = y_true * (1/scale) - shift
+        y_pred = y_pred * (1/scale) - shift
+        
+    return wasserstein_distance_nd(y_true, y_pred)
+    
+    
+    
+# Climate error metrics     
+def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None, fs=1, nperseg=256, stop=None, ifPlot=False, figname=None):
     
     """
     Calculate difference between normalised spectral density of true and predicted values using Welch's method (like Wilkner et. al.). 
@@ -148,16 +307,29 @@ def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None):
     # Infer the dimension of the data
     ndim = y_true.shape[1]
     
+    # Set stop to length of data if None
+    if stop is None:
+        stop = y_true.shape[0]
+    
     # Compute absolute difference in normalised spectral density for each dimension then sum
     error = 0
     for dim in range(ndim):
-        psd_true = welch(y_true[:, dim], window="hann", scaling="spectrum")[1] 
-        psd_pred = welch(y_pred[:, dim], window="hann", scaling="spectrum")[1] 
-        error = error + np.sum(np.abs(psd_true - psd_pred))
-        
+        psd_true = welch(y_true[:, dim], fs=fs, nperseg=nperseg, window="hann", scaling="spectrum")[1] 
+        psd_pred = welch(y_pred[:, dim], fs=fs, nperseg=nperseg, window="hann", scaling="spectrum")[1] 
+        error = error + np.sum((np.abs(psd_true[0:stop] - psd_pred[0:stop]))/psd_true[0:stop])
+        if ifPlot is True:
+            plt.plot(psd_true[0:stop], label=f"PSD True (Dimension 84)") #{dim})")
+            plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension 117)", linestyle="dashed") #dim})", linestyle="dashed")
+    if ifPlot is True:
+        plt.legend()
+        if figname is not None:
+            plt.savefig(figname)
+        plt.show()
+        plt.close()
     return error
 
-def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None):
+
+def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None, fs=1, stop=None, ifPlot=False, figname=None):
     
     """
     Calculate difference between normalised spectral density of true and predicted values using periodogram method. 
@@ -189,61 +361,52 @@ def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None):
     # Infer the dimension of the data
     ndim = y_true.shape[1]
     
+    # Set stop to length of data if None
+    if stop is None:
+        stop = y_true.shape[0]
+    
     # Compute absolute difference in normalised spectral density for each dimension then sum
     error = 0
     for dim in range(ndim):
-        psd_true = periodogram(y_true[:, dim], window="hann", scaling="spectrum")[1]
-        psd_pred = periodogram(y_pred[:, dim], window="hann", scaling="spectrum")[1]
-        error = error + np.sum(np.abs(psd_true - psd_pred))
-        
+        psd_true = periodogram(y_true[:, dim], fs=fs, window="hann", scaling="spectrum")[1]
+        psd_pred = periodogram(y_pred[:, dim], fs=fs, window="hann", scaling="spectrum")[1]
+        error = error + np.sum((np.abs(psd_true[0:stop] - psd_pred[0:stop]))/psd_true[0:stop])
+        if ifPlot is True:
+            plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dim})")
+            plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dim})", linestyle="dashed")
+    if ifPlot is True:
+        plt.legend()
+        if figname is not None:
+            plt.savefig(figname)
+        plt.show()
+        plt.close()
     return error
 
-def calculate_mae(y_true, y_pred, shift=None, scale=None):
-    
-    # Destandardize the data if required
-    if shift is not None and scale is not None:
-        y_true = y_true * (1/scale) - shift
-        y_pred = y_pred * (1/scale) - shift
-        
-    return np.mean(np.abs(y_true - y_pred))
-    
-def calculate_wasserstein1_nd_err(y_true, y_pred, shift=None, scale=None):
-    
-    # Destandardize the data if required
-    if shift is not None and scale is not None:
-        y_true = y_true * (1/scale) - shift
-        y_pred = y_pred * (1/scale) - shift
-        
-    return wasserstein_distance_nd(y_true, y_pred)
 
-def calculate_mdae_err(y_true, y_pred, shift=None, scale=None):
-    
-    # Destandardize the data if required
-    if shift is not None and scale is not None:
-        y_true = y_true * (1/scale) - shift
-        y_pred = y_pred * (1/scale) - shift
-    
-    return median_absolute_error(y_true, y_pred)
-
-def calculate_r2_err(y_true, y_pred, shift=None, scale=None):
-    
-    # Destandardize the data if required
-    if shift is not None and scale is not None:
-        y_true = y_true * (1/scale) - shift
-        y_pred = y_pred * (1/scale) - shift
-        
-    return r2_score(y_true, y_pred)    
-
-def calculate_mape_err(y_true, y_pred, shift=None, scale=None):
-    
-    # Destandardize the data if required
-    if shift is not None and scale is not None:
-        y_true = y_true * (1/scale) - shift
-        y_pred = y_pred * (1/scale) - shift
-        
-    return mean_absolute_percentage_error(y_true, y_pred)
-
+# Valid prediction time
 def valid_pred_time(y_true, y_pred, shift=None, scale=None, epsilon=0.2):
+    
+    """
+    Min time in which the R2-norm to deviates by epsilon from the true values. 
+
+    If shift and scale are not None, then unshifts and unscales the data. 
+
+    Parameters
+    ----------
+    y_true : array_like
+        Numpy array of true target values.
+    y_pred : array_like
+        Numpy array of predicted target values.
+    shift : float, optional 
+        The shift that was implemented in the normalisation process. (default: None).
+    scale : float, optional 
+        The scale that was implemented in the normalisation process. (default: None).
+
+    Returns
+    -------
+    valid_pred_time : float
+        Valid prediction time. 
+    """
     
     # Destandardize the data if required
     if shift is not None and scale is not None:
@@ -252,8 +415,8 @@ def valid_pred_time(y_true, y_pred, shift=None, scale=None, epsilon=0.2):
     
     valid_pred_time = 0
     for t in range(1, len(y_true)+1):
-        err_t = np.abs(y_true[t, :] - y_pred[t, :])/y_true[t, :]
-        if err_t.any() >= epsilon:
+        err_t = np.linalg.norm(y_true[t, :] - y_pred[t, :])/np.linalg.norm(y_true[t, :])
+        if err_t >= epsilon:
             valid_pred_time = t
             break
         
