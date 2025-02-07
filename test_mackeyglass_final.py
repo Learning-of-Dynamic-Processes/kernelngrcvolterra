@@ -170,33 +170,33 @@ print(errors)
 # %% 
 # Plot data signals after err_range
 
-plot_data([test_teacher_volt[err_range: ], output_volt[err_range: ]], shift=shift_volt, scale=scale_volt, xlabel=["x", "y", "z"], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
-plot_data([test_teacher_poly[err_range: ], output_poly[err_range: ]], shift=shift_poly, scale=scale_poly, xlabel=["x", "y", "z"], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
-plot_data([test_teacher_ngrc[err_range: ], output_ngrc[err_range: ]], shift=shift_ngrc, scale=scale_ngrc, xlabel=["x", "y", "z"], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
+plot_data([test_teacher_volt[err_range: ], output_volt[err_range: ]], shift=shift_volt, scale=scale_volt, xlabel=['z'], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
+plot_data([test_teacher_poly[err_range: ], output_poly[err_range: ]], shift=shift_poly, scale=scale_poly, xlabel=['z'], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
+plot_data([test_teacher_ngrc[err_range: ], output_ngrc[err_range: ]], shift=shift_ngrc, scale=scale_ngrc, xlabel=['z'], datalabel=['actual', 'output'], x_values=x_values[err_range: ])
 
 # %% 
 # Plot overall data distribution 
 
-plot_data_distributions([test_teacher_volt, output_volt], "images/mg_volt_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
-plot_data_distributions([test_teacher_poly, output_poly], "images/mg_poly_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
-plot_data_distributions([test_teacher_ngrc, output_ngrc], "images/mg_ngrc_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
+plot_data_distributions([test_teacher_volt, output_volt], "images/mg_volt_dist.pdf", xlabel=['z'], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_poly, output_poly], "images/mg_poly_dist.pdf", xlabel=['z'], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_ngrc, output_ngrc], "images/mg_ngrc_dist.pdf", xlabel=['z'], datalabel=['actual', 'output'], figsize=(8,5))
 
 # %% 
 # Compute climate metrics
 
 # Volterra 
 print("Volterra")
-specwelch_volt = calculate_specdens_welch_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_volt_welch.pdf")
+specwelch_volt = calculate_specdens_welch_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_volt_welch.pdf", leg_loc="upper left", leg_bbox_anchor=(-0.2,1.05))
 specpgram_volt = calculate_specdens_periodogram_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=1, stop=30, ifPlot=True)
 
 # Polynomial
 print("Polynomial")
-specwelch_poly = calculate_specdens_welch_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_poly_welch.pdf")
+specwelch_poly = calculate_specdens_welch_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_poly_welch.pdf", leg_loc="upper left", leg_bbox_anchor=(-0.2,1.05))
 specpgram_poly = calculate_specdens_periodogram_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=1, stop=30, ifPlot=True)
 
 # NG-RC
 print("NG-RC")
-specwelch_ngrc = calculate_specdens_welch_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_ngrc_welch.pdf")
+specwelch_ngrc = calculate_specdens_welch_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=1, nperseg=1000, stop=30, ifPlot=True, figname="images/mg_ngrc_welch.pdf", leg_loc="upper left", leg_bbox_anchor=(-0.2,1.05))
 specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=1, stop=30, ifPlot=True)
 
 # %%

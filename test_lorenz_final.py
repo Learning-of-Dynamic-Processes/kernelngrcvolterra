@@ -182,29 +182,29 @@ plot_data([test_teacher_ngrc[err_range: ], output_ngrc[err_range: ]], shift=shif
 # Plot overall data distribution 
 
 print("Volterra")
-plot_data_distributions([test_teacher_volt, output_volt], "images/lorenz_volt_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
+plot_data_distributions([test_teacher_volt, output_volt], "images/lorenz_volt_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'], figsize=(8, 5))
 print("Polynomial")
-plot_data_distributions([test_teacher_poly, output_poly], "images/lorenz_poly_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
+plot_data_distributions([test_teacher_poly, output_poly], "images/lorenz_poly_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'], figsize=(8, 5))
 print("NG-RC")
-plot_data_distributions([test_teacher_ngrc, output_ngrc], "images/lorenz_ngrc_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'])
+plot_data_distributions([test_teacher_ngrc, output_ngrc], "images/lorenz_ngrc_dist.pdf", xlabel=["x", "y", "z"], datalabel=['actual', 'output'], figsize=(8, 5))
 
 # %% 
 # Compute climate metrics
 
 # Volterra 
 print("Volterra")
-specwelch_volt = calculate_specdens_welch_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_volt_welch.pdf")
-specpgram_volt = calculate_specdens_periodogram_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=200, stop=30, ifPlot=True)
+specwelch_volt = calculate_specdens_welch_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_volt_welch.pdf", leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
+specpgram_volt = calculate_specdens_periodogram_err(test_teacher_volt, output_volt, shift_volt, scale_volt, fs=200, stop=30, ifPlot=True, leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
 
 # Polynomial
 print("Polynomial")
-specwelch_poly = calculate_specdens_welch_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_poly_welch.pdf")
-specpgram_poly = calculate_specdens_periodogram_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=200, stop=30, ifPlot=True)
+specwelch_poly = calculate_specdens_welch_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_poly_welch.pdf", leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
+specpgram_poly = calculate_specdens_periodogram_err(test_teacher_poly, output_poly, shift_poly, scale_poly, fs=200, stop=30, ifPlot=True, leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
 
 # NG-RC
 print("NG-RC")
-specwelch_ngrc = calculate_specdens_welch_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_ngrc_welch.pdf")
-specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=200, stop=30, ifPlot=True)
+specwelch_ngrc = calculate_specdens_welch_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=200, nperseg=1000, stop=30, ifPlot=True, figname="images/lorenz_ngrc_welch.pdf", leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
+specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher_ngrc, output_ngrc, shift_ngrc, scale_ngrc, fs=200, stop=30, ifPlot=True, leg_loc="upper right", leg_bbox_anchor=(1.12, 1))
 
 # %% 
 # Wasserstein_nd takes too long with the full dataset, sampling is needed

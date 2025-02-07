@@ -4,6 +4,8 @@ from scipy.signal import periodogram, welch
 from sklearn.metrics import median_absolute_error, r2_score, mean_absolute_percentage_error
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({'font.size': 18})
+
 def calculate_mse(y_true, y_pred, shift=None, scale=None):
 
     """
@@ -66,9 +68,10 @@ def calculate_nmse(y_true, y_pred, shift=None, scale=None):
         y_pred = y_pred * (1/scale) - shift
     
     # Compute the nmse
-    mse = np.mean((y_true - y_pred)**2, axis=0)
-    factor = np.mean((y_true)**2, axis=0)
-    nmse = np.mean(mse / factor)
+    errors = np.sum((y_true - y_pred)**2, axis=0)
+    mean = np.mean(y_true, axis=0)
+    var = np.sum((y_true - mean[np.newaxis, :])**2, axis=0)
+    nmse = np.mean(errors/var)
 
     return nmse
 
@@ -275,7 +278,9 @@ def calculate_wasserstein1_nd_err(y_true, y_pred, shift=None, scale=None):
     
     
 # Climate error metrics     
-def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None, fs=1, nperseg=256, stop=None, ifPlot=False, figname=None):
+def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None, fs=1, nperseg=256, 
+                                 stop=None, ifPlot=False, dimlabel=None, 
+                                 leg_loc="best", leg_bbox_anchor=None, figname=None):
     
     """
     Calculate difference between normalised spectral density of true and predicted values using Welch's method (like Wilkner et. al.). 
@@ -292,7 +297,23 @@ def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None, fs=1, n
         The shift that was implemented in the normalisation process. (default: None).
     scale : float, optional 
         The scale that was implemented in the normalisation process. (default: None).
-
+    fs, nperseg : float, int, both optional
+        See https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html. (default: fs=1, nperseg=256).
+    stop : int, optional
+        Where in data to stop. Set stop to length of data if None. (default: None).
+    ifPlot : bool, optional
+        Whether to generate plot. (default: False)
+    dimlabel : array of strings, optional
+        Labels for each of the dimensions to be placed in the legend. Must have same size as number of dimensions. (default: None).
+    leg_loc : string, optional
+        loc argument to pass into matplotlib.pyplot.legend(). (default: "best").
+        See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html.
+    leg_bbox_anchor : tuple of ints,  optional
+        bbox_to_anchor argument to pass into matplotlib.pyplot.legend(). (default: None).
+        See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html.
+    figname : string, optional
+        Name to save the file as. 
+    
     Returns
     -------
     error : float
@@ -318,18 +339,30 @@ def calculate_specdens_welch_err(y_true, y_pred, shift=None, scale=None, fs=1, n
         psd_pred = welch(y_pred[:, dim], fs=fs, nperseg=nperseg, window="hann", scaling="spectrum")[1] 
         error = error + np.sum((np.abs(psd_true[0:stop] - psd_pred[0:stop]))/psd_true[0:stop])
         if ifPlot is True:
-            plt.plot(psd_true[0:stop], label=f"PSD True (Dimension 84)") #{dim})")
-            plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension 117)", linestyle="dashed") #dim})", linestyle="dashed")
+            if dimlabel is None:
+                plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dim+1})")
+                plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dim+1})", linestyle="dashed")
+            else:
+                plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dimlabel[dim]})")
+                plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dimlabel[dim]})", linestyle="dashed")
+                
     if ifPlot is True:
-        plt.legend()
+        if leg_bbox_anchor is None:
+            plt.legend(loc=leg_loc)
+        else:
+            plt.legend(loc=leg_loc, bbox_to_anchor=leg_bbox_anchor)
+        plt.xlabel("frequency")
+        plt.ylabel("PSD")
         if figname is not None:
-            plt.savefig(figname)
+            plt.savefig(figname, bbox_inches="tight")
         plt.show()
         plt.close()
     return error
 
 
-def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None, fs=1, stop=None, ifPlot=False, figname=None):
+def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None, fs=1, 
+                                       stop=None, ifPlot=False, dimlabel=None, 
+                                       leg_loc="best", leg_bbox_anchor=None, figname=None):
     
     """
     Calculate difference between normalised spectral density of true and predicted values using periodogram method. 
@@ -346,7 +379,23 @@ def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None, f
         The shift that was implemented in the normalisation process. (default: None).
     scale : float, optional 
         The scale that was implemented in the normalisation process. (default: None).
-
+    fs : float, int, both optional
+        https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.periodogram.html. (default: fs=1).
+    stop : int, optional
+        Where in data to stop. Set stop to length of data if None. (default: None).
+    ifPlot : bool, optional
+        Whether to generate plot. (default: False)
+    dimlabel : array of strings, optional
+        Labels for each of the dimensions to be placed in the legend. Must have same size as number of dimensions. (default: None).
+    leg_loc : string, optional
+        loc argument to pass into matplotlib.pyplot.legend(). (default: "best").
+        See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html.
+    leg_bbox_anchor : tuple of ints,  optional
+        bbox_to_anchor argument to pass into matplotlib.pyplot.legend(). (default: None).
+        See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html.
+    figname : string, optional
+        Name to save the file as. 
+    
     Returns
     -------
     error : float
@@ -372,12 +421,21 @@ def calculate_specdens_periodogram_err(y_true, y_pred, shift=None, scale=None, f
         psd_pred = periodogram(y_pred[:, dim], fs=fs, window="hann", scaling="spectrum")[1]
         error = error + np.sum((np.abs(psd_true[0:stop] - psd_pred[0:stop]))/psd_true[0:stop])
         if ifPlot is True:
-            plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dim})")
-            plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dim})", linestyle="dashed")
+            if dimlabel is None:
+                plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dim+1})")
+                plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dim+1})", linestyle="dashed")
+            else:
+                plt.plot(psd_true[0:stop], label=f"PSD True (Dimension {dimlabel[dim]})")
+                plt.plot(psd_pred[0:stop], label=f"PSD Pred (Dimension {dimlabel[dim]})", linestyle="dashed")
     if ifPlot is True:
-        plt.legend()
+        if leg_bbox_anchor is None:
+            plt.legend(loc=leg_loc)
+        else:
+            plt.legend(loc=leg_loc, bbox_to_anchor=leg_bbox_anchor)
+        plt.xlabel("frequency")
+        plt.ylabel("PSD")
         if figname is not None:
-            plt.savefig(figname)
+            plt.savefig(figname, bbox_inches="tight")
         plt.show()
         plt.close()
     return error

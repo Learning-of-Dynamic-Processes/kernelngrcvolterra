@@ -187,24 +187,24 @@ specpgram_ngrc = calculate_specdens_periodogram_err(test_teacher_ngrc, output_ng
 indices = [84, 117]
 
 # Volterra
-calculate_specdens_welch_err(np.take(test_teacher_volt, indices, axis=1) , np.take(output_volt, indices, axis=1), np.take(shift_output_volt, indices), np.take(scale_output_volt, indices), nperseg=128, ifPlot=True, figname="images/bekk_volt_welch.pdf")
-calculate_specdens_periodogram_err(np.take(test_teacher_volt, indices, axis=1), np.take(output_volt, indices, axis=1), np.take(shift_output_volt, indices), np.take(scale_output_volt, indices), ifPlot=True)
+calculate_specdens_welch_err(np.take(test_teacher_volt, indices, axis=1) , np.take(output_volt, indices, axis=1), np.take(shift_output_volt, indices), np.take(scale_output_volt, indices), nperseg=128, ifPlot=True, figname="images/bekk_volt_welch.pdf", dimlabel=[85, 118])
+calculate_specdens_periodogram_err(np.take(test_teacher_volt, indices, axis=1), np.take(output_volt, indices, axis=1), np.take(shift_output_volt, indices), np.take(scale_output_volt, indices), ifPlot=True, dimlabel=[85, 118])
 
 # Polymomial
-calculate_specdens_welch_err(np.take(test_teacher_poly, indices, axis=1), np.take(output_poly, indices, axis=1), np.take(shift_output_poly, indices), np.take(scale_output_poly, indices), nperseg=128, ifPlot=True, figname="images/bekk_poly_welch.pdf")
-calculate_specdens_periodogram_err(np.take(test_teacher_poly, indices, axis=1), np.take(output_poly, indices, axis=1), np.take(shift_output_poly, indices), np.take(scale_output_poly, indices), ifPlot=True)
+calculate_specdens_welch_err(np.take(test_teacher_poly, indices, axis=1), np.take(output_poly, indices, axis=1), np.take(shift_output_poly, indices), np.take(scale_output_poly, indices), nperseg=128, ifPlot=True, figname="images/bekk_poly_welch.pdf", dimlabel=[85, 118])
+calculate_specdens_periodogram_err(np.take(test_teacher_poly, indices, axis=1), np.take(output_poly, indices, axis=1), np.take(shift_output_poly, indices), np.take(scale_output_poly, indices), ifPlot=True, dimlabel=[85, 118])
 
 # NG-RC
-specwelch_selected_ngrc = calculate_specdens_welch_err(np.take(test_teacher_ngrc, indices, axis=1), np.take(output_ngrc, indices, axis=1), np.take(shift_output_ngrc, indices), np.take(scale_output_ngrc, indices), nperseg=128,  ifPlot=True, figname="images/bekk_ngrc_welch.pdf")
-calculate_specdens_periodogram_err(np.take(test_teacher_ngrc, indices, axis=1), np.take(output_ngrc, indices, axis=1), np.take(shift_output_ngrc, indices), np.take(scale_output_ngrc, indices), ifPlot=True)
+calculate_specdens_welch_err(np.take(test_teacher_ngrc, indices, axis=1), np.take(output_ngrc, indices, axis=1), np.take(shift_output_ngrc, indices), np.take(scale_output_ngrc, indices), nperseg=128,  ifPlot=True, figname="images/bekk_ngrc_welch.pdf", dimlabel=[85, 118])
+calculate_specdens_periodogram_err(np.take(test_teacher_ngrc, indices, axis=1), np.take(output_ngrc, indices, axis=1), np.take(shift_output_ngrc, indices), np.take(scale_output_ngrc, indices), ifPlot=True, dimlabel=[85, 118])
 
 # %%
 # Plot distributions
 
 target_display = 117#1
-plot_data_distributions([test_teacher_volt[:, target_display].reshape(-1, 1), output_volt[:, target_display].reshape(-1, 1)], "images/bekk_volt_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
-plot_data_distributions([test_teacher_poly[:, target_display].reshape(-1, 1), output_poly[:, target_display].reshape(-1, 1)], "images/bekk_poly_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
-plot_data_distributions([test_teacher_ngrc[:, target_display].reshape(-1, 1), output_ngrc[:, target_display].reshape(-1, 1)], "images/bekk_ngrc_dist.pdf", xlabel=["$H_1$", "$H_2$"], datalabel=['actual', 'output'])
+plot_data_distributions([test_teacher_volt[:, target_display].reshape(-1, 1), output_volt[:, target_display].reshape(-1, 1)], "images/bekk_volt_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_poly[:, target_display].reshape(-1, 1), output_poly[:, target_display].reshape(-1, 1)], "images/bekk_poly_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_ngrc[:, target_display].reshape(-1, 1), output_ngrc[:, target_display].reshape(-1, 1)], "images/bekk_ngrc_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
 
 # %%
 # Compute distribution metrics

@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from itertools import combinations
 
+plt.rcParams.update({'font.size': 18})
+
 def plot_data(data_list, shift=0, scale=1, 
               filename=None, figsize=(8, 4), x_values=None,
               xlabel=None, ylabel=None, datalabel=None,
@@ -148,7 +150,8 @@ def plot_data(data_list, shift=0, scale=1,
     
     plt.legend()
     if filename is not None:
-        plt.savefig(filename)
+        plt.savefig(filename, bbox_inches="tight")
+    
     plt.show()
 
 def plot_data_distributions(data_list, filename=None, figsize=(8, 4),
@@ -182,8 +185,8 @@ def plot_data_distributions(data_list, filename=None, figsize=(8, 4),
     ndata, ndim = data_list[0].shape
     colors = ['b', 'r', 'g', 'c']
     
-    fig, axs = plt.subplots(ndim, figsize=(length, breadth * ndim))
-    fig.tight_layout(pad=2)
+    fig, axs = plt.subplots(ndim, figsize=(length, breadth * ndim), layout="compressed")
+
 
     if ndim == 1:
         for i, data in enumerate(data_list):
@@ -196,7 +199,7 @@ def plot_data_distributions(data_list, filename=None, figsize=(8, 4),
             axs.set(xlabel=xlabel[0])
         else:
             axs.set(xlabel=f"Dimension {1}")
-        axs.legend()
+        axs.legend(bbox_to_anchor=(1, 1), ncol=2, loc="lower right")
         
     else:
         for dim in range(ndim):
@@ -210,9 +213,11 @@ def plot_data_distributions(data_list, filename=None, figsize=(8, 4),
                 axs[dim].set(xlabel=xlabel[dim])
             else:
                 axs[dim].set(xlabel=f"Dimension {dim + 1}")
-            axs[dim].legend()
+            axs[dim].legend(bbox_to_anchor=(1, 1), ncol=2, loc="lower right")
+    
+    fig.tight_layout()
     
     if filename is not None:
-        plt.savefig(filename)
+        plt.savefig(filename, bbox_inches="tight")
     plt.show()
     
