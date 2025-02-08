@@ -202,9 +202,9 @@ calculate_specdens_periodogram_err(np.take(test_teacher_ngrc, indices, axis=1), 
 # Plot distributions
 
 target_display = 117#1
-plot_data_distributions([test_teacher_volt[:, target_display].reshape(-1, 1), output_volt[:, target_display].reshape(-1, 1)], "images/bekk_volt_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
-plot_data_distributions([test_teacher_poly[:, target_display].reshape(-1, 1), output_poly[:, target_display].reshape(-1, 1)], "images/bekk_poly_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
-plot_data_distributions([test_teacher_ngrc[:, target_display].reshape(-1, 1), output_ngrc[:, target_display].reshape(-1, 1)], "images/bekk_ngrc_dist.pdf", xlabel=[f"$H_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_volt[:, target_display].reshape(-1, 1), output_volt[:, target_display].reshape(-1, 1)], "images/bekk_volt_dist.pdf", xlabel=[f"$\Sigma_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_poly[:, target_display].reshape(-1, 1), output_poly[:, target_display].reshape(-1, 1)], "images/bekk_poly_dist.pdf", xlabel=[f"$\Sigma_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
+plot_data_distributions([test_teacher_ngrc[:, target_display].reshape(-1, 1), output_ngrc[:, target_display].reshape(-1, 1)], "images/bekk_ngrc_dist.pdf", xlabel=[f"$\Sigma_{{{target_display+1}}}$"], datalabel=['actual', 'output'], figsize=(8,5))
 
 # %%
 # Compute distribution metrics
