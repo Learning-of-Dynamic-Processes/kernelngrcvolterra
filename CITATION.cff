@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: kernelngrcvolterra
+message: >-
+  Repository for the paper Infinite-dimensional
+  next-generation reservoir computing
+  (https://arxiv.org/abs/2412.09800).
+type: software
+authors:
+  - given-names: Lyudmila
+    family-names: Grigoryeva
+    email: lyudmila.grigoryeva@unisg.ch
+    affiliation: Universität Sankt Gallen
+  - given-names: Hannah Jing Ting
+    family-names: Lim
+    email: hannahji001@e.ntu.edu.sg
+    affiliation: 'Nanyang Technological University, Singapore '
+    orcid: 'https://orcid.org/0000-0001-7045-5009'
+  - given-names: Juan-Pablo
+    family-names: Ortega
+    email: juan-pablo.ortega@ntu.edu.sg
+    affiliation: 'Nanyang Technological University, Singapore'
+    orcid: 'https://orcid.org/0000-0002-5412-9622'
+repository-code: >-
+  https://github.com/Learning-of-Dynamic-Processes/kernelngrcvolterra.git
